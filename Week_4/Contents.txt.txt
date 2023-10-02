@@ -1,8 +1,21 @@
-**************   WEEK 4 KEY CONTENTS  ****************
-******************************************************
+**************   WEEK 4 KEY CONTENTS  ****************************************
+******************************************************************************
 
 --------------  CONTORNO SERVIDOR ---------------
 
 Conceptos de Algoritmos con bucles (FOR, WHILE, DO WHILE).
 Toma de caminos utilizando SWITCH-CASE
+
+
+--------------- PROGRAMACION --------------------
+
+> ARRAYS. Como se declaran, como recorrerlos con un bucle FOR,sacando los 
+valores por pantalla.
+
+> Aplicacion que solicita numeros al usuario hasta que acierta el generado por 
+la funcion random. Trabajo con bucles y entrada de datos desde terminal
+
+> Aplicacion que propone una adivinanza al usuario, lee la respuesta y si no 
+es correcta le da una pista. Vuelve a comprobar y le dice si acerto o no. 
+
 
