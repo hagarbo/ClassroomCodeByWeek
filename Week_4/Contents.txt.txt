@@ -1,0 +1,8 @@
+**************   WEEK 4 KEY CONTENTS  ****************
+******************************************************
+
+--------------  CONTORNO SERVIDOR ---------------
+
+Conceptos de Algoritmos con bucles (FOR, WHILE, DO WHILE).
+Toma de caminos utilizando SWITCH-CASE
+

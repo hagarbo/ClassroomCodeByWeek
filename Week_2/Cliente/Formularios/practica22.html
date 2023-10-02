@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form#pago {
+        font-family: Verdana, Arial, sans-serif;
+        margin:auto;
+        background: SlateGray;
+        color: white;
+        font-size: 14px;
+        padding: 30px;
+        width: 350px;
+        border:solid 10px LightSteelBlue;
+        border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        }
+        form#pago input{
+        font-size:14px;
+        background: white;
+        border:solid 1px LightSteelBlue;
+        border-radius: 3px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        float: right;
+        margin-right: 15px;
+        width: 200px;
+        }
+        form#pago ol li {
+        line-height: 25px;
+        list-style: none;
+        }
+        form#pago [required]{
+        border:solid 1px red;
+        }
+        input:required {
+        outline: 1px solid red;
+        }
+        h1{
+            font-size: 36px;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+        }
+        section{
+            margin: 50px 0px 50px 0px;
+        }
+
+        form#pagobis {
+        font-family: Verdana, Arial, sans-serif;
+        margin:auto;
+        color: black;
+        font-size: 16px;
+        padding: 30px;
+        width: 400px;
+        border:solid 10px violet;
+        border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        }
+        form#pagobis input{
+        font-size:16px;
+        background: white;
+        border:solid 1px greenyellow;
+        border-radius: 3px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        float: right;
+        margin-right: 15px;
+        width: 250px;
+        }
+        form#pagobis ol li {
+        line-height: 25px;
+        list-style: none;
+        }
+        form#pagobis [required]{
+        border:solid 1px red;
+        }
+        input:required {
+        outline: 1px solid red;
+        }
+        form#pagobis legend{
+            font-weight: 700;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 22px;
+        }
+        form#pagobis button{
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 18px;
+            font-weight: 800;
+            color: #fff;
+            background-color: violet;
+            padding: 5px;
+            border-radius: 10px;
+            margin-left: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Práctica de Formularios</h1>
+    <section>
+        <form id="pago" action="" method="get" autocomplete="off">
+            <legend>Datos personales</legend>
+            <ol>
+                <li>
+                    <label for="nombre">Nombre</label>
+                    <input autofocus type="text" name="nombre" id="nombre" placeholder="Escribe tu nombre completo" required/>
+                </li>
+                <li>
+                    <label for="correo">Email</label>
+                    <input type="email" name="correo" id="correo" placeholder="correo@dominio.com" required/>
+                </li>
+                <li>
+                    <label for="telefono">Teléfono</label>
+                    <input type="tel" name="telefono" id="telefono" placeholder="P.e. +444323244"/>
+                </li>
+                <li>
+                    <label for="pais">País</label>
+                    <input type="text" name="pais" id="pais"/>
+                </li>
+                <li>
+                    <label for="edad">Edad:</label>
+                    <input type="number" name="edad" id="edad" min="18" max="100" value="18"/>
+                </li>
+            </ol>
+            <legend>Datos de tarjeta de crédito</legend> 
+            <ol>
+                <li>
+                    <label for:"cardnum">Número</label>
+                    <input type="text" name="cardnum" id="cardnum" placeholder="P.e. 444-333-222" pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}" required/>
+                </li>
+                <li>
+                    <label for:"cardname">Nombre</label>
+                    <input type="text" name="cardname" id="cardname" placeholder="Nombre del propietario" required/>
+                </li>
+            </ol>
+            <button type="submit" form="pago" value="submit">Realizar compra</button>
+        </form>
+    </section>
+    <section>
+        <form id="pagobis" action="" method="get" autocomplete="off">
+            <legend>Datos personales</legend>
+            <ol>
+                <li>
+                    <label for="nombre">Nombre</label>
+                    <input autofocus type="text" name="nombre" id="nombre" placeholder="Escribe tu nombre completo" required/>
+                </li>
+                <li>
+                    <label for="correo">Email</label>
+                    <input type="email" name="correo" id="correo" placeholder="correo@dominio.com" required/>
+                </li>
+                <li>
+                    <label for="telefono">Teléfono</label>
+                    <input type="tel" name="telefono" id="telefono" placeholder="P.e. +444323244"/>
+                </li>
+                <li>
+                    <label for="pais">País</label>
+                    <input type="text" name="pais" id="pais"/>
+                </li>
+                <li>
+                    <label for="edad">Edad:</label>
+                    <input type="number" name="edad" id="edad" min="18" max="100" value="18"/>
+                </li>
+            </ol>
+            <legend>Datos de tarjeta de crédito</legend> 
+            <ol>
+                <li>
+                    <label for:"cardnum">Número</label>
+                    <input type="text" name="cardnum" id="cardnum" placeholder="P.e. 444-333-222" pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}" required/>
+                </li>
+                <li>
+                    <label for:"cardname">Nombre</label>
+                    <input type="text" name="cardname" id="cardname" placeholder="Nombre del propietario" required/>
+                </li>
+            </ol>
+            <button type="submit" form="pagobis" value="submit">Realizar compra</button>
+        </form>
+    </section>
+</body>
+</html>

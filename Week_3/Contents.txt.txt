@@ -1,0 +1,32 @@
+**************   WEEK 4 KEY CONTENTS  ****************
+******************************************************
+
+--------------  CONTORNO SERVIDOR ---------------
+
+Conceptos de Algoritmos con variables y estructuras 
+condicionales (IF)
+
+
+-------------- CONTORNO CLIENTE -----------------
+
+Introduccion a javascript con declaración de variables
+y su alcance. Hemos aprendido que usar let es una buena 
+practica que es la forma de que las variables sean locales
+
+Tambien hemos visto estructuras condicionales y bucles for 
+y while
+
+
+-------------- PROGRAMACION ------------------------
+
+Hemos programado nuestra primera clase en java con su 
+constructor, getters y setters. Hemos programado algun 
+metodo basico para modificar atributos de la clase
+y hemos visto los resultados por consola.
+
+
+----------------- CONTORNOS DE DESENVOLVEMENTO -------
+
+Hemos hecho una sesion grupal refactorizando un codigo 
+visto en programacion. Tenemos como tarea reescribir 
+el codigo de forma que sea más legible y más óptimo

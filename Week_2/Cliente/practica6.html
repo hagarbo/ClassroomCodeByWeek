@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        h1{
+            font-size: 48px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            text-align: center;
+            padding: 20px 0px 20px 0px;
+        }
+        h2{
+            margin:0;
+            font-size: 24px;
+            text-align: center;
+            background-color: #ccc;
+            padding: 5px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        
+        td{
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 8px;
+        }
+        section{
+            margin-top: 30px;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            padding: 0px 0px 20px 0px;
+        }
+        section article{
+            flex-grow: 1;
+            border: 1px solid #dddddd;
+            padding: 5px;
+        }
+        li:nth-child(odd) {
+            background-color: lightblue;
+        }
+        </style>
+</head>
+<body>
+
+    <h1>Carrito</h1>
+
+    <table border="1">
+        <caption>Tabla de productos seleccionados</caption>
+        <thead>
+            <tr>
+                <th>Imagen</th>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><img src="Imagenes/portatil.png" height="50" alt="portatil"></td>
+                <td><a href="#">Portatil Hipermegacool</a></td>
+                <td>650€</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td><img src="Imagenes/videocamara.png" height="50" alt="videocamara"></td>
+                <td><a href="#">Videocámara de primera</a></td>
+                <td>750€</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td><img src="Imagenes/tv.png" height="50" alt="televisor"></td>
+                <td><a href="#">Televisor 46" Full HD</a></td>
+                <td>1200€</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td><img src="Imagenes/movil.png" height="50" alt="movil"></td>
+                <td><a href="#">Movil de los que están prohibidos</a></td>
+                <td>250€</td>
+                <td>2</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3">TOTAL:</td>
+                <td>3850€</td>
+            </tr>
+        </tfoot>
+    </table>
+    <section>
+        <article>
+            <h2>Portatil Hipermegacool</h2>
+            <ul>
+                <li>Característica 1</li>
+                <li>Característica 2</li>
+                <li>Característica 3</li>
+                <li>Característica 4</li>
+                <li>Característica 5</li>
+            </ul>
+        </article>
+        <article>
+            <h2>Videocámara de primera</h2>
+            <ul>
+                <li>Característica 1</li>
+                <li>Característica 2</li>
+                <li>Característica 3</li>
+                <li>Característica 4</li>
+            </ul>
+        </article>
+        <article>
+            <h2>Televisor 46" Full HD</h2>
+            <ul>
+                <li>Característica 1</li>
+                <li>Característica 2</li>
+                <li>Característica 3</li>
+            </ul>
+        </article>
+        <article>
+            <h2>Movil de los que están prohibidos</h2>
+            <ul>
+                <li>Característica 1</li>
+                <li>Característica 2</li>
+                <li>Característica 3</li>
+                <li>Característica 4</li>
+            </ul>
+        </article>
+    </section>
+</body>
+</html>
