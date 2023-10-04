@@ -5,6 +5,8 @@
 
 > Conceptos de Algoritmos con bucles (FOR, WHILE, DO WHILE).
 > Toma de caminos utilizando SWITCH-CASE
+> Arrays. Declaracion y trabajo con arrays simples y asociativos
+> Foreach para recorrer los arrays y funciones utiles como push
 
 
 --------------- PROGRAMACION ------------------------------------------------
