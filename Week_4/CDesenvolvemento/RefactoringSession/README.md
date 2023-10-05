@@ -1,6 +1,6 @@
-## Cambios propuestos
+# Cambios propuestos
 
-A continuación se comentarán los cambios propuestos para el programa con una breve explicación
+### A continuación se comentarán los cambios propuestos para el programa con una breve explicación
 
 ## Definición de constantes al principio del programa
 
