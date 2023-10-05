@@ -1,7 +1,7 @@
-**************   WEEK 4 KEY CONTENTS  ****************************************
-******************************************************************************
+#  WEEK 4 KEY CONTENTS
 
---------------  CONTORNO SERVIDOR -------------------------------------------
+
+## CONTORNO SERVIDOR 
 
 > Conceptos de Algoritmos con bucles (FOR, WHILE, DO WHILE).
 > Toma de caminos utilizando SWITCH-CASE
@@ -9,7 +9,7 @@
 > Foreach para recorrer los arrays y funciones utiles como push
 
 
---------------- PROGRAMACION ------------------------------------------------
+## PROGRAMACION 
 
 > ARRAYS. Como se declaran, como recorrerlos con un bucle FOR,sacando los 
 valores por pantalla.
@@ -31,7 +31,7 @@ es correcta le da una pista. Vuelve a comprobar y le dice si acerto o no.
 	suficiente, suspenso). Al terminar, deberá mostrar la mayor nota en 
 	número y letra
 
-------------- CONTORNO CLIENTE -----------------------------------------------
+## CONTORNO CLIENTE 
 
 > Implementacion de algoritmos basicos en JavaScript
 > Arrays en Javascript

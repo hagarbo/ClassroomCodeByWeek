@@ -10,7 +10,7 @@ public class RecuentoNegativos {
      * Imprime texto por pantalla en funcion del signo del numero pasado
      * por parametro y del numero de negativos almacenados
      */
-    private static void printNumberInfo(int num, int count) {
+    public static void printNumberInfo(int num, int count) {
         System.out.println();
         if (num < 0) {
             System.out.println("El numero " + num + " es negativo. Almacenando...");
