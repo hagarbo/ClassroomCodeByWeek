@@ -25,7 +25,7 @@
     //echo "Ingresa un numero: ";
     //fscanf(STDIN, "%d", $n); // PARA LEER DE TECLADO POR TERMINAL
 
-    $n = 5;
+    $n = 21;
     $suma = 1;
     $ter = 1;
     for ($k = 1; $k <= $n; $k++) {
@@ -38,9 +38,12 @@
     $suma = 1;
     $ter = 1;
     $k = 1;
-    while ($k++ <= $n && $suma < VALOR_MIN) { //++ primero se evalua y luego se incrementa
+    // $k++ <= $n &&
+    while (bccomp($suma, VALOR_MIN, 10) < 0) { //++ primero se evalua y luego se incrementa
         $ter = $ter / 2;
         $suma += $ter;
+        echo "<p>contador->{$k}</p>";
+        $k++;
     }
 
     echo "<p>La suma con bucle WHILE vale : $suma</p>";
