@@ -11,7 +11,11 @@
 
 ## PROGRAMACION
 
--
+- Ejercicios de preparación para el examen del dia 19 consistentes en:
+  - Realizar pseudocódigo y diagramas de flujo de algoritmos sencillos
+  - Tests en los que aparece un pequeño codigo y hay que responder ciertas preguntas
+  - Programar algoritmos sencillos en Java. Los ejercicios planteados estan en un pdf
+    dentro de la carpeta de cada dia de clase.
 
 ## CONTORNO CLIENTE
 
