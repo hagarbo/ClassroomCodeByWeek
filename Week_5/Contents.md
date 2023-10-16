@@ -1,4 +1,4 @@
-# WEEK 4 KEY CONTENTS
+# WEEK 5 KEY CONTENTS
 
 ## CONTORNO SERVIDOR
 
@@ -19,4 +19,6 @@
 
 ## CONTORNO CLIENTE
 
--
+- Seguimos programando algoritmos sencillos con javascript.
+- Practica de programar un juego que elija un numero aleatorio y le pida al usuario
+  que lo adivine
