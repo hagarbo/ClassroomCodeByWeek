@@ -1,3 +1,9 @@
 {
-  "java.debug.settings.onBuildFailureProceed": true
+  "java.debug.settings.onBuildFailureProceed": true,
+  "java.project.sourcePaths": [
+    "Week_5/Programacion/EjerciciosMartes/src",
+    "Week_5/Programacion/EjerciciosLunes/src",
+    "Week_4/Programacion/PrintNumerosRandom/src",
+    "Week_5/Programacion/EjerciciosLunes"
+  ]
 }

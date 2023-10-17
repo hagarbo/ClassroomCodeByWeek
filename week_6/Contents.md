@@ -19,4 +19,31 @@
 
 ## CONTORNO CLIENTE
 
--
+- Declaracion y uso de funciones en javascript. Varias formas de declararlas, metodo
+  tradicional como en otros lenguajes o definicion como variables en funciones anonimas
+  o funciones lambda. Tenemos tambien las funciones flecha, declaracion en 1 linea.
+
+```
+  function sumar(a,b){
+    return a+b;
+  }
+
+  const sumar = (a,b){
+    return a+b;
+  }
+
+  const sumar = (a,b) => a+b;
+```
+
+- Las funciones se pueden pasar como argumento a otras funciones cuando se declaran como
+  variables
+
+```
+  const f = (x){
+    return x * x;
+  }
+
+  function elevar(f,a){
+    return f(a); // devuelve a*a;
+  }
+```
