@@ -8,7 +8,7 @@
 </head>
 
 <?php
-include "utilities" . DIRECTORY_SEPARATOR . "calculadora.php";
+require_once "utilities" . DIRECTORY_SEPARATOR . "calculadora.php";
 
 if (
     isset($_GET["primer_operando"]) &&
