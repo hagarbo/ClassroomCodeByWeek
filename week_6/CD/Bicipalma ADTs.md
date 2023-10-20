@@ -73,5 +73,5 @@ Responde a las siguientes preguntas sobre la clase `Anclajes`:
 * ¿Evita la clase hacer suposiciones sobre sus usuarios, incluidas sus clases derivadas?
     La respuesta a todas estas preguntas es sí, salvo en un caso, el metodo anclajes que devuelve un array de objetos Anclaje, que sí nos hace suponer que efectivamente la clase mantiene un array de ese tipo en su implementación, además de mostrarnos que la clase Anclaje existe. 
 * ¿Es la clase independiente de otras clases? ¿Exhibe alto o bajo acoplamiento?
-    No lo es, depende de clase Estación y no tiene sentido sin ella. 
+    No lo es, depende de clase Estación y la clase Anclaje
     
