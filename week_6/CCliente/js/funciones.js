@@ -8,7 +8,7 @@ window.onload = function (){
         for (let i = 0; i < array.length; i++) {
             show+=array[i]+" , ";
         }
-        document.write("<p>"+show.substring(0,show.length-3)+"]"+"</p>");
+        document.body.innerHTML+="<p>"+show.substring(0,show.length-3)+"]"+"</p>";
     }
 
     const orden = function(f,array){
@@ -49,22 +49,25 @@ window.onload = function (){
         return false;
     }
 
-    document.write("<h3>Este es el array</h3>");
+    let boton = document.getElementById("boton");
+    console.log(boton);
+    boton.addEventListener("click",function(){
+        console.log("hola");
+        if (busqueda(leerNumero(),array)) alert("Numero encontrado");
+        else alert("Numero no encontrado");
+    },false);
+
+    document.body.innerHTML+="<h3>Este es el array</h3>";
     mostrar(array);
 
-    document.write("<h3>Este es el array ordenado de menor a mayor</h3>");
+    document.body.innerHTML+="<h3>Este es el array ordenado de menor a mayor</h3>";
     orden(mostrar,array);
 
-    document.write("<h3>Este es el array inverso</h3>");
+    document.body.innerHTML+="<h3>Este es el array inverso</h3>";
     ordenInverso(mostrar,array);
 
-    document.write("<h4>Tamaño del array: "+size(array)+"</h4>")
+    document.body.innerHTML+="<h4>Tamaño del array: "+size(array)+"</h4>";
     
-}
-
-document.getElementById("boton").onclick = function(){
-    if (busqueda(leerNumero(),array)) alert("Numero encontrado");
-    else alert("Numero no encontrado");
 }
 
 function leerNumero() {
