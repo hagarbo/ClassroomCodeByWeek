@@ -49,13 +49,12 @@ window.onload = function (){
         return false;
     }
 
-    let boton = document.getElementById("boton");
-    console.log(boton);
-    boton.addEventListener("click",function(){
-        console.log("hola");
-        if (busqueda(leerNumero(),array)) alert("Numero encontrado");
-        else alert("Numero no encontrado");
-    },false);
+    const element = document.getElementById("boton");
+    element.addEventListener("click", function() {
+    console.log("Hello World");
+    /* if (busqueda(leerNumero(),array)) alert("Numero encontrado");
+        else alert("Numero no encontrado"); */
+    });
 
     document.body.innerHTML+="<h3>Este es el array</h3>";
     mostrar(array);

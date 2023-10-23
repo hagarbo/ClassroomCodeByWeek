@@ -16,6 +16,7 @@
 - Pequeña dinamica de grupo donde practicamos los roles de cliente, project manager
   y equipo de desarrollo donde planteabamos unos requisitos al otro grupo y planteabamos
   como implementar una solucion, para posteriormente programarla
+- Examen Parcial
 
 ## CONTORNO CLIENTE
 
@@ -47,3 +48,7 @@
     return f(a); // devuelve a*a;
   }
 ```
+
+## Contornos Desarrollo
+
+- Principios básicos de la programación, qué es un lenguaje, paradigmas de programación y qué los caracteriza, y principios básicos de la orientación a objetos.
