@@ -7,13 +7,12 @@ window.onload = function (){
     const array = [8,76,54,77,23,99];
 
     const mostrar = function(array){
-        let show = "[";
+        let show = "<p>[";
         for (let i = 0; i < array.length; i++) {
             show+=array[i]+" , ";
         }
-        let para = document.createElement("p");
-        let node = document.createTextNode(show.substring(0,show.length-3)+"]");
-        para.appendChild(node);
+        show = show.substring(0,show.length-3)+"]</p>";
+        return show;
     }
 
     const orden = function(f,array){
@@ -27,7 +26,7 @@ window.onload = function (){
                 }
             }
         }
-        f(ordenado);
+        return f(ordenado);
     }
 
     const ordenInverso = function(f,array){
@@ -35,7 +34,7 @@ window.onload = function (){
         for (let i = 0; i < array.length; i++) {
             ordenado[i] = array[array.length-1-i];
         }
-        f(ordenado);
+        return f(ordenado);
     }
 
     const size = function(array){
@@ -49,43 +48,53 @@ window.onload = function (){
     const busqueda = function(f,array){
         let input = f();
         for (let i = 0; i < array.length; i++) {
-            if (input == array[i]) return true;
+            if (input == array[i]) return i;
         }
-        return false;
+        return -1;
     }
+
+
+//Método comprueba si un número es par o impar. En caso de que sea par devuelve un valor true
+const esPar = function (numero) {
+    if (numero % 2 == 0)
+        return true;
+    else return false;
+
+}
+//Método que recorre el array de números, comprueba si un número es par y lo suma
+
+function sumaPar(numeros, esPar) {
+    let suma = 0;
+    numeros.forEach(numero => {
+        console.log(numero);
+        if (esPar(numero))
+            suma = suma + numero
+    });
+
+    return `<h4>LA SUMA DE LOS NUMEROS PARES ES ${suma} <h>`;
+
+}
 
     function handleClick(){
-        if (busqueda(leerNumero,array)) alert("Numero encontrado");
-        else alert("Numero no encontrado");
+        let index = busqueda(leerNumero,array);
+        if (index == -1) alert("Numero no encontrado");
+        else alert("Numero encontrado en la posicion "+index);
     }
 
+    
+    let cadenaMostrar = "<h3>Este es el array</h3>"+mostrar(array);
+    let arrayOrdenado = array.slice();
+    cadenaMostrar += "<h3>Este es el array ordenado de menor a mayor</h3>"+orden(mostrar,arrayOrdenado);
+    let arrayInverso = arrayOrdenado.slice();
+    cadenaMostrar += "<h3>Este es el array inverso</h3>"+ordenInverso(mostrar,arrayInverso);
+    cadenaMostrar += "<h4>Tamaño del array: "+size(array)+"</h4>";
+    cadenaMostrar += sumaPar(array,esPar);
+
     const info = document.getElementById("div_info");
-    let para = document.createElement("p");
-    let node = document.createTextNode("Este es el array");
-    para.appendChild(node);
-    info.appendChild(node);
-    mostrar(array);
-
-    para = document.createElement("p");
-    node = document.createTextNode("Este es el array ordenado de menor a mayor");
-    para.appendChild(node);
-    info.appendChild(node);
-    orden(mostrar,array);
-
-    para = document.createElement("p");
-    node = document.createTextNode("Este es el array inverso");
-    para.appendChild(node);
-    info.appendChild(node);
-    ordenInverso(mostrar,array);
-
-    para = document.createElement("p");
-    node = document.createTextNode("Tamaño del array: "+size(array));
-    para.appendChild(node);
-    info.appendChild(node);
+    info.innerHTML = cadenaMostrar;
 
     
 }
-
 
 function leerNumero() {
     let numero;

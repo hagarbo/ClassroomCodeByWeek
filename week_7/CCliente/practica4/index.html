@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Estructura DOM JavaScript</title>
+    <style>
+      .caja {
+        width: 80px;
+        height: 80px;
+        float: left;
+        margin: 20px;
+        border: 3px dashed black;
+        padding: 5px;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        flex-direction: column;
+        font-size: 20px;
+        color: white;
+      }
+      .amarillo {
+        background: yellowgreen;
+        color: black;
+      }
+      .rojo {
+        background: red;
+      }
+      .azul {
+        background: royalblue;
+      }
+      .naranja {
+        background: orangered;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>EStructura DOM</h1>
+    <section id="miseccion">
+      <h1 id="encabezado">Listado de textos de los divs</h1>
+      <div class="caja amarillo">1-Seccion</div>
+      <div class="caja rojo">2-Seccion</div>
+      <div class="caja rojo">3-Seccion</div>
+    </section>
+    <section id="seccionvacia"></section>
+    <script type="text/javascript" src="dom.js"></script>
+  </body>
+</html>
