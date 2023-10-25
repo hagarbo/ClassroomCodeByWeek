@@ -76,7 +76,7 @@ function sameSize(array $a, array $b): bool
     return (sizeof($a) == count($b));
 }
 
-function esNumeroValido(array $array, int $min, int $max): bool
+function esNumeroValido(array $array, float $min, float $max): bool
 {
     foreach ($array as $value) {
         if (!is_numeric($value)) return false;
