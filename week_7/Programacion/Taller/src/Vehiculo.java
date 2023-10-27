@@ -4,9 +4,9 @@ public abstract class Vehiculo {
     private final String GASOLINA_STRING = "gasolina";
     private final String DIESEL_STRING = "diesel";
     private final String ELECTRICO_STRING = "electrico";
-    private final int GASOLINA_RATIO = 2;
-    private final int DIESEL_RATIO = 3;
-    private final int ELECTRICO_RATIO = 1;
+    private final double GASOLINA_RATIO = 2.0;
+    private final double DIESEL_RATIO = 3.0;
+    private final double ELECTRICO_RATIO = 1.0;
 
     private String marca;
     private int ruedas;
@@ -76,7 +76,7 @@ public abstract class Vehiculo {
      * si es diesel por 3
      * y si es eléctrico no se modifica o se multiplica por 1.
      */
-    protected int constanteMotor() throws Exception {
+    protected double constanteMotor() throws Exception {
         if (this.getMotor().equals(GASOLINA_STRING))
             return GASOLINA_RATIO;
         if (this.getMotor().equals(DIESEL_STRING))

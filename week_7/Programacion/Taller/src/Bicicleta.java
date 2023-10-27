@@ -1,6 +1,6 @@
 public class Bicicleta extends Vehiculo {
 
-    private static final int RATIO_REPARACION = 3;
+    private static final double RATIO_REPARACION = 3.0;
 
     public Bicicleta() {
         super();

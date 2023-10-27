@@ -27,3 +27,14 @@ unset($valor); // Importante romper la referencia al final por si mas adelante v
   reaccionar a las interacciones del usuario con una página web.
 - Concepto de lo que es el DOM de un html y cómo acceder desde JavaScript a
   los nodos del DOM para modificar su contenido o añadir nuevo html al documento
+
+## CONTORNOS DESAROLLO
+
+- De los 4 principios de la OO, la herencia es el que produce **mayor ACOPLAMIENTO** entre
+  clases, lo cual hace que sea bueno intentar **evitarla** en la medida de lo posible.
+- La alta cohesión sí que es deseable.(Por ejemplo que todos los métodos relacionados con cobrar vayan en la clase Cajero).
+- La abstracción **NO** tiene nada que ver con ocultación de información.
+- Especificación por contrato: tu me dices la rutina y lo que le tengo que pasar al llamarla,
+  y luego me dices que me devuelves. (Precondiciones y Postcondiciones).
+- En un ADT, lo importante es el **COMPORTAMIENTO**(las operaciones que podemos hacer con el), **NO los DATOS**
+- **El problema del gorila y la banana** (Problema de java)

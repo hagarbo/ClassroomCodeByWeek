@@ -1,6 +1,6 @@
 public class Coche extends Vehiculo {
 
-    private static final int RATIO_REPARACION = 2;
+    private static final double RATIO_REPARACION = 2.0;
     private int puertas;
     private String matricula;
 
