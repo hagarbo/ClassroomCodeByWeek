@@ -1,40 +1,53 @@
 <html>
   <head>
     <title>Ejemplo de JavaScript</title>
+    <style>
+      h1 {
+        text-align: center;
+      }
+      form {
+        margin-left: 300px;
+        width: 600px;
+        padding: 30px;
+        background-color: rgb(42, 102, 192);
+      }
+      form p {
+        padding: 0px 100px 0px 100px;
+        font-weight: 900;
+        color: white;
+      }
+      form input {
+        float: right;
+        width: 80px;
+      }
+    </style>
   </head>
   <body>
-    <form action="">
+    <h1>INTRODUCE EL ANCHO Y ALTO DE LA VENTANA:</h1>
+    <form id="window-form">
       <p>
-        <label for="ancho"></label
-        ><input type="text" id="ancho" name="ancho" />ANCHO VENTANA
+        <label for="ancho">ANCHO VENTANA:</label
+        ><input type="text" id="ancho" name="ancho" />
       </p>
       <p>
-        <label for="alto"></label
-        ><input type="text" id="alto" name="alto" />ALTO VENTANA
+        <label for="alto">ALTO VENTANA:</label
+        ><input type="text" id="alto" name="alto" />
       </p>
       <p>
-        <label for="coordx"></label
-        ><input type="text" id="coordx" name="coordy" />Coordenada X
+        <label for="coordx">Coordenada X:</label
+        ><input type="text" id="coordx" name="coordy" />
       </p>
       <p>
-        <label for="coordy"></label
-        ><input type="text" id="coordy" name="coordy" />Coordenada Y
+        <label for="coordy">Coordenada Y:</label
+        ><input type="text" id="coordy" name="coordy" />
       </p>
       <fieldset>
-        <button id="crear">Crear</button>
-        <button id="cerrar">Cerrar</button>
-        <button id="mover">Mover</button>
-        <button id="redimensionar">Redimensionar</button>
+        <button id="crear" type="button">Crear</button>
+        <button id="cerrar" type="button" disabled>Cerrar</button>
+        <button id="mover" type="button" disabled>Mover</button>
+        <button id="redimensionar" type="button" disabled>Redimensionar</button>
       </fieldset>
     </form>
-
-    <script language="JavaScript">
-      let mi_ventana;
-      let opciones = "left=100,top=100,width=250,height=150";
-      i = 0;
-      mi_ventana = window.open("", "EjemploVentana", opciones);
-      mi_ventana.document.write("Una prueba de abrir ventanas");
-      mi_ventana.moveTo(400, 100);
-    </script>
+    <script src="ventana.js"></script>
   </body>
 </html>

@@ -1,0 +1,94 @@
+<html lag="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PRACTICA VENTANA</title>
+    
+  </head>
+  <style>
+    p {
+      text-align: center;
+      font-size: 14px;
+      color: rgba(11, 24, 61, 0.141);
+    }
+
+    #documento {
+      font-family: Verdana, Arial, sans-serif;
+      margin: auto;
+      background: SlateGray;
+      color: white;
+      font-size: 14px;
+      padding: 30px;
+      width: 450px;
+    }
+
+    input {
+      font-size: 14px;
+      background: white;
+      border: solid 1px LightSteelBlue;
+      border-radius: 3px;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      float: right;
+      margin-right: 100px;
+      width: 50px;
+    }
+    ol li {
+      line-height: 25px;
+      list-style: none;
+    }
+    button {
+      text-align: center;
+    }
+    button:enabled {
+      color: #2b2;
+    }
+
+    button:disabled {
+      color: #aaa;
+    }
+
+    fieldset {
+      align-self: auto;
+    }
+  </style>
+
+  <body id="ventana" name="Ventana principal">
+    <p><b>INTRODUCE EL ANCHO Y ALTO DE LA VENTANA:</b></p>
+
+    <form id="documento">
+      <ol>
+        <li>
+          <b>ANCHO VENTANA: </b>
+          <input type="text" id="ancho" size="10" value="0" />
+        </li>
+
+        <li>
+          <b>ALTO VENTANA:</b>
+          <input type="text" id="alto" size="10" value="0" />
+        </li>
+      </ol>
+
+      <ol>
+        <li>
+          <b>Coordenada X:</b
+          ><input type="text" id="coordX" size="10" value="0" />
+        </li>
+        <li>
+          <b>Coordenada Y:</b>
+          <input type="text" id="coordY" size="10" value="0" />
+        </li>
+      </ol>
+
+      <fieldset>
+        <button id="BCrear" onclick="CrearVentana()">Crear</button>
+        <button id="BCerrar" onclick="CerrarVentana()">Cerrar</button>
+        <button id="BMover" onclick="MoverVentana()">Mover</button>
+        <button id="BRedimensionar" onclick="Redimensionar()">
+          Redimensionar
+        </button>
+      </fieldset>
+    </form>
+    <script src="practica_Ventana_Version1.js"></script>
+  </body>
+</html>

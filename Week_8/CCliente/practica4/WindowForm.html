@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <title>Ejemplo de JavaScript</title>
+  </head>
+  <body>
+    <form action="">
+      <p>
+        <label for="ancho"></label
+        ><input type="text" id="ancho" name="ancho" />ANCHO VENTANA
+      </p>
+      <p>
+        <label for="alto"></label
+        ><input type="text" id="alto" name="alto" />ALTO VENTANA
+      </p>
+      <p>
+        <label for="coordx"></label
+        ><input type="text" id="coordx" name="coordy" />Coordenada X
+      </p>
+      <p>
+        <label for="coordy"></label
+        ><input type="text" id="coordy" name="coordy" />Coordenada Y
+      </p>
+      <fieldset>
+        <button id="crear">Crear</button>
+        <button id="cerrar">Cerrar</button>
+        <button id="mover">Mover</button>
+        <button id="redimensionar">Redimensionar</button>
+      </fieldset>
+    </form>
+
+    <script language="JavaScript">
+      let mi_ventana;
+      let opciones = "left=100,top=100,width=250,height=150";
+      i = 0;
+      mi_ventana = window.open("", "EjemploVentana", opciones);
+      mi_ventana.document.write("Una prueba de abrir ventanas");
+      mi_ventana.moveTo(400, 100);
+    </script>
+  </body>
+</html>
