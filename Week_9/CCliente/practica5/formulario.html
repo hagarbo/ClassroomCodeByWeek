@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cálculo edad</title>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <h1>Indica la fecha de tu cumpleaños.</h1>
+
+    <!--El atributo action indica la página a la que se envían los datos del formulario. Si este atributo está vacío, 
+    es la página que contiene el formulario la que se recargará con los datos como parámetros -->
+
+    <form name="miFormulario">
+      <input
+        type="date"
+        name="fechaNacimiento"
+        id="fechaNacimiento"
+        required=""
+      />
+      <button type="button" name="enviar" id="boton">Enviar fecha</button>
+    </form>
+
+    <div id="resultado"></div>
+    <script src="practica5.js"></script>
+  </body>
+</html>
