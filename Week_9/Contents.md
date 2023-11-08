@@ -3,6 +3,7 @@
 ## CONTORNO SERVIDOR
 
 - Nociones básicas de Bases de datos para poder trabajar con ellas en php. Hemos importado nuestro primer script SQL desde phpmyAdmin y hemos instalado mysql workbench para acceder con más facilidad y celeridad a la base de datos. Clase express de SQL para con operaciones CRUD y consultas para poder empezar a trabajar el acceso a BD con php.
+- Clase PDO para acceso a base de datos desde Php. Como crear un objeto custo que extienda de PDO para guardar la configuracion de acceso en un fichero .ini.
 
 ## PROGRAMACION
 
@@ -15,6 +16,6 @@
 
 ## CONTORNO CLIENTE
 
--
+- Practica para aprender a recorrer el DOM y crear nodos desde jvascript posicionandolos en lugares concretos.
 
 ## CONTORNOS DESAROLLO
