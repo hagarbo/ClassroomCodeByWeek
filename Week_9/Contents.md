@@ -19,3 +19,7 @@
 - Practica para aprender a recorrer el DOM y crear nodos desde jvascript posicionandolos en lugares concretos.
 
 ## CONTORNOS DESAROLLO
+
+- Convenciones de nombramiento de paquetes, gestión de proyectos con Maven(que también es una convención de como organizar el código de un proyecto)
+- SWAGGER para escribir documentación para APIs.
+- Baeldung para cosas de java(recetas rapidas)
