@@ -23,3 +23,8 @@
 - Convenciones de nombramiento de paquetes, gestión de proyectos con Maven(que también es una convención de como organizar el código de un proyecto)
 - SWAGGER para escribir documentación para APIs.
 - Baeldung para cosas de java(recetas rapidas)
+
+## FOL
+
+- Para examen-> posible pregunta: limite de FOGASA de 120 dias
+- En caso de impago primero se pone una demanda a la empresa. Si una vez dictada la sentencia la empresa sigue sin pagar puedes interponer otra reclamacion a FOGASA pero el limite que puedes cobrar son 120 dias y hasta el doble del SMI(si cobras mas este es el tope). FOGASA tarda en pagar, y esta privatizado ahora mismo. No solo paga salario sino tambien indemnizaciones.

@@ -11,13 +11,28 @@
     es la página que contiene el formulario la que se recargará con los datos como parámetros -->
 
     <form name="miFormulario">
-      <input
-        type="date"
-        name="fechaNacimiento"
-        id="fechaNacimiento"
-        required=""
-      />
-      <button type="button" name="enviar" id="boton">Enviar fecha</button>
+      <p>
+        <label>Fecha de Nacimiento</label>
+        <input
+          type="date"
+          name="fechaNacimiento"
+          id="fechaNacimiento"
+          required
+        />
+      </p>
+      <button type="button" name="enviar" id="botonNacimiento">
+        Enviar fecha
+      </button>
+    </form>
+
+    <form name="miEvento">
+      <p>
+        <label>Fecha del evento</label>
+        <input type="date" name="fechaEvento" id="fechaEvento" required />
+      </p>
+      <button type="button" name="enviarEvento" id="botonEvento">
+        Enviar fecha
+      </button>
     </form>
 
     <div id="resultado"></div>
