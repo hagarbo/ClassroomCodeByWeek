@@ -79,11 +79,13 @@ if (isset($_GET["busqueda"])) {
             // e) Busque el término de búsqueda también en la columna first_name 
             // de la tabla authors
             /* CONSULTA con UNION: 
-                select author_id as id, first_name as name,middle_name,last_name 
+                select author_id as id,null as book_id, first_name as name,middle_name,last_name 
                 from authors 
                 union 
-                select book_id as id, title as name,null as middle_name, null as last_name 
-                from books;*/
+                select null as author_id, book_id, title as name,null as middle_name, null as last_name 
+                from books;
+                
+                SE podria hacer una consulta JOIN entre 3 tablas(authors, authors_books, y books) PERO NOT WORTH */
             $query = "SELECT author_id, null as book_id,
                              first_name as name,middle_name,last_name 
                     FROM authors WHERE first_name LIKE :filtro 
@@ -91,6 +93,14 @@ if (isset($_GET["busqueda"])) {
                     SELECT null as author_id, book_id,
                             title as name,null as middle_name, null as last_name 
                     FROM books WHERE title LIKE :filtro ";
+
+            /* 
+            OTRA FORMA -> hacer el concat en el propio SQL
+            $stmt = $con->prepare("select title as resultado from books where UPPER(title) like :busqueda 
+                    union 
+                    select TRIM(Concat(coalesce(first_name, '') , coalesce(middle_name, ' '), coalesce(last_name, ''))) 
+                    as resultado from authors where first_name like :busqueda;"); 
+            */
             $stmt = $con->prepare($query);
             $stmt->bindParam("filtro", $filtro);
             $stmt->execute();
