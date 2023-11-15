@@ -1,7 +1,7 @@
 
 <?php
 
-
+const SETTINGS_DB_FILE = "db_settings.ini";
 
 /**
  * Summary of getConnection
@@ -10,18 +10,22 @@
  */
 function getConnection()
 {
-
+    //APARTADO NUMERO 1
+    if (!$settings = parse_ini_file(SETTINGS_DB_FILE, true))
+        throw new Exception("ERROR : Unable to open " . SETTINGS_DB_FILE);
     $con = null;
-    $host = "localhost";
-    $db = "bookdb";
-    $user = "user-bookdb";
-    $pass = "abc123.";
-    $dsn = "mysql:host=$host;dbname=$db";
+    $driver = $settings["database"]["driver"];
+    $host = $settings["database"]["host"];
+    $db = $settings["database"]["schema"];
+    $user = $settings["database"]["username"];
+    $pass = $settings["database"]["password"];
+    $dsn = $driver.":host=$host;dbname=$db";
+    $persistent = $settings["database"]["persistent"];
 
     try {
 
         $con = new PDO($dsn, $user, $pass,  array(
-            PDO::ATTR_PERSISTENT => true
+            PDO::ATTR_PERSISTENT => $persistent
         ));
 
         //Esto no hace falta en versión PHP 8 y superiores: https://www.php.net/manual/en/pdo.error-handling.php

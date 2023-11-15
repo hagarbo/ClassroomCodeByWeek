@@ -88,5 +88,6 @@ function crearLista(){
 
 function destruirLista(){
     let divlista = document.querySelector("#div-lista");
-    divlista.removeChild(divlista.firstChild);
+    if (divlista!=null)
+        divlista.removeChild(divlista.firstChild);
 }
