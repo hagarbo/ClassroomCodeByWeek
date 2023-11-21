@@ -19,19 +19,18 @@ public class DecimalRomanConverter {
         conversionTable.put(4, "IV");
         conversionTable.put(1, "I");
 
-        /*
-         * String resultado = "";
-         * int resto = decimalNum;
-         * 
-         * Set<Integer> keys = conversionTable.keySet();
-         * for (Integer key : keys) {
-         * int times = (int) (resto / key);
-         * resto = resto % key;
-         * resultado += conversionTable.get(key).repeat(times);
-         * }
-         */
+         String result = "";
+         int resto = decimalNum;
+         
+         Set<Integer> keys = conversionTable.keySet();
+         for (Integer key : keys) {
+         int times = (int) (resto / key);
+         resto = resto % key;
+         result += conversionTable.get(key).repeat(times);
+         }
 
-        var restoWrapper = new Object() {
+
+   /*      var restoWrapper = new Object() {
             int resto = decimalNum;
         };
         var resultWrapper = new Object() {
@@ -42,7 +41,7 @@ public class DecimalRomanConverter {
                     int times = (int) (restoWrapper.resto / key);
                     restoWrapper.resto = restoWrapper.resto % key;
                     resultWrapper.result += conversionTable.get(key).repeat(times);
-                });
-        return resultWrapper.result;
+                }); */
+        return result;
     }
 }

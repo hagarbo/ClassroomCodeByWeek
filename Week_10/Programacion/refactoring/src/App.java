@@ -26,6 +26,9 @@ public class App {
         System.out.println("500 en romano:" + DecimalRomanConverter.decimalToRoman(500));
         System.out.println("800 en romano:" + DecimalRomanConverter.decimalToRoman(800));
         System.out.println("410 en romano:" + DecimalRomanConverter.decimalToRoman(410));
+        System.out.println("9 en romano:" + DecimalRomanConverter.decimalToRoman(9));
+        System.out.println("2900 en romano:" + DecimalRomanConverter.decimalToRoman(2900));
+        System.out.println("4 en romano:" + DecimalRomanConverter.decimalToRoman(4));
 
     }
 
