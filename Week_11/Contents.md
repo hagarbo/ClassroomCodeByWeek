@@ -1,9 +1,17 @@
-# WEEK 10 KEY CONTENTS
+# WEEK 11 KEY CONTENTS
 
 ## CONTORNO SERVIDOR
 
-- Uso de transacciones para operaciones de actualizacion con PDO. Cuando necesitamos realizar varias actualizaciones en la BD que dependen unas de otras, necesitamos realizarlas TODAS, o NINGUNA. Comenzamos por llamar al metodo _beginTransaction()_ y si se produce cualquier error usariamos el metodo _rollBack()_ para cancelar todas las operaciones y volver al estado inicial. Si no hay errores y todo va bien al final terminamos llamando al metodo _commit()_
+- REVIEW de la practica 3 y Examen de las unidades 2 y 3.
+
+## PROGRAMACION
+
+- Algoritmos con arrays y matrices e instalación de Spring Boot.
+
+## CONTORNO CLIENTE
+
+- Seguimos haciendo práctica y teoría sobre el DOM y como acceder a los nodos para borrar y mover nodos por la estructura.
 
 ## CONTORNOS DESAROLLO
 
--BDD (Behavior driven development). Salio el termino en el podcast que habia en el sprint. Cucumber es un framework con el que hacer BDD.
+-
