@@ -6,8 +6,10 @@ window.onload = () => {
 function crearFilaNota() {
     let nota = document.querySelector("#nota").value;
 
+    // CAJON GRANDE DONDE VAN LOS BOTONES Y LA NOTA
     let divFila = document.createElement("div");
     
+    // BOTONES
     let btnEliminar = document.createElement("button");
     btnEliminar.setAttribute("type", "button");
     btnEliminar.innerText = "Eliminar";
@@ -31,6 +33,7 @@ function crearFilaNota() {
     let nodeNota = document.createElement("span");
     nodeNota.innerHTML = nota;
 
+    // AÑADES LA NOTA Y LOS BOTONES AL CAJON 
     divFila.appendChild(nodeNota);
     divFila.appendChild(btnEliminar);
     divFila.appendChild(btnArriba);
@@ -38,8 +41,11 @@ function crearFilaNota() {
     divFila.appendChild(btnAtras);
     divFila.appendChild(btnSiguiente);
 
+    // AÑADES TODO EL CAJON DENTRO DE UN DIV QUE SE LLAMA notas-list
+    // SI MIRAS EL HTML ESTARA VACIO ESE DIV
     document.querySelector("#notas-list").append(divFila);
 
+    // EVENTOS PARA LOS DISTINTOS BOTONES
     btnEliminar.addEventListener("click", (evt) => {
         let divPadre = evt.target.parentNode;
         divPadre.parentNode.removeChild(divPadre);
