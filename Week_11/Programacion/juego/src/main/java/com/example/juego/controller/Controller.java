@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class Controller {
 
-    private final String PERSONAJE = "Gates";
-    private final String PISTA1 = "Apellido del magnate americano que hizo su fortuna en el sector tecnológico";
-    private final String PISTA2 = "Siempre le gustaron las 'ventanas'";
-    private final String PISTA3 = "Fundador de Microsoft";
+    private final String PERSONAJE = "Gayoso";
+    private final String PISTA1 = "Presentador de un conocido programa de la TVG";
+    private final String PISTA2 = "'Mandaronlle a tomar polo cu' en directo";
+    private final String PISTA3 = "Presenta Luar, los viernes por la noche";
 
     private int consultas_api = 0;
     private int aciertos_api = 0;
