@@ -183,12 +183,12 @@
 #	Unidades    		digito, no puede ser nulo
 #	PrecioUnitario		digito, no puede ser nulo
 #   NumeroLinea         digito, no puede ser nulo
-#   refPedido            clave foranea , no puede ser nulo
-#   refProducto          clave foranea , no puede ser nulo
+#   refPedido           clave foranea , no puede ser nulo
+#   refProducto         clave foranea , no puede ser nulo
 #------------------------------------------------------
 #	DETALLESPEDIDO 	= {DetallesPedido}													                *Información de las los Detalles de cada Pedido*
 #	DetallesPedido 	= @idDetalle + Unidades + PrecioUnitario + NumeroLinea
-                        + refPedido + refProducto                                                       *Información de cada linea asociada a un pedido de la jardineria*
+#                        + refPedido + refProducto                                                      *Información de cada linea asociada a un pedido de la jardineria*
 #	idDetalle 	    = dígito													        	            *Identificador de cada Detalle y clave primaria*
 #	Unidades        = digito													                        *Cantidad de unidades del Producto que se realizo en un pedido*
 #	PrecioUnitario  = digito.digito													                    *Precio por unidad del producto asociado*
