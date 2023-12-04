@@ -32,7 +32,6 @@ function crearCajas() {
         nodoCaja.addEventListener("mouseenter", cambiarColor,false);
         nodoCaja.addEventListener("mouseleave", recuperaColor);
         nodoCaja.colorFondo = nodoCaja.style.backgroundColor;
-
         divPadre.appendChild(nodoCaja);
     }
     

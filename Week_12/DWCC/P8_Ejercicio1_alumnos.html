@@ -17,7 +17,7 @@
             
         
     -->
-    <form name="miFormulario" action="javascript:crearTexto()">
+    <form name="miFormulario" action="">
         <label for="nombre">Nombre</label>
         <input name="nombre" id="nombre" placeholder="Nombre" required=""/>
 
@@ -25,7 +25,7 @@
         <label for="color">Color</label><br/>
 
         <select name="color">
-            <option value="red">Rojo</option>
+            <option value="red" selected>Rojo</option>
             <option value="green">Verde</option>
             <option value="blue">Azul</option>
             <option value="black">Negro</option>
@@ -52,9 +52,10 @@
         <br/>
         
 
-        <input type="submit" id="enviar" name="enviar" value="Enviar" />
+        <input type="button" id="enviar" name="enviar" value="Enviar" />
     </form>
     <span id="resultado"></span>
+    <script src="p8.js"></script>
 </body>
 
 </html>
