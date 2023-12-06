@@ -1,6 +1,7 @@
 <?php
 require_once 'conexion.php';
 require_once 'borrar.php';
+require_once 'db_functions.php';
 
 $libro_borrado = false;
 $cod = null;
@@ -11,32 +12,6 @@ if (isset($_POST["id"], $_POST["borrar"])) {
 }
 
 $libros_array = obtener_libros();
-
-
-/**
- * obtener_libros
- * Consulta la tabla books para obtener los book_id y title ordenados por title
- * @return array array con tantos registros como tuplas haya y por cada registro un array con 2 claves: book_id y title 
- */
-function obtener_libros(): array
-{
-
-    $libros_array = null;
-    try {
-        $conProyecto = getConnection();
-        $consulta = "select book_id, title from books order by title";
-        $stmt = $conProyecto->prepare($consulta);
-
-        $stmt->execute();
-        $libros_array = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    } catch (PDOException $ex) {
-        die("Error al recuperar los libros " . $ex->getMessage());
-    }
-
-
-    return $libros_array;
-}
-
 
 /**
  * mostrar_libros
@@ -52,11 +27,10 @@ function mostrar_libros(array $libros_array)
         echo "<td>{$fila['book_id']}</td>";
         echo "<td>{$fila['title']}</td>";
         echo "<td>";
-        echo "<form   method='POST'
-style='display:inline'>";
-
+        echo "<form   method='POST' style='display:inline'>";
         echo "<input type='hidden' name='id' value='{$fila['book_id']}'>"; //mandamos el código del libro a borrar
         echo "<input type='submit' name='borrar' onclick=\"return confirm('¿Borrar Libro?')\"class='btn btn-danger' value='Borrar'>";
+        echo "<input type='button' name='actualizar' onclick=\"location.href='update.php?book_id={$fila['book_id']}'\"class='btn btn-info ms-2' value='Actualizar'>";
         echo "</form>";
         echo "</td>";
         echo "</tr>";
