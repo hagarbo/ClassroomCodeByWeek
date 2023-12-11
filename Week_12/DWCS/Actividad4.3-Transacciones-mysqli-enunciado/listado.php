@@ -1,6 +1,7 @@
 <?php
 require_once 'conexion.php';
 require_once 'borrar.php';
+require_once 'db_functions.php';
 
 $libro_borrado = false;
 $cod = null;
@@ -9,50 +10,6 @@ if (isset($_POST["id"], $_POST["borrar"])) {
     $cod = $_POST["id"];
     $libro_borrado = borrar_libro($cod);
 }
-
-
-
-
-
-
-/**
- * obtener_libros_no_preparada
- * Consulta la tabla books para obtener los book_id y title ordenados por title
- * @return array array con tantos registros como tuplas haya y por cada registro un array con 2 claves: book_id y title 
- */
-function obtener_libros_no_preparada(): array
-{
-
-    $libros_array = [];
-    $resultado = null;
-    try {
-        //$conProyecto es de tipo mysqli
-        $conProyecto = getConnection();
-        $consulta = "select book_id, title from books order by title";
-        $resultado = $conProyecto->query($consulta);
-
-        while ($row = $resultado->fetch_assoc()) {
-            array_push($libros_array, $row);
-        }
-        //otra opción en lugar de registro a registro
-        //$libros_array = $resultado->fetch_all(MYSQLI_ASSOC);
-
-    } catch (Exception $e) {
-?>
-        <div class="alert alert-danger" role="alert">
-            <?php echo "Ha ocurrido una excepción: " . $e->getMessage(); ?>
-        </div>
-<?php
-    } finally {
-        if ($resultado != null) {
-            $resultado->close();
-        }
-    }
-
-
-    return $libros_array;
-}
-
 
 /**
  * mostrar_libros
@@ -75,6 +32,7 @@ style='display:inline'>";
 
         echo "<input type='hidden' name='id' value='{$fila['book_id']}'>"; //mandamos el código del libro a borrar
         echo "<input type='submit' name='borrar' onclick=\"return confirm('¿Borrar Libro?')\"class='btn btn-danger' value='Borrar'>";
+        echo "<input type='button' name='actualizar' onclick=\"location.href='update.php?book_id={$fila['book_id']}'\"class='btn btn-info ms-2' value='Actualizar'>";
         echo "</form>";
         echo "</td>";
         echo "</tr>";

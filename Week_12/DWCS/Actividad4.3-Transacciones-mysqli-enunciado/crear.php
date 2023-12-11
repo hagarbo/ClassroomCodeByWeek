@@ -15,6 +15,7 @@
     <?php
     require_once 'conexion.php';
     require_once 'util.php';
+    require_once 'db_functions.php';
 
     $pdate = null;
     $isbn = null;
@@ -55,9 +56,8 @@
                 $book_author_ids = $_POST["author_ids"];
             }
 
-            $data = [$title,$isbn,$pdate,$pub_Id];
-            $exito = crear_libro($data,$book_author_ids);
-         
+            $data = [$title, $isbn, $pdate, $pub_Id];
+            $exito = crear_libro($data, $book_author_ids);
         }
     } catch (Exception $ex) {
         $exito = false;
@@ -146,88 +146,6 @@
             </div>
 
         <?php endif;
-
-
-        /**
-         * findAllPublishers
-         * Crea una consulta con mysqli y obtiene todos los datos de la tabla publishers
-         * @return array Array con todas las tuplas de la tabla publishers como array asociativo
-         */
-        function findAllPublishers(): array
-        {
-            $conProyecto = getConnection();
-
-            $stmt = $conProyecto->prepare("SELECT * FROM publishers ORDER BY name");
-
-            $stmt->execute();
-            $resultado = $stmt->get_result();
-            $array = $resultado->fetch_all(MYSQLI_ASSOC);
-
-            return $array;
-        }
-        /**
-         * findAllAuthors
-         * Crea una consulta con mysqli y obtiene todos los datos de la tabla authors con su nombre completo (concatenación de first, last y middle name)
-         * @return array Array con todas las tuplas de la tabla authors como array asociativo
-         */
-        function findAllAuthors(): array
-        /* APARTADO 2 */
-        {
-            $conProyecto = getConnection();
-            $query = "SELECT author_id, TRIM(Concat(coalesce(last_name, '') ,', ', coalesce(first_name, ''),' ', coalesce(middle_name, ''))) as completeName 
-            FROM authors ORDER BY last_name";
-            $result_set = $conProyecto->query($query);
-
-            return $result_set->fetch_all(MYSQLI_ASSOC);
-        }
-
-        //APARTADO NUMERO 3
-        /**
-         * Summary of crear_libro
-         * * Crea una transacción de inserción con PDO para crear una nueva tupla en la tabla books y las asociaciones oportunas con los autores(tuplas en la tabla book_authors)
-         * @param array $data array asociativo con los datos de insercion del libro
-         *          "title" => titulo del libro
-         *          "isbn" => numero unico que identifica un libro, puede ser nulo
-         *          "pdate" => fecha de publicacion en formato Y-m-d, puede ser nulo
-         *          "publisher" => id de la editorial
-         * @param array $authors array con los ids de los autores del libro, puede ser nulo
-         * @throws \Exception
-         * @return bool True si la transacción se realiza correctamente, false en caso contrario
-         */
-        function crear_libro(array $book_data,array $authors): bool
-        {
-            try {
-                $conProyecto = getConnection();
-                $conProyecto->begin_transaction();
-                //Insercion en books
-                $stmt_cbook = $conProyecto->prepare("INSERT INTO books (title,isbn,published_date,publisher_id) 
-                                VALUES (?,?,?,?)");
-                
-                //Creamos el libro y recuperamos el id
-                if ($stmt_cbook->execute($book_data)) $book_id = $conProyecto->insert_id;
-                else throw new Exception();
-
-                if ($authors!=null){
-                    //Inserciones en bookauthors
-                    $stmt_c_book_authors = $conProyecto->prepare("INSERT INTO book_authors (book_id,author_id) 
-                                            VALUES (?,?)");
-                    foreach ($authors as $author_id) {
-                        if (!$stmt_c_book_authors->execute([$book_id,$author_id])) throw new Exception();
-                    }
-                }
-                
-                $conProyecto->commit();
-            } catch (Exception $e) {
-                $conProyecto->rollBack();
-                echo "Ocurrio un error al intentar crear el nuevo libro, mensaje: " . $e->getMessage();
-                return false;
-            }
-
-            return true;
-        }
-
-
-
 
         ?>
 
