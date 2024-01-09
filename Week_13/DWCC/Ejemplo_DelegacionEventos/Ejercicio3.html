@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio 3 y 4</title>
+  </head>
+  <body>
+    <div>
+      <textarea
+        id="pizarra"
+        placeholder="Escribe aquí"
+        rows="30"
+        cols="100"
+        disabled
+      ></textarea>
+    </div>
+    <div>
+      <button type="button" id="boton">Hazme cosas</button>
+    </div>
+    <br />
+    <div>
+      <label for="onlyNumbers">Aqui solo puedes escribir numeros</label>
+      <input type="text" id="onlyNumbers" />
+    </div>
+  </body>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const boton = document.getElementById("boton");
+
+      boton.addEventListener("click", escribir);
+      boton.addEventListener("mousedown", escribir);
+      boton.addEventListener("mouseup", escribir);
+      boton.addEventListener("contextmenu", escribir);
+      boton.addEventListener("dblclick", escribir);
+
+      function escribir(e) {
+        e.preventDefault();
+        let board = document.getElementById("pizarra");
+        board.value += e.type + " / ";
+      }
+
+      document
+        .getElementById("onlyNumbers")
+        .addEventListener("keypress", (e) => {
+          e.preventDefault();
+          if (e.key >= 0 || e.key < 10) e.target.value += e.key;
+        });
+    });
+  </script>
+</html>

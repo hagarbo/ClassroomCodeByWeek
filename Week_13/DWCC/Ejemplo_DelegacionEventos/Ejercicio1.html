@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio 1 y 2</title>
+  </head>
+  <body>
+    <div id="div-texto">
+      <p>Este es el texto</p>
+    </div>
+    <div id="botonera">
+      <button type="button" id="esconder">Esconder</button>
+      <button type="button" id="mostrar">Mostrar</button>
+      <button type="button" id="allinone">Esconde/Mostrar</button>
+      <button type="button" id="cancelar">Cancelar Comportamiento</button>
+    </div>
+  </body>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      let divTexto = document.getElementById("div-texto");
+      // Eventos en cada botón
+      document.getElementById("mostrar").addEventListener("click", () => {
+        divTexto.style.display = "";
+      });
+
+      document.getElementById("esconder").addEventListener("click", () => {
+        divTexto.style.display = "none";
+      });
+
+      document.getElementById("allinone").addEventListener("click", () => {
+        let displayValue = divTexto.style.display;
+        if (displayValue == "none") divTexto.style.display = "";
+        else divTexto.style.display = "none";
+      });
+
+      document.getElementById("cancelar").addEventListener("click", () => {
+        document.getElementById("allinone").disabled = "true";
+      });
+    });
+  </script>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio 5</title>
+  </head>
+  <body>
+    <div>
+      <textarea
+        id="pizarra"
+        placeholder="Ctrl + E para activarme"
+        rows="30"
+        cols="100"
+        disabled
+      ></textarea>
+    </div>
+  </body>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const board = document.getElementById("pizarra");
+
+      document.documentElement.addEventListener("keydown", (e) => {
+        e.preventDefault();
+        if (e.key == "e" && e.ctrlKey) {
+          console.log(board.disabled);
+          board.disabled = false;
+          board.focus();
+        }
+      });
+    });
+  </script>
+</html>

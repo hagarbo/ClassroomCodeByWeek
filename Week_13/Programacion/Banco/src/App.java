@@ -1,6 +1,12 @@
+import java.time.LocalDate;
+
 public class App {
     public static void main(String[] args) throws Exception {
-        Cuenta cuenta = new Cuenta("Eugenio");
+
+        Titular t1 = new Titular("Eugenio", LocalDate.of(2006, 1, 10), 'A');
+        System.out.println(t1.toString());
+        System.out.println(t1.esMayorDeEdad());
+        Cuenta cuenta = new Cuenta(t1);
         cuenta.ingresar(-200);
         System.out.println("Cantidad despues de ingresar -200 euros: " + cuenta.getCantidad());
         cuenta.ingresar(500);
