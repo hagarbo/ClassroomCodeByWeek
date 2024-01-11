@@ -1,12 +1,11 @@
 import java.time.LocalDate;
-import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
 public class Titular {
-    private final DateTimeFormatter FORMATO_FECHA = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-    private final char HOMBRE = 'H';
-    private final char MUJER = 'M';
+    private final static DateTimeFormatter FORMATO_FECHA = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    private final static char HOMBRE = 'H';
+    private final static char MUJER = 'M';
     private String nombre;
     private LocalDate fechaNacimiento;
     private String dni;
@@ -14,7 +13,7 @@ public class Titular {
     private String direccion;
 
     public Titular() {
-        this("", LocalDate.now(), "", 'H', "");
+        this("", LocalDate.now(), "", HOMBRE, "");
     }
 
     public Titular(String nombre, LocalDate fechaNacimiento, char sexo) {
@@ -70,11 +69,8 @@ public class Titular {
     }
 
     public boolean esMayorDeEdad() {
-        long age = LocalDate.from(this.fechaNacimiento).until(LocalDate.now(), ChronoUnit.YEARS);
-        if (age >= 18)
-            return true;
-        else
-            return false;
+        long age = this.fechaNacimiento.until(LocalDate.now(), ChronoUnit.YEARS);
+        return (age >= 18) ? true : false;
     }
 
     private void comprobarSexo(char sexo) {
