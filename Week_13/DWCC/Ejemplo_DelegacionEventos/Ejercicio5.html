@@ -22,12 +22,23 @@
 
       document.documentElement.addEventListener("keydown", (e) => {
         e.preventDefault();
+
         if (e.key == "e" && e.ctrlKey) {
-          console.log(board.disabled);
           board.disabled = false;
           board.focus();
         }
+        else if (e.key == "s" && e.ctrlKey) {
+          board.disabled = true;
+        }
+        else if (e.key == "Escape") {
+          board.value = "";
+          board.disabled = true;
+        }
+        else if (board === document.activeElement && !board.disabled) {
+          board.value += e.key;
+        }
       });
+
     });
   </script>
 </html>
