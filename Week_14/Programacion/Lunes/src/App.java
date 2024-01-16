@@ -22,5 +22,11 @@ public class App {
             System.out.println("Consumo Actual: " + Aparato.consumo);
         }
 
+        Electrodomestico e1 = new Electrodomestico();
+        System.out.println("PF: " + e1.precioFinal());
+
+        Electrodomestico e2 = new Electrodomestico(200, "negro", 'A', 5);
+        System.out.println("PF: " + e2.precioFinal());
+
     }
 }

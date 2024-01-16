@@ -87,4 +87,11 @@ public class Electrodomestico {
     private int getIncremento() {
         return INCREMENTOS.get(this.consumo) != null ? INCREMENTOS.get(this.consumo) : 0;
     }
+
+    @Override
+    public String toString() {
+        return "Electrodomestico [precio=" + basePrice + ", color=" + color + ", consumo=" + consumo + ", peso="
+                + peso + "]";
+    }
+
 }

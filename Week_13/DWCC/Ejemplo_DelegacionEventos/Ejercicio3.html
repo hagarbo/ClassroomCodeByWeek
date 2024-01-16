@@ -45,6 +45,8 @@
         .addEventListener("keypress", (e) => {
           e.preventDefault();
           if (e.key >= 0 || e.key < 10) e.target.value += e.key;
+
+          // Otra forma, hcer el prevent default solo si es un numero
         });
     });
   </script>

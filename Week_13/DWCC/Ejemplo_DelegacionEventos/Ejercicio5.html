@@ -21,24 +21,21 @@
       const board = document.getElementById("pizarra");
 
       document.documentElement.addEventListener("keydown", (e) => {
-        e.preventDefault();
-
         if (e.key == "e" && e.ctrlKey) {
+          e.preventDefault();
           board.disabled = false;
           board.focus();
         }
-        else if (e.key == "s" && e.ctrlKey) {
+        if (e.key == "s" && e.ctrlKey) {
+          e.preventDefault();
           board.disabled = true;
         }
-        else if (e.key == "Escape") {
+        if (e.key == "Escape") {
+          e.preventDefault();
           board.value = "";
           board.disabled = true;
         }
-        else if (board === document.activeElement && !board.disabled) {
-          board.value += e.key;
-        }
       });
-
     });
   </script>
 </html>

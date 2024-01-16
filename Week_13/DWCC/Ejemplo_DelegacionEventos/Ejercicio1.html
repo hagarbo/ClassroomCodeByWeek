@@ -28,15 +28,22 @@
         divTexto.style.display = "none";
       });
 
-      document.getElementById("allinone").addEventListener("click", () => {
+      document.getElementById("allinone").addEventListener("click", esconder);
+
+      document.getElementById("cancelar").addEventListener("click", () => {
+        //document.getElementById("allinone").disabled = "true";
+        document
+          .getElementById("allinone")
+          .removeEventListener("click", esconder);
+
+        /* PARA HACER EL REMOVE LISTENER HAY QUE SACAR LA FUNCION PARA AFUERA */
+      });
+
+      function esconder() {
         let displayValue = divTexto.style.display;
         if (displayValue == "none") divTexto.style.display = "";
         else divTexto.style.display = "none";
-      });
-
-      document.getElementById("cancelar").addEventListener("click", () => {
-        document.getElementById("allinone").disabled = "true";
-      });
+      }
     });
   </script>
 </html>
