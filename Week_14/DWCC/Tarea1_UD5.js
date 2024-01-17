@@ -1,84 +1,86 @@
 window.onload = () => {
-  document.querySelector("#crear").addEventListener("click", crear_tabla);
+  // Variables
 
-  function crear_tabla() {
+  let boton_crear = document.querySelector("#crear");
+  let div_resultado = document.querySelector("#resultado");
+  let id_boton_borrar = "borrar";
+
+  boton_crear.addEventListener("click", () => {
     num_filas = document.querySelector("#fila").value;
-      num_columnas = document.querySelector("#columna").value;
-      
-      resultado = document.querySelector("#resultado");
+    num_columnas = document.querySelector("#columna").value;
 
-      resultado.addEventListener("click", procesar_click);
-      resultado.addEventListener("contextmenu", procesar_click_derecho);
-      resultado.addEventListener("dblclick", procesar_doble_click);
+    // Comprobamos que nos pasen numeros para crear la tabla
+    if (!isNaN(parseInt(num_filas)) && !isNaN(parseInt(num_columnas))) {
+      tabla = crear_tabla(num_filas, num_columnas);
+      div_resultado.appendChild(tabla);
+      let boton_borrar = document.querySelector("#" + id_boton_borrar);
+      boton_borrar == null
+        ? crear_boton_borrar(boton_crear, div_resultado)
+        : (boton_borrar.disabled = false);
+      boton_crear.disabled = true;
 
-
-      if (!isNaN(parseInt(num_filas)) && !isNaN(parseInt(num_columnas))) {
-      tabla = document.createElement("table");
-      tabla.style.border = "5px solid orange";
-
-      for (let row = 0; row < num_filas; row++) {
-        let fila = document.createElement("tr");
-
-        for (let col = 0; col < num_columnas; col++) {
-          let celda = document.createElement("td");
-          celda.innerHTML = row;
-            celda.style.border = "5px solid yellow";
-            celda.style.fontSize = "30px";
-          fila.appendChild(celda);
-        }
-
-        tabla.appendChild(fila);
-      }
-          resultado.appendChild(tabla);
-          crear_boton_borrar();
-          document.querySelector("#crear").disabled = true;
-        
+      // Añadimos los manejadores de eventos
+      div_resultado.addEventListener("click", procesar_click);
+      div_resultado.addEventListener("contextmenu", procesar_click_derecho);
+      div_resultado.addEventListener("dblclick", procesar_doble_click);
     }
-    }
-
-    function crear_boton_borrar() {
-        boton = document.querySelector("#borrar");
-        if (boton == null) {
-            caja_borrar = document.createElement("li");
-            boton_borrar = document.createElement("button");
-            boton_borrar.type = "button";
-            boton_borrar.name = "borrar";
-            boton_borrar.id = "borrar";
-            boton_borrar.innerHTML = "Borrar Tabla";
-            boton_borrar.addEventListener("click", borrar_tabla);
-
-            caja_borrar.appendChild(boton_borrar);
-            document.querySelector("ul").appendChild(caja_borrar);
-        }
-        else boton.disabled = false;
-          
-    }
-    
-    function borrar_tabla() {
-        document.querySelector("#borrar").disabled = true;
-        document.querySelector("#crear").disabled = false;
-        document.querySelector("#resultado").innerHTML = "";
-    }
-
-    function procesar_click(e) {
-        if (e.target.tagName=="TD")
-        {
-            e.target.style.backgroundColor = "blue";
-            e.stopPropagation();
-        }
-    }
-
-    function procesar_click_derecho(e) {
-        e.preventDefault();
-        if (e.target.tagName=="TD")
-        {
-            e.target.style.color = "red";
-            e.stopPropagation();
-        }
-    }
-
-    function procesar_doble_click(e) {
-        if (e.target.tagName == "TR")
-            e.target.parentNode.removeChild(e.target);
-    }
+  });
 };
+
+function crear_tabla(num_filas, num_columnas, resultado) {
+  tabla = document.createElement("table");
+  tabla.style.border = "5px solid aquamarine";
+
+  for (let row = 0; row < num_filas; row++) {
+    let fila = document.createElement("tr");
+
+    for (let col = 0; col < num_columnas; col++) {
+      let celda = document.createElement("td");
+      celda.innerHTML = row;
+      celda.style.border = "5px solid yellow";
+      celda.style.fontSize = "30px";
+      fila.appendChild(celda);
+    }
+
+    tabla.appendChild(fila);
+  }
+
+  return tabla;
+}
+
+function crear_boton_borrar(boton_crear, div_resultado) {
+  caja_borrar = document.createElement("li");
+  boton_borrar = document.createElement("button");
+  boton_borrar.type = "button";
+  boton_borrar.name = "borrar";
+  boton_borrar.id = "borrar";
+  boton_borrar.innerHTML = "Borrar Tabla";
+  boton_borrar.addEventListener("click", function () {
+    borrar_tabla(boton_borrar, boton_crear, div_resultado);
+  });
+
+  caja_borrar.appendChild(boton_borrar);
+  document.querySelector("ul").appendChild(caja_borrar);
+}
+
+function borrar_tabla(boton_borrar, boton_crear, resultado) {
+  boton_borrar.disabled = true;
+  boton_crear.disabled = false;
+  resultado.innerHTML = "";
+}
+
+function procesar_click(e) {
+  if (e.target.tagName == "TD") e.target.style.backgroundColor = "aquamarine";
+}
+
+function procesar_click_derecho(e) {
+  e.preventDefault();
+  if (e.target.tagName == "TD") e.target.style.color = "red";
+}
+
+function procesar_doble_click(e) {
+  if (e.target.tagName == "TD") {
+    fila = e.target.parentNode;
+    fila.parentNode.removeChild(fila);
+  }
+}
