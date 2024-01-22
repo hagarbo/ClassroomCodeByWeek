@@ -31,7 +31,7 @@
 
                         <!-- Current Password input -->
                         <div class="form-group mb-4">
-                            <label class="form-label" for="currentPwd">Contraseña actual</label>
+                            <label class="form-label" for="currentPwd">Contraseña</label>
                             <input type="password" id="currentPwd" class="form-control" name="pwd" required/>
 
                         </div>
@@ -53,7 +53,7 @@
                     const USER_DOES_NOT_EXIST = "No existe usuario";
                     const PWD_INCORRECT = "La contraseña no es correcta";
 
-                    $exito = false;
+                 
 
                     $errors = array();
                     $user = "";
@@ -69,7 +69,7 @@
                         } else {
                             iniciarSesion();
                             $_SESSION["user"] = $user;
-                            $_SESSION["ultimoAcceso"]=time();                                    
+                            $_SESSION["ultimoAcceso"]=time();        //https://www.php.net/manual/es/function.time.php -> devuelve el momento actual medido como el número de segundos desde la Época Unix (1 de Enero de 1970 00:00:00 GMT).                            
                             header('Location: welcome.php');
                             exit;
                         }
@@ -87,14 +87,9 @@
                         </div>
                     <?php } ?>
 
-                    <?php if ($exito) { ?>
-                        <div class="alert alert-success" role="alert">
-                            Se ha actualizado correctamente la contraseña <?php print_r($usuarios[$user]) ?>
-                        </div>
-                        <?php
-                    }
+                  
                    
-                    ?>
+                    
                 </div>
             </div>
         </div>
