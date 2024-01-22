@@ -1,30 +1,41 @@
 <?php
-$host = "localhost";
-$db = "proyecto";
-$user = "gestor";
-$pass = "secreto";
-$dsn = "mysql:host=$host;dbname=$db;charset=utf8mb4";
-try {
-    $conProyecto = new PDO($dsn, $user, $pass);
-    $conProyecto->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $ex) {
-    die("Error en la conexión: mensaje: " . $ex->getMessage());
-}
-function consultarProducto($id)
-{
-    global $conProyecto;
-    $consulta = "select * from productos where id=:i";
-    $stmt1 = $conProyecto->prepare($consulta);
-    try {
-        $stmt1->execute([':i' => $id]);
-    } catch (PDOException $ex) {
-        die("Error al recuperar Productos: " . $ex->getMessage());
-    }
-    //esta consulta solo devuelve una fila es innecesario el while para recorrerla
-    $producto = $stmt1->fetch(PDO::FETCH_OBJ);
-    $stmt1 = null;
-    return $producto;
 
+const SETTINGS_DB_FILE = "db_settings.ini";
+
+/**
+ * Summary of getConnection
+ * Crea un objeto PDO
+ * @return PDO|null un objeto PDO si ha habido éxito creando la conexión, null en caso contrario
+ */
+function getConnection()
+{
+    //APARTADO NUMERO 1
+    if (!$settings = parse_ini_file(SETTINGS_DB_FILE, true))
+        throw new Exception("ERROR : Unable to open " . SETTINGS_DB_FILE);
+    $con = null;
+    $driver = $settings["database"]["driver"];
+    $host = $settings["database"]["host"];
+    $db = $settings["database"]["schema"];
+    $user = $settings["database"]["username"];
+    $pass = $settings["database"]["password"];
+    $charset = $settings["database"]["charset"];
+    $dsn = $driver.":host=$host;dbname=$db;charset=$charset";
+    $persistent = $settings["database"]["persistent"];
+
+    try {
+
+        $con = new PDO($dsn, $user, $pass,  array(
+            PDO::ATTR_PERSISTENT => $persistent
+        ));
+
+        //Esto no hace falta en versión PHP 8 y superiores: https://www.php.net/manual/en/pdo.error-handling.php
+        //PDO::ERRMODE_EXCEPTION: As of PHP 8.0.0, this is the default mode.
+        //$con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $ex) {
+
+        echo "Error en la conexión: mensaje: " . $ex->getMessage();
+    }
+    return $con;
 }
 function cerrar(&$con){
     $con = null;
