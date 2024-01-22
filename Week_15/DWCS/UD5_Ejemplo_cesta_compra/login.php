@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'db_functions.php';
+require_once 'model/db_functions.php';
 function error($mensaje)
 {
     $_SESSION['error'] = $mensaje;

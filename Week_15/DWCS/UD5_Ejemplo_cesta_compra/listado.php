@@ -23,7 +23,7 @@ function mostrar_productos()
 if (!isset($_SESSION['nombre'])) {
     header('Location:login.php');
 }
-require_once 'db_functions.php';
+require_once 'model/db_functions.php';
 
 if (isset($_POST['vaciar'])) {
     unset($_SESSION['cesta']);

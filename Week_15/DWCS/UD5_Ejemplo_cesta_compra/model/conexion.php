@@ -1,6 +1,6 @@
 <?php
 
-const SETTINGS_DB_FILE = "db_settings.ini";
+const SETTINGS_DB_FILE = __DIR__.DIRECTORY_SEPARATOR."../config/db_settings.ini";
 
 /**
  * Summary of getConnection

@@ -4,7 +4,7 @@ if (!isset($_SESSION['nombre'])) {
     header('Location:login.php');
 }
 
-require_once "db_functions.php";
+require_once 'model/db_functions.php';
 
 if (isset($_SESSION['cesta'])) {
     foreach ($_SESSION['cesta'] as $k => $v) {
