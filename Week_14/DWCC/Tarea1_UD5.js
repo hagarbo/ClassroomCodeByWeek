@@ -27,7 +27,7 @@ window.onload = () => {
   });
 };
 
-function crear_tabla(num_filas, num_columnas, resultado) {
+function crear_tabla(num_filas, num_columnas) {
   tabla = document.createElement("table");
   tabla.style.border = "5px solid aquamarine";
 
