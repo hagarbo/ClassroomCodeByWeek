@@ -49,7 +49,7 @@ function validate_user(string $nombre, string $pass) : bool{
             ':p' => $hashed_pass
         ]);
     } catch (PDOException $ex) {
-        cerrarTodo($conProyecto, $stmt);
+        cerrarTodo($conn, $stmt);
         die("Error en la consulta a la base de datos.".$ex->getMessage());
     }
     if ($stmt->rowCount() != 0)
