@@ -66,6 +66,7 @@
     function jugar() {
       const coche1 = document.querySelector("#coche1");
       const coche2 = document.querySelector("#coche2");
+      const img_width = 50;
       coche1.setAttribute("left", "10");
       coche2.setAttribute("left", "10");
 
@@ -76,29 +77,35 @@
 
       intervalo = setInterval(() => {
         let x1 =
-          parseInt(coche1.getAttribute("left")) + getRandomArbitrary(20, 50);
+          parseInt(coche1.getAttribute("left")) + getRandomArbitrary(1, 15);
         let x2 =
-          parseInt(coche2.getAttribute("left")) + getRandomArbitrary(20, 50);
+          parseInt(coche2.getAttribute("left")) + getRandomArbitrary(1, 15);
 
         console.log("x1 = " + x1 + "  Max = " + screen.width);
-        if (x1 >= screen.width) {
+        if (x1 >= screen.width-img_width) {
           clearInterval(intervalo);
           x1 = screen.width;
           if (opcion == 1) alert("Has ganado!");
           else alert("Has perdido...");
-        } else if (x2 >= screen.width) {
+          coche1.style.left = 10 + "px";
+          coche2.style.left = 10 + "px";
+        } else if (x2 >= screen.width-img_width) {
           clearInterval(intervalo);
           x2 = screen.width;
           if (opcion == 2) alert("Has ganado!");
           else alert("Has perdido...");
+          coche1.style.left = 10 + "px";
+          coche2.style.left = 10 + "px";
         }
+        else {
+          coche1.setAttribute("left", x1);
+          coche1.style.left = coche1.getAttribute("left") + "px";
 
-        coche1.setAttribute("left", x1);
-        coche1.style.left = coche1.getAttribute("left") + "px";
-
-        coche2.setAttribute("left", x2);
-        coche2.style.left = coche2.getAttribute("left") + "px";
-      }, 200);
+          coche2.setAttribute("left", x2);
+          coche2.style.left = coche2.getAttribute("left") + "px";
+        }
+        
+      }, 20);
     }
 
     function getRandomArbitrary(min, max) {
