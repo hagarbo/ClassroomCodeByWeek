@@ -88,22 +88,28 @@ INSERT INTO Empleado	VALUES 	(  1, "Fulgencio", 		"De la costa Feliz", 	"OF01", 
 #------------------------------------------------------------------------------------
 #	Ejemplo  1. Muesta toda la información de los Empleados
 
+    SELECT * FROM empleado;
 
 #	Ejemplo  2. Muesta toda la información de las Oficinas
 
+    SELECT * from oficina;
     
 #	Ejemplo  3. Muestra nombre y apellidos de cada Empleado junto con su puesto de trabajo
 
+    SELECT Nombre, Apellidos, PuestoTrabajo from empleado;
 
 #	Ejemplo  4. Muestra nombre y apellidos de cada Empleado junto con su puesto de trabajo
 
+    SELECT Nombre, Apellidos, PuestoTrabajo from empleado;
 
 #	Ejemplo  5. Muestra los puestos de trabajo que hay en cada oficina, sin repetirse
 
+    SELECT DISTINCT PuestoTrabajo, Oficina FROM empleado;
 
 #	Ejemplo  6. Muestra sólo la dimensión de todas las Oficinas de la empresa, sin repetirse
 
-    
+    SELECT DISTINCT Dimensión FROM oficina;
+
 #------------------------------------------------------------------------------------
 #	2.	CONSULTAS DE FILTROS
 #------------------------------------------------------------------------------------
@@ -331,15 +337,19 @@ INSERT INTO Empleado	VALUES 	(  1, "Fulgencio", 		"De la costa Feliz", 	"OF01", 
 #------------------------------------------------------------------------------------
 #	Ejemplo 61. Muestra el resultado de la unión natural entre las tablas Empleado y Oficina
 
+    SELECT * FROM empleado NATURAL JOIN oficina;
 
 #	Ejemplo 62. Muestra el resultado de la unión natural entre las tablas Oficina y Empleado
 
+    SELECT * FROM oficina NATURAL JOIN empleado;
 
 #	Ejemplo 63. Muestra el resultado de la unión natural entre las tablas Empleado, Oficina y Salario
 
-    
+    SELECT * FROM empleado NATURAL JOIN oficina NATURAL JOIN salario;
+
 #	Ejemplo 64. Muestra el resultado de la unión natural entre las tablas Oficina, Empleado y Salario
 
+    SELECT * FROM oficina NATURAL JOIN empleado NATURAL JOIN salario;
     
 #------------------------------------------------------------------------------------
 #	INNER JOIN		-	Unión de los datos de las tablas por campos especificados en ON
@@ -347,8 +357,10 @@ INSERT INTO Empleado	VALUES 	(  1, "Fulgencio", 		"De la costa Feliz", 	"OF01", 
 #------------------------------------------------------------------------------------
 #	Ejemplo 65. Muestra el resultado de la unión con INNER entre las tablas Empleado y Oficina
 
+    SELECT * FROM empleado INNER JOIN oficina ON empleado.Oficina = Oficina.Oficina;
 
 #	Ejemplo 66. Muestra el resultado de la unión con INNER entre las tablas Oficina y Empleado
+
 
 
 #	Ejemplo 67. Muestra el resultado de la unión con INNER entre las tablas Empleado y Salario
@@ -509,9 +521,11 @@ INSERT INTO Empleado	VALUES 	(  1, "Fulgencio", 		"De la costa Feliz", 	"OF01", 
 #------------------------------------------------------------------------------------
 #	Ejemplo 97. Muestra los datos de las oficinas cuyo número de mesas es menor o igual a la media por oficina
 
+    SELECT * FROM oficina WHERE Mesas <= (SELECT AVG(Mesas) FROM oficina);
 
 #	Ejemplo 98. Muestra los datos de los empleados que trabajen en las oficinas dirigidas por el jefe número 2
 
+    SELECT * FROM empleado WHERE oficina = (SELECT DISTINCT Oficina FROM empleado WHERE Jefe = 2);
 
 #	Ejemplo 99. Muestra los datos de las oficinas en las que no trabaje nadie
 
