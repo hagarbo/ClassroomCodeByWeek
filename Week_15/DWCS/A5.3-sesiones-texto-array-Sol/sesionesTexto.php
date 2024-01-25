@@ -9,8 +9,7 @@ require_once 'util.php';
 <head>
     <meta charset="UTF-8">
     <title>Textos en sesión</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 </head>
 
@@ -19,10 +18,10 @@ require_once 'util.php';
     <div class="container-fluid">
         <h1>Introduzca textos en la sesión</h1>
         <?php
-        iniciarSesion();
+        iniciar_sesion();
 
         if (isset($_POST["borrar"])) {
-            cerrarSesion();
+            cerrar_sesion();
         }
 
         if (isset($_POST["texto"])) {
@@ -34,11 +33,11 @@ require_once 'util.php';
 
             $_SESSION["textos"][] = $texto;
 
-          //  print_r($_SESSION["textos"]);
+            //  print_r($_SESSION["textos"]);
         }
 
         if (isset($_SESSION["textos"]) && count($_SESSION["textos"]) > 0) {
-            ?>
+        ?>
             <ul>
                 <?php foreach ($_SESSION["textos"] as $key => $value) { ?>
                     <li>
@@ -66,19 +65,18 @@ require_once 'util.php';
             </div>
         </div>
 
-        <?php if(isset($_SESSION) && count($_SESSION)>0) {?>
-        <div class="row justify-content-center">
-            <div class="col-sm-12 col-md-6">
-                <form method="post">
-                    <!-- Submit button -->
-                    <input type="submit" name="borrar" class="btn btn-secondary btn-block mb-4"
-                        value="Borrar sesion"></button>
+        <?php if (isset($_SESSION) && count($_SESSION) > 0) { ?>
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-md-6">
+                    <form method="post">
+                        <!-- Submit button -->
+                        <input type="submit" name="borrar" class="btn btn-secondary btn-block mb-4" value="Borrar sesion"></button>
 
 
-                </form>
+                    </form>
+                </div>
             </div>
-        </div>
-        <?php }?>
+        <?php } ?>
 </body>
 
 </html>

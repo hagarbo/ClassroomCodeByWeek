@@ -10,7 +10,7 @@ try {
 } catch (PDOException $ex) {
     die("Error en la conexión: mensaje: " . $ex->getMessage());
 }
-function consultarProducto($id)
+function consultar_producto($id)
 {
     global $conProyecto;
     $consulta = "select * from productos where id=:i";
@@ -24,12 +24,13 @@ function consultarProducto($id)
     $producto = $stmt1->fetch(PDO::FETCH_OBJ);
     $stmt1 = null;
     return $producto;
-
 }
-function cerrar(&$con){
+function cerrar(&$con)
+{
     $con = null;
 }
-function cerrarTodo(&$con, &$st){
+function cerrarTodo(&$con, &$st)
+{
     $st = null;
     $con = null;
 }
