@@ -9,13 +9,22 @@
       "name": "Ejercicio5",
       "request": "launch",
       "mainClass": "Ejercicio5",
+      "projectName": ""
+    },
+    {
+      "type": "java",
+      "name": "Ejercicio5",
+      "request": "launch",
+      "mainClass": "Ejercicio5",
       "projectName": "ClassroomCodeByWeek_d0e72a9b"
     },
     {
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "skipFiles": ["<node_internals>/**"],
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
       "program": "${workspaceFolder}\\Week_5\\CCliente\\MyCode\\js\\ejercicio5.js"
     }
   ]
