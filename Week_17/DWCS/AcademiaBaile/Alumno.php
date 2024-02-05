@@ -1,6 +1,6 @@
 <?php
 
-class Alumno extends Persona
+final class Alumno extends Persona
 {
     public const TABLA_PRECIOS = [20,32,40];
     private int $numClases = 0;

@@ -16,7 +16,7 @@ class Profesor extends Persona
 
     private function existeBaile(Baile $baile):bool{
         foreach ($this->bailes as $value) {
-            if ($value->nombre === $baile->nombre)
+            if ($value->equals($baile))
                 return true;
         }
         return false;
@@ -28,5 +28,21 @@ class Profesor extends Persona
         return true;
     }
 
+    public function borrarBaile(string $nome_baile):bool{
+        foreach ($this->bailes as $key => $baile) {
+            if ($baile->nombre === $nome_baile){
+                unset($this->bailes[$key]);
+                return true;
+            }
+        }
+        return false;
+    }
 
+    public function mostrarBailes():string{
+        $result = "";
+        foreach ($this->bailes as $baile) {
+            $result .= $baile->info();
+        }
+        return $result;
+    }
 }
