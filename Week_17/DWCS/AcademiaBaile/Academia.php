@@ -1,8 +1,13 @@
 <?php
-require "Persona.php";
+/* require "Persona.php";
 require "Alumno.php";
 require "Baile.php";
-require "Profesor.php";
+require "Profesor.php"; */
+
+spl_autoload_register(function ($classname) {
+    //echo "<p>Añadiendo $classname</p>";
+    include $classname . ".php";
+});
 
 $profesor = new Profesor("Antonio", "Carmona Lorenzo", "885-987-392", "77777777G");
 $bailes = [
@@ -33,10 +38,8 @@ echo "<p>Informacion do alumno 1: " . $alumno_joven->verInformacion() . " A paga
 echo "<p>Informacion do alumno 2: " . $alumno_adulto->verInformacion() . " A pagar: ". $alumno_adulto->aPagar() ."</p>";
 echo "<p>Informacion do alumno 3: " . $otro_alumno->verInformacion() . " A pagar: ". $otro_alumno->aPagar() . "</p>";
 
-$profesor->borrarBaile("AFRO");
+$profesor->borrarBaile($bailes[0]);
 
 echo "<p>Informacion do profesor: " . $profesor->verInformacion() . "</p>";
 echo "<p>Bailes que imparte:</p>";
 echo $profesor->mostrarBailes();
-
-

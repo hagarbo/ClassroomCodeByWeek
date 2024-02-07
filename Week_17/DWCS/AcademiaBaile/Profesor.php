@@ -2,6 +2,7 @@
 require_once "Baile.php";
 class Profesor extends Persona
 {
+    public const IMPORTE_HORA_POR_DEFECTO = 16;
     private string $nif = "";
     private array $bailes = [];
 
@@ -10,16 +11,13 @@ class Profesor extends Persona
         $this->nif = $nif;
     }
 
-    public function calcularSoldo(int $horas, int $precio_hora = 16):int{
+    public function calcularSoldo(int $horas, int $precio_hora = self::IMPORTE_HORA_POR_DEFECTO):int{
         return $horas * $precio_hora;
     }
 
     private function existeBaile(Baile $baile):bool{
-        foreach ($this->bailes as $value) {
-            if ($value->equals($baile))
-                return true;
-        }
-        return false;
+        $existe = array_filter($this->bailes,array($baile, 'equals'));
+        return count($existe) != 0;
     }
     public function engadirBaile(Baile $baile):bool{
         if ($this->existeBaile($baile))
@@ -28,14 +26,11 @@ class Profesor extends Persona
         return true;
     }
 
-    public function borrarBaile(string $nome_baile):bool{
-        foreach ($this->bailes as $key => $baile) {
-            if ($baile->nombre === $nome_baile){
-                unset($this->bailes[$key]);
-                return true;
-            }
-        }
-        return false;
+    public function borrarBaile(Baile $baile_borrar):bool{
+        if (!$this->existeBaile($baile_borrar))
+            return false;
+        $this->bailes = array_diff($this->bailes, array($baile_borrar));
+        return true;
     }
 
     public function mostrarBailes():string{

@@ -2,7 +2,7 @@
 
 final class Alumno extends Persona
 {
-    public const TABLA_PRECIOS = [20,32,40];
+    public const TABLA_PRECIOS = ["UNA_CLASE"=>20,"DOS_CLASES"=>32,"MAS_TRES_CLASES"=>40];
     private int $numClases = 0;
     public function setNumClases($numClases){
         $this->numClases = $numClases>0 ? $numClases : 0;
@@ -13,11 +13,11 @@ final class Alumno extends Persona
             case 0:
                 throw new Exception("Debe indicar previamente o número de clases", 1);
             case 1:
-                return self::TABLA_PRECIOS[0];
+                return self::TABLA_PRECIOS["UNA_CLASE"];
             case 2:
-                return self::TABLA_PRECIOS[1];
+                return self::TABLA_PRECIOS["DOS_CLASES"];
             default:
-                return self::TABLA_PRECIOS[2];
+                return self::TABLA_PRECIOS["MAS_TRES_CLASES"];
         }
     }
 

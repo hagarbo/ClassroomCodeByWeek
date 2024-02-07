@@ -17,4 +17,8 @@ class Baile
     public function equals(Baile $baile):bool{
         return $this->nombre == $baile->nombre;
     }
+    
+    public function __toString() {
+        return $this->nombre;
+      }
 }
