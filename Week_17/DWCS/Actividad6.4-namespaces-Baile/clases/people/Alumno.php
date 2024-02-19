@@ -1,5 +1,8 @@
 <?php
 namespace clases\people;
+
+use DateTimeImmutable;
+
 /**
  * Description of Alumno
  *
@@ -13,13 +16,15 @@ final class Alumno extends Persoa implements \JsonSerializable{
     const CUOTA_DOS_CLASES = 32;
     const CUOTA_TRES_O_MAS_CLASES = 40;
 
-    private $numClases;
+    private int $numClases;
+    
 
     public function __construct(string $nome, string $apelidos,
-            string $mobil,
-            $numClases = 0) {
-        parent::__construct($nome, $apelidos, $mobil);
+            string $mobil, DateTimeImmutable $fecha_nacimiento,
+            int $numClases = 0) {
+        parent::__construct($nome, $apelidos, $mobil, $fecha_nacimiento);
         $this->numClases = $numClases;
+        
     }
 
     //Otra opción sería no añadir un constructor en esta clase
@@ -53,8 +58,23 @@ final class Alumno extends Persoa implements \JsonSerializable{
         return $importe;
     }
 
+    public function verInformacion(){
+
+        $cadea = implode(
+            " ",
+            [
+                $this->nome,
+                $this->apelidos
+            ]
+        );
+
+        $cadea .= $this->esMayorDeEdad() ? " (" . $this->mobil . ")<br/>" : "<br/>";
+        echo $cadea;
+    }
+
     public function jsonSerialize()   {
         $nome_apelidos = join(" ", [$this->nome, $this->apelidos], );
+        $this->log($nome_apelidos);
         return ["nome_apelidos" => $nome_apelidos, "mobil" => $this->mobil, "num_clases"=>$this->numClases];
     }
 

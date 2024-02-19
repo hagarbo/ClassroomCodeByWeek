@@ -18,7 +18,7 @@ require_once "util.php";
 
 $academia = new Academia();
 echo "<h1>Academia de baile: ". $academia::ACADEMIA_NOME ."</h1>";
-$profe1 = new Profesor("Silvia", "López López", "666777888", "12345678D");
+$profe1 = new Profesor("Silvia", "López López", "666777888", "12345678D",new DateTimeImmutable("1975-5-7"));
 
 $salsa = new Baile("Salsa");
 $bachata = new Baile("Bachata", 12);
@@ -40,8 +40,10 @@ $profe1->engadir($afro2);
 // $profe1->engadirSoDiferenteNome($afro);
 // $profe1->engadirSoDiferenteNome($afro2);
 
-$alumno1 = new Alumno("Juan", "Antas Ulla", "650650650");
-$alumno2 = new Alumno("Rita", "Román Rueda", "652652652");
+$fecha1 = new DateTimeImmutable("1998-8-13");
+$fecha2 = new DateTimeImmutable("2008-8-13");
+$alumno1 = new Alumno("Juan", "Antas Ulla", "650650650", $fecha1);
+$alumno2 = new Alumno("Rita", "Román Rueda", "652652652",$fecha2);
 
 $alumno1->setNumClases(0);
 $alumno2->setNumClases(4);
@@ -72,9 +74,16 @@ $profe1->eliminar(new Baile("AFRO"));
 $profe1->mostrarBailes();
 
 echo "</br>";
-echo json_encode($profe1);
+echo "<pre>";
+echo json_encode($profe1, JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);
+echo "</pre>";
 echo "</br>";
-echo json_encode($alumno2);
+echo "<pre>";
+echo json_encode($alumno2, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
+echo "</pre>";
 
 
+
+echo $alumno1->verInformacion();
+echo $alumno2->verInformacion();
 
