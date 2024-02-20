@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+<script>
+  if (typeof Storage !== "undefined") {
+    document.write("Almacenamiento local disponible!!");
+  } else document.write("F in the chat");
+
+  localStorage.setItem("clave", "valor");
+  document.write(localStorage.getItem("clave"));
+
+  function hello() {
+    return this;
+  }
+  console.log(hello());
+  const object = { hola: hello };
+  console.log(object.hola() === object);
+</script>
