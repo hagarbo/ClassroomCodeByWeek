@@ -1,0 +1,330 @@
+#--------------------------------------------------------------------------------------------
+#	1.	UTILIZAMOS LA BASE DE DATOS 'NBA'
+#--------------------------------------------------------------------------------------------
+#	USE <base de datos>
+#--------------------------------------------------------------------------------------------
+USE nba;
+    
+#--------------------------------------------------------------------------------------------
+#	2. 	BORRAMOS Y CREAMOS LOS USUARIOS: hay 2 Conferencias (East, West) y 3 divisiones en cada una (Atlantic, SouthEast, Central) y (Pacific, SouthWest, NorthWest)
+#	Los usuarios serán creados todos con la misma clave 'abc'
+#--------------------------------------------------------------------------------------------
+#	DROP USER IF EXISTS <usuario>		CREATE USER <usuario>	IDENTIFIED BY <clave>
+#--------------------------------------------------------------------------------------------
+#	Fulgencio y Fulgencia
+#	Guillermino y Guillermina
+#	Pancracio y Pancracia
+#	Filomeno y Filomena
+#	Anaximandro y Anaximandra
+#	Romino y Romina
+#	Agapito y Agapita
+#	Apolonio y Apolonia
+#	Luzdivino y Luzdivina
+#--------------------------------------------------------------------------------------------
+DROP USER IF EXISTS Fulgencio;
+CREATE USER Fulgencio IDENTIFIED BY 'abc123.';
+DROP USER IF EXISTS Fulgencia;
+CREATE USER Fulgencia IDENTIFIED BY 'abc123.';
+DROP USER IF EXISTS Guillermino;
+CREATE USER Guillermino IDENTIFIED BY 'abc123.';
+DROP USER IF EXISTS Guillermina;
+CREATE USER Guillermina IDENTIFIED BY 'abc123.';
+DROP USER IF EXISTS Pancracio;
+CREATE USER Pancracio IDENTIFIED BY 'abc123.';
+DROP USER IF EXISTS Pancracia;
+CREATE USER Pancracia IDENTIFIED BY 'abc123.';
+DROP USER IF EXISTS Filomeno;
+CREATE USER Filomeno IDENTIFIED BY 'abc123.';
+DROP USER IF EXISTS Filomena;
+CREATE USER Filomena IDENTIFIED BY 'abc123.';
+DROP USER IF EXISTS Anaximandro;
+CREATE USER Anaximandro IDENTIFIED BY 'abc123.';
+DROP USER IF EXISTS Anaximandra;
+CREATE USER Anaximandra IDENTIFIED BY 'abc123.';
+DROP USER IF EXISTS Romino;
+CREATE USER Romino IDENTIFIED BY 'abc123.';
+DROP USER IF EXISTS Romina;
+CREATE USER Romina IDENTIFIED BY 'abc123.';
+DROP USER IF EXISTS Agapito;
+CREATE USER Agapito IDENTIFIED BY 'abc123.';
+DROP USER IF EXISTS Agapita;
+CREATE USER Agapita IDENTIFIED BY 'abc123.';
+DROP USER IF EXISTS Apolonio;
+CREATE USER Apolonio IDENTIFIED BY 'abc123.';
+DROP USER IF EXISTS Apolonia;
+CREATE USER Apolonia IDENTIFIED BY 'abc123.';
+DROP USER IF EXISTS Luzdivino;
+CREATE USER Luzdivino IDENTIFIED BY 'abc123.';
+DROP USER IF EXISTS Luzdivina;
+CREATE USER Luzdivina IDENTIFIED BY 'abc123.';
+
+#--------------------------------------------------------------------------------------------
+#	3. BORRAMOS Y CREAMOS LAS VISTAS
+#--------------------------------------------------------------------------------------------
+#	DROP VIEW IF EXISTS <vista>							CREATE VIEW	<vista>	AS <consulta>
+#--------------------------------------------------------------------------------------------
+#		Vista General de TODOS los Equipos, otra para TODOS los Jugadores, otra para TODAS las Estadísticas y otra para TODOS los partidos
+#--------------------------------------------------------------------------------------------
+DROP VIEW IF EXISTS NBA_EQUIPOS;					
+CREATE VIEW NBA_EQUIPOS
+	 	AS SELECT * FROM NBA.equipos;
+		
+DROP VIEW IF EXISTS NBA_JUGADORES;					
+CREATE VIEW NBA_JUGADORES
+		AS SELECT * FROM NBA.jugadores;
+
+DROP VIEW IF EXISTS NBA_PARTIDOS;					
+CREATE VIEW NBA_PARTIDOS
+		AS SELECT * FROM NBA.partidos;
+
+DROP VIEW IF EXISTS NBA_ESTADISTICAS;					
+CREATE VIEW NBA_ESTADISTICAS
+		AS SELECT * FROM NBA.estadisticas;
+
+#		Vista de Equipos, Jugadores, Estadísticas y Partidos sobre la Conferencia ESTE
+    
+DROP VIEW IF EXISTS CONFERENCIA_ESTE_EQUIPOS;
+CREATE VIEW CONFERENCIA_ESTE_EQUIPOS		
+ 		AS SELECT * FROM NBA.equipos 		
+		WHERE Conferencia = 'East';
+
+DROP VIEW IF EXISTS CONFERENCIA_ESTE_JUGADORES;
+CREATE VIEW CONFERENCIA_ESTE_JUGADORES		
+ 		AS SELECT * FROM NBA.jugadores 		
+		WHERE Equipo IN (SELECT Nombre FROM CONFERENCIA_ESTE_EQUIPOS);
+
+DROP VIEW IF EXISTS CONFERENCIA_ESTE_ESTADISTICAS;	
+CREATE VIEW CONFERENCIA_ESTE_ESTADISTICAS	
+ 		AS SELECT * FROM NBA.estadisticas	
+		WHERE jugador IN (SELECT codigo FROM CONFERENCIA_ESTE_JUGADORES);
+
+DROP VIEW IF EXISTS CONFERENCIA_ESTE_PARTIDOS;	
+CREATE VIEW CONFERENCIA_ESTE_PARTIDOS	
+ 		AS SELECT * FROM NBA.partidos	
+		WHERE equipoLocal IN (SELECT Nombre FROM CONFERENCIA_ESTE_EQUIPOS) 
+				AND equipoVisitante IN (SELECT Nombre FROM CONFERENCIA_ESTE_EQUIPOS);
+
+#		Vista de Equipos, Jugadores, Estadísticas y Partidos sobre la Conferencia OESTE 
+
+DROP VIEW IF EXISTS CONFERENCIA_OESTE_EQUIPOS;
+CREATE VIEW CONFERENCIA_OESTE_EQUIPOS		
+ 		AS SELECT * FROM NBA.equipos 		
+		WHERE Conferencia = 'West';  
+
+DROP VIEW IF EXISTS CONFERENCIA_OESTE_JUGADORES;	
+CREATE VIEW	CONFERENCIA_OESTE_JUGADORES		
+		AS SELECT * FROM NBA.jugadores 		
+		WHERE Equipo IN (SELECT nombre from CONFERENCIA_OESTE_EQUIPOS);
+		
+DROP VIEW IF EXISTS CONFERENCIA_OESTE_ESTADISTICAS;	
+CREATE VIEW CONFERENCIA_OESTE_ESTADISTICAS	
+ 		AS SELECT * FROM NBA.estadisticas	
+		WHERE jugador IN (SELECT codigo FROM CONFERENCIA_OESTE_JUGADORES);
+
+DROP VIEW IF EXISTS CONFERENCIA_OESTE_PARTIDOS;		
+CREATE VIEW CONFERENCIA_OESTE_PARTIDOS		
+		AS SELECT * FROM NBA.partidos		
+		WHERE EquipoLocal IN (SELECT nombre FROM CONFERENCIA_OESTE_EQUIPOS) 
+		AND EquipoVisitante IN (select nombre from CONFERENCIA_OESTE_EQUIPOS);
+		
+#		Vista de Equipos, Jugadores, Estadísticas y Partidos sobre la División Atlantica
+    
+DROP VIEW IF EXISTS DIVISION_ATLANTICA_EQUIPOS;		
+CREATE VIEW	DIVISION_ATLANTICA_EQUIPOS		
+		AS SELECT * FROM NBA.equipos		
+		WHERE Division = 'Atlantic';
+
+DROP VIEW IF EXISTS DIVISION_ATLANTICA_JUGADORES;	
+CREATE VIEW	DIVISION_ATLANTICA_JUGADORES		
+		AS SELECT * FROM NBA.jugadores 		
+		WHERE Equipo IN (SELECT nombre from DIVISION_ATLANTICA_EQUIPOS);
+
+DROP VIEW IF EXISTS DIVISION_ATLANTICA_ESTADISTICAS;
+CREATE VIEW	DIVISION_ATLANTICA_ESTADISTICAS	
+		AS SELECT * FROM NBA.estadisticas	
+		WHERE jugador IN (SELECT codigo FROM DIVISION_ATLANTICA_JUGADORES);
+
+DROP VIEW IF EXISTS DIVISION_ATLANTICA_PARTIDOS;		
+CREATE VIEW	DIVISION_ATLANTICA_PARTIDOS		
+		AS SELECT * FROM NBA.PARTIDOS		
+		WHERE EquipoLocal IN (SELECT nombre FROM DIVISION_ATLANTICA_EQUIPOS)
+		AND EquipoVisitante IN (select nombre from DIVISION_ATLANTICA_EQUIPOS);
+
+
+#		Vista de Equipos, Jugadores, Estadísticas y Partidos sobre la División Sudeste
+
+DROP VIEW IF EXISTS DIVISION_SUDESTE_EQUIPOS;		
+CREATE VIEW	DIVISION_SUDESTE_EQUIPOS		
+		AS SELECT * FROM NBA.equipos		
+		WHERE Division = 'Southeast';
+
+DROP VIEW IF EXISTS DIVISION_SUDESTE_JUGADORES;		
+CREATE VIEW	DIVISION_SUDESTE_JUGADORES		
+		AS SELECT * FROM NBA.jugadores		
+		WHERE Equipo 	  IN (SELECT nombre FROM DIVISION_SUDESTE_EQUIPOS);
+		
+DROP VIEW IF EXISTS DIVISION_SUDESTE_ESTADISTICAS;
+CREATE VIEW	DIVISION_SUDESTE_ESTADISTICAS	
+		AS SELECT * FROM NBA.estadisticas	
+		WHERE jugador IN (SELECT codigo FROM DIVISION_SUDESTE_JUGADORES);
+
+DROP VIEW IF EXISTS DIVISION_SUDESTE_PARTIDOS;		
+CREATE VIEW	DIVISION_SUDESTE_PARTIDOS		
+		AS SELECT * FROM NBA.PARTIDOS		
+		WHERE EquipoLocal IN (SELECT nombre FROM DIVISION_SUDESTE_EQUIPOS)
+		AND EquipoVisitante IN (select nombre from DIVISION_SUDESTE_EQUIPOS);
+
+#		Vista de Equipos, Jugadores, Estadísticas y Partidos sobre la División Central
+
+DROP VIEW IF EXISTS DIVISION_CENTRAL_EQUIPOS;		
+CREATE VIEW	DIVISION_CENTRAL_EQUIPOS		
+		AS SELECT * FROM NBA.equipos		
+		WHERE Division = 'Central';
+		
+DROP VIEW IF EXISTS DIVISION_CENTRAL_JUGADORES;		
+CREATE VIEW	DIVISION_CENTRAL_JUGADORES		
+		AS SELECT * FROM NBA.jugadores		
+		WHERE Equipo 	  IN (SELECT nombre FROM DIVISION_CENTRAL_EQUIPOS);
+		
+DROP VIEW IF EXISTS DIVISION_CENTRAL_ESTADISTICAS;	
+CREATE VIEW	DIVISION_CENTRAL_ESTADISTICAS	
+		AS SELECT * FROM NBA.estadisticas
+		WHERE jugador 	  IN (SELECT codigo FROM DIVISION_CENTRAL_JUGADORES);
+
+DROP VIEW IF EXISTS DIVISION_CENTRAL_PARTIDOS;		
+CREATE VIEW	DIVISION_CENTRAL_PARTIDOS		
+		AS SELECT * FROM NBA.PARTIDOS		
+		WHERE EquipoLocal IN (SELECT nombre FROM DIVISION_CENTRAL_EQUIPOS)
+		AND EquipoVisitante IN (select nombre from DIVISION_CENTRAL_EQUIPOS);
+
+#		Vista de Equipos, Jugadores, Estadísticas y Partidos sobre la División Pacífico
+
+DROP VIEW IF EXISTS DIVISION_PACIFICO_EQUIPOS;		
+CREATE VIEW	DIVISION_PACIFICO_EQUIPOS		
+		AS SELECT * FROM NBA.equipos		
+		WHERE Division = 'Pacific';
+		
+DROP VIEW IF EXISTS DIVISION_PACIFICO_JUGADORES;		
+CREATE VIEW	DIVISION_PACIFICO_JUGADORES		
+		AS SELECT * FROM NBA.jugadores		
+		WHERE Equipo IN (SELECT nombre FROM DIVISION_PACIFICO_EQUIPOS);
+		
+DROP VIEW IF EXISTS DIVISION_PACIFICO_ESTADISTICAS;	
+CREATE VIEW	DIVISION_PACIFICO_ESTADISTICAS	
+		AS SELECT * FROM NBA.estadisticas
+		WHERE jugador IN (SELECT codigo FROM DIVISION_PACIFICO_JUGADORES);
+
+DROP VIEW IF EXISTS DIVISION_PACIFICO_PARTIDOS;		
+CREATE VIEW	DIVISION_PACIFICO_PARTIDOS		
+		AS SELECT * FROM NBA.PARTIDOS		
+		WHERE EquipoLocal IN (SELECT nombre FROM DIVISION_PACIFICO_EQUIPOS)
+		AND EquipoVisitante IN (select nombre from DIVISION_PACIFICO_EQUIPOS);
+
+#		Vista de Equipos, Jugadores, Estadísticas y Partidos sobre la División Sudoeste
+
+DROP VIEW IF EXISTS DIVISION_SUDOESTE_EQUIPOS;		
+CREATE VIEW	DIVISION_SUDOESTE_EQUIPOS		
+		AS SELECT * FROM NBA.equipos		
+		WHERE Division = 'Southwest';
+		
+DROP VIEW IF EXISTS DIVISION_SUDOESTE_JUGADORES;		
+CREATE VIEW	DIVISION_SUDOESTE_JUGADORES		
+		AS SELECT * FROM NBA.jugadores		
+		WHERE Equipo 	  IN (SELECT nombre FROM DIVISION_SUDOESTE_EQUIPOS);
+		
+DROP VIEW IF EXISTS DIVISION_SUDOESTE_ESTADISTICAS;	
+CREATE VIEW	DIVISION_SUDOESTE_ESTADISTICAS	
+		AS SELECT * FROM NBA.estadisticas
+		WHERE jugador 	  IN (SELECT codigo FROM DIVISION_SUDOESTE_JUGADORES);
+
+DROP VIEW IF EXISTS DIVISION_SUDOESTE_PARTIDOS;		
+CREATE VIEW	DIVISION_SUDOESTE_PARTIDOS		
+		AS SELECT * FROM NBA.PARTIDOS		
+		WHERE EquipoLocal IN (SELECT nombre FROM DIVISION_SUDOESTE_EQUIPOS)
+		AND EquipoVisitante IN (select nombre from DIVISION_SUDOESTE_EQUIPOS);
+		
+#		Vista de Equipos, Jugadores, Estadísticas y Partidos sobre la División Noroeste
+
+DROP VIEW IF EXISTS DIVISION_NOROESTE_EQUIPOS;		
+CREATE VIEW	DIVISION_NOROESTE_EQUIPOS		
+		AS SELECT * FROM NBA.equipos		
+		WHERE Division = 'Northwest';
+		
+DROP VIEW IF EXISTS DIVISION_NOROESTE_JUGADORES;		
+CREATE VIEW	DIVISION_NOROESTE_JUGADORES		
+		AS SELECT * FROM NBA.jugadores		
+		WHERE Equipo 	  IN (SELECT nombre FROM DIVISION_NOROESTE_EQUIPOS);
+		
+DROP VIEW IF EXISTS DIVISION_NOROESTE_ESTADISTICAS;	
+CREATE VIEW	DIVISION_NOROESTE_ESTADISTICAS	
+		AS SELECT * FROM NBA.estadisticas
+		WHERE jugador 	  IN (SELECT codigo FROM DIVISION_NOROESTE_JUGADORES);
+
+DROP VIEW IF EXISTS DIVISION_NOROESTE_PARTIDOS;		
+CREATE VIEW	DIVISION_NOROESTE_PARTIDOS		
+		AS SELECT * FROM NBA.PARTIDOS		
+		WHERE EquipoLocal IN (SELECT nombre FROM DIVISION_NOROESTE_EQUIPOS)
+		AND EquipoVisitante IN (select nombre from DIVISION_NOROESTE_EQUIPOS);
+
+
+#--------------------------------------------------------------------------------------------
+#	4. ASIGNAMOS PRIVILEGIOS (O PERMISOS) A LOS USUARIOS
+#--------------------------------------------------------------------------------------------
+#	GRANT <permiso>	ON <vista>	TO <usuario>, ...
+#--------------------------------------------------------------------------------------------
+#		USUARIOS						ACCESO
+#
+#	Fulgencio y Fulgencia					Todos los datos de Equipos, Jugadores, Estadisticas y Partidos
+GRANT ALL ON NBA_EQUIPOS TO Fulgencio;GRANT ALL ON NBA_EQUIPOS TO Fulgencia;
+GRANT ALL ON NBA_JUGADORES TO Fulgencio;GRANT ALL ON NBA_JUGADORES TO Fulgencia;
+GRANT ALL ON NBA_ESTADISTICAS TO Fulgencio;GRANT ALL ON NBA_ESTADISTICAS TO Fulgencia;
+GRANT ALL ON NBA_PARTIDOS TO Fulgencio;GRANT ALL ON NBA_PARTIDOS TO Fulgencia;
+#	Guillermino y Guillermina				Todos los datos de Equipos, Jugadores, Estadisticas y Partidos de la Conferencia ESTE
+GRANT ALL ON CONFERENCIA_ESTE_EQUIPOS TO Guillermino;GRANT ALL ON CONFERENCIA_ESTE_EQUIPOS TO Guillermina;
+GRANT ALL ON CONFERENCIA_ESTE_JUGADORES TO Guillermino;GRANT ALL ON CONFERENCIA_ESTE_JUGADORES TO Guillermina;
+GRANT ALL ON CONFERENCIA_ESTE_ESTADISTICAS TO Guillermino;GRANT ALL ON CONFERENCIA_ESTE_ESTADISTICAS TO Guillermina;
+GRANT ALL ON CONFERENCIA_ESTE_PARTIDOS TO Guillermino;GRANT ALL ON CONFERENCIA_ESTE_PARTIDOS TO Guillermina;
+#	Pancracio y Pancracia					Todos los datos de Equipos, Jugadores, Estadisticas y Partidos de la Conferencia OESTE
+GRANT ALL ON CONFERENCIA_OESTE_EQUIPOS TO Pancracio;GRANT ALL ON CONFERENCIA_OESTE_EQUIPOS TO Pancracia;
+GRANT ALL ON CONFERENCIA_OESTE_JUGADORES TO Pancracio;GRANT ALL ON CONFERENCIA_OESTE_JUGADORES TO Pancracia;
+GRANT ALL ON CONFERENCIA_OESTE_ESTADISTICAS TO Pancracio;GRANT ALL ON CONFERENCIA_OESTE_ESTADISTICAS TO Pancracia;
+GRANT ALL ON CONFERENCIA_OESTE_PARTIDOS TO Pancracio;GRANT ALL ON CONFERENCIA_OESTE_PARTIDOS TO Pancracia;
+#	Filomeno y Filomena						Todos los datos de Equipos, Jugadores, Estadisticas y Partidos de la División Atlántica
+GRANT ALL ON DIVISION_ATLANTICA_EQUIPOS TO Filomeno;GRANT ALL ON DIVISION_ATLANTICA_EQUIPOS TO Filomena;
+GRANT ALL ON DIVISION_ATLANTICA_JUGADORES TO Filomeno;GRANT ALL ON DIVISION_ATLANTICA_JUGADORES TO Filomena;
+GRANT ALL ON DIVISION_ATLANTICA_ESTADISTICAS TO Filomeno;GRANT ALL ON DIVISION_ATLANTICA_ESTADISTICAS TO Filomena;
+GRANT ALL ON DIVISION_ATLANTICA_PARTIDOS TO Filomeno;GRANT ALL ON DIVISION_ATLANTICA_PARTIDOS TO Filomena;
+#	Anaximandro y Anaximandra				Todos los datos de Equipos, Jugadores, Estadisticas y Partidos de la División Sudeste
+GRANT ALL ON DIVISION_SUDESTE_EQUIPOS TO Anaximandro;GRANT ALL ON DIVISION_SUDESTE_EQUIPOS TO Anaximandra;
+GRANT ALL ON DIVISION_SUDESTE_JUGADORES TO Anaximandro;GRANT ALL ON DIVISION_SUDESTE_JUGADORES TO Anaximandra;
+GRANT ALL ON DIVISION_SUDESTE_ESTADISTICAS TO Anaximandro;GRANT ALL ON DIVISION_SUDESTE_ESTADISTICAS TO Anaximandra;
+GRANT ALL ON DIVISION_SUDESTE_PARTIDOS TO Anaximandro;GRANT ALL ON DIVISION_SUDESTE_PARTIDOS TO Anaximandra;
+#	Romino y Romina							Todos los datos de Equipos, Jugadores, Estadisticas y Partidos de la División Central
+GRANT ALL ON DIVISION_CENTRAL_EQUIPOS TO Romino;GRANT ALL ON DIVISION_CENTRAL_EQUIPOS TO Romina;
+GRANT ALL ON DIVISION_CENTRAL_JUGADORES TO Romino;GRANT ALL ON DIVISION_CENTRAL_JUGADORES TO Romina;
+GRANT ALL ON DIVISION_CENTRAL_ESTADISTICAS TO Romino;GRANT ALL ON DIVISION_CENTRAL_ESTADISTICAS TO Romina;
+GRANT ALL ON DIVISION_CENTRAL_PARTIDOS TO Romino;GRANT ALL ON DIVISION_CENTRAL_PARTIDOS TO Romina;
+#	Agapito y Agapita						Todos los datos de Equipos, Jugadores, Estadisticas y Partidos de la División Pacífico
+GRANT ALL ON DIVISION_PACIFICO_EQUIPOS TO Agapito;GRANT ALL ON DIVISION_PACIFICO_EQUIPOS TO Agapita;
+GRANT ALL ON DIVISION_PACIFICO_JUGADORES TO Agapito;GRANT ALL ON DIVISION_PACIFICO_JUGADORES TO Agapita;
+GRANT ALL ON DIVISION_PACIFICO_ESTADISTICAS TO Agapito;GRANT ALL ON DIVISION_PACIFICO_ESTADISTICAS TO Agapita;
+GRANT ALL ON DIVISION_PACIFICO_PARTIDOS TO Agapito;GRANT ALL ON DIVISION_PACIFICO_PARTIDOS TO Agapita;
+#	Apolonio y Apolonia						Todos los datos de Equipos, Jugadores, Estadisticas y Partidos de la División Sudoeste
+GRANT ALL ON DIVISION_SUDOESTE_EQUIPOS TO Apolonio;GRANT ALL ON DIVISION_SUDOESTE_EQUIPOS TO Apolonia;
+GRANT ALL ON DIVISION_SUDOESTE_JUGADORES TO Apolonio;GRANT ALL ON DIVISION_SUDOESTE_JUGADORES TO Apolonia;
+GRANT ALL ON DIVISION_SUDOESTE_ESTADISTICAS TO Apolonio;GRANT ALL ON DIVISION_SUDOESTE_ESTADISTICAS TO Apolonia;
+GRANT ALL ON DIVISION_SUDOESTE_PARTIDOS TO Apolonio;GRANT ALL ON DIVISION_SUDOESTE_PARTIDOS TO Apolonia;
+#	Luzdivino y Luzdivina					Todos los datos de Equipos, Jugadores, Estadisticas y Partidos de la División Noroeste
+GRANT ALL ON DIVISION_NOROESTE_EQUIPOS TO Luzdivino;GRANT ALL ON DIVISION_NOROESTE_EQUIPOS TO Luzdivina;
+GRANT ALL ON DIVISION_NOROESTE_JUGADORES TO Luzdivino;GRANT ALL ON DIVISION_NOROESTE_JUGADORES TO Luzdivina;
+GRANT ALL ON DIVISION_NOROESTE_ESTADISTICAS TO Luzdivino;GRANT ALL ON DIVISION_NOROESTE_ESTADISTICAS TO Luzdivina;
+GRANT ALL ON DIVISION_NOROESTE_PARTIDOS TO Luzdivino;GRANT ALL ON DIVISION_NOROESTE_PARTIDOS TO Luzdivina;
+#--------------------------------------------------------------------------------------------
+
+#--------------------------------------------------------------------------------------------
+#	5. REFRESCAMOS LOS PRIVILEGIOS
+#--------------------------------------------------------------------------------------------
+#	FLUSH PRIVILEGES;
+#--------------------------------------------------------------------------------------------
+
+FLUSH PRIVILEGES;
