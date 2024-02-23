@@ -311,41 +311,94 @@ GRANT ALL ON DIVISION_NOROESTE_PARTIDOS TO division_noroeste;
 #--------------------------------------------------------------------------------------------
  
 DROP USER IF EXISTS Fulgencio;
-CREATE USER Fulgencio IDENTIFIED BY 'abc' DEFAULT ROLE nba;
+CREATE USER Fulgencio IDENTIFIED BY 'abc';
+GRANT nba TO Fulgencio;
+SET DEFAULT ROLE nba FOR Fulgencio;
+
 DROP USER IF EXISTS Fulgencia;
-CREATE USER Fulgencia IDENTIFIED BY 'abc' DEFAULT ROLE nba;
+CREATE USER Fulgencia IDENTIFIED BY 'abc';
+GRANT nba TO Fulgencia;
+SET DEFAULT ROLE nba FOR Fulgencia;
+
 DROP USER IF EXISTS Guillermino;
-CREATE USER Guillermino IDENTIFIED BY 'abc' DEFAULT ROLE conferencia_este;
+CREATE USER Guillermino IDENTIFIED BY 'abc';
+GRANT conferencia_este TO Guillermino;
+SET DEFAULT ROLE conferencia_este FOR Guillermino;
+
 DROP USER IF EXISTS Guillermina;
-CREATE USER Guillermina IDENTIFIED BY 'abc' DEFAULT ROLE conferencia_este;
+CREATE USER Guillermina IDENTIFIED BY 'abc';
+GRANT conferencia_este TO Guillermina;
+SET DEFAULT ROLE conferencia_este FOR Guillermina;
+
 DROP USER IF EXISTS Pancracio;
-CREATE USER Pancracio IDENTIFIED BY 'abc' DEFAULT ROLE conferencia_oeste;
+CREATE USER Pancracio IDENTIFIED BY 'abc';
+GRANT conferencia_oeste TO Guillermino;
+SET DEFAULT ROLE conferencia_oeste FOR Guillermino;
+
 DROP USER IF EXISTS Pancracia;
-CREATE USER Pancracia IDENTIFIED BY 'abc' DEFAULT ROLE conferencia_oeste;
+CREATE USER Pancracia IDENTIFIED BY 'abc';
+GRANT conferencia_oeste TO Pancracia;
+SET DEFAULT ROLE conferencia_oeste FOR Pancracia;
+
 DROP USER IF EXISTS Filomeno;
-CREATE USER Filomeno IDENTIFIED BY 'abc' DEFAULT ROLE division_atlantico;
+CREATE USER Filomeno IDENTIFIED BY 'abc';
+GRANT division_atlantico TO Filomeno;
+SET DEFAULT ROLE division_atlantico FOR Filomeno;
+
 DROP USER IF EXISTS Filomena;
-CREATE USER Filomena IDENTIFIED BY 'abc' DEFAULT ROLE division_atlantico;
+CREATE USER Filomena IDENTIFIED BY 'abc';
+GRANT division_atlantico TO Filomena;
+SET DEFAULT ROLE division_atlantico FOR Filomena;
+
 DROP USER IF EXISTS Anaximandro;
-CREATE USER Anaximandro IDENTIFIED BY 'abc' DEFAULT ROLE division_sudeste;
+CREATE USER Anaximandro IDENTIFIED BY 'abc';
+GRANT division_sudeste TO Anaximandro;
+SET DEFAULT ROLE division_sudeste FOR Anaximandro;
+
 DROP USER IF EXISTS Anaximandra;
-CREATE USER Anaximandra IDENTIFIED BY 'abc' DEFAULT ROLE division_sudeste;
+CREATE USER Anaximandra IDENTIFIED BY 'abc';
+GRANT division_sudeste TO Anaximandra;
+SET DEFAULT ROLE division_sudeste FOR Anaximandra;
+
 DROP USER IF EXISTS Romino;
-CREATE USER Romino IDENTIFIED BY 'abc' DEFAULT ROLE division_central;
+CREATE USER Romino IDENTIFIED BY 'abc';
+GRANT division_central TO Romino;
+SET DEFAULT ROLE division_central FOR Romino;
+
 DROP USER IF EXISTS Romina;
-CREATE USER Romina IDENTIFIED BY 'abc' DEFAULT ROLE division_central;
+CREATE USER Romina IDENTIFIED BY 'abc';
+GRANT division_central TO Romina;
+SET DEFAULT ROLE division_central FOR Romina;
+
 DROP USER IF EXISTS Agapito;
-CREATE USER Agapito IDENTIFIED BY 'abc' DEFAULT ROLE division_pacifico;
+CREATE USER Agapito IDENTIFIED BY 'abc';
+GRANT division_pacifico TO Agapito;
+SET DEFAULT ROLE division_pacifico FOR Agapito;
+
 DROP USER IF EXISTS Agapita;
-CREATE USER Agapita IDENTIFIED BY 'abc' DEFAULT ROLE division_pacifico;
+CREATE USER Agapita IDENTIFIED BY 'abc';
+GRANT division_pacifico TO Agapita;
+SET DEFAULT ROLE division_pacifico FOR Agapita;
+
 DROP USER IF EXISTS Apolonio;
-CREATE USER Apolonio IDENTIFIED BY 'abc' DEFAULT ROLE division_sudoeste;
+CREATE USER Apolonio IDENTIFIED BY 'abc';
+GRANT division_sudoeste TO Apolonio;
+SET DEFAULT ROLE division_sudoeste FOR Apolonio;
+
 DROP USER IF EXISTS Apolonia;
-CREATE USER Apolonia IDENTIFIED BY 'abc' DEFAULT ROLE division_sudoeste;
+CREATE USER Apolonia IDENTIFIED BY 'abc';
+GRANT division_sudoeste TO Apolonia;
+SET DEFAULT ROLE division_sudoeste FOR Apolonia;
+
 DROP USER IF EXISTS Luzdivino;
-CREATE USER Luzdivino IDENTIFIED BY 'abc' DEFAULT ROLE division_noroeste;
+CREATE USER Luzdivino IDENTIFIED BY 'abc';
+GRANT division_noroeste TO Luzdivino;
+SET DEFAULT ROLE division_noroeste FOR Luzdivino;
+
 DROP USER IF EXISTS Luzdivina;
-CREATE USER Luzdivina IDENTIFIED BY 'abc' DEFAULT ROLE division_noroeste;
+CREATE USER Luzdivina IDENTIFIED BY 'abc';
+GRANT division_noroeste TO Luzdivina;
+SET DEFAULT ROLE division_noroeste FOR Luzdivina;
 
  
 #--------------------------------------------------------------------------------------------
