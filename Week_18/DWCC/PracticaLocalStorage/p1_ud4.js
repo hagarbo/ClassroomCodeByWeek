@@ -10,20 +10,27 @@ function crearVehiculo(e) {
     e.preventDefault();
     const formulario = document.getElementById("crearVehiculos");
     console.log("hola");
-    let vehiculo = new Vehiculo(formulario.modelo.value, formulario.marca.value, formulario.precio.value, formulario.webkitMatchesSelector.value);
-    console.log(vehiculo);
+    let vehiculo = new Vehiculo(formulario.modelo.value, formulario.marca.value, formulario.precio.value, formulario.km.value);
     vehiculos.push(vehiculo);
 }
 
 function mostrarVehiculos() {
-    vehiculos.forEach(
-        (element) => {
-            let nodo = document.createElement("p");
-            nodo.innerHtml ="Marca: "+element.marca+
-                            "Modelo: " + element.modelo +
-                            "Precio: " + element.precio +
-                "Km: " + element.km;
-            document.getElementById("divVehiculos").appendChild(nodo);
-        }
-    )
+    if (vehiculos.length!=0){
+        nodoResultado = document.getElementById("divVehiculos");
+        nodoResultado.innerHTML = "";
+
+        nodoTitulo = document.createElement("h4");
+        nodoTitulo.innerHTML = "Lista de Vehiculos";
+        nodoLista = document.createElement("ul");
+        nodoResultado.appendChild(nodoTitulo);
+        nodoResultado.appendChild(nodoLista);
+
+        vehiculos.forEach(
+            (element, i) => {
+                let nodo = document.createElement("li");
+                nodo.innerHTML = "Vehiculo "+ i +" -> " + element.mostrarDatos();
+                nodoResultado.querySelector("ul").appendChild(nodo);
+            }
+        )
+    } 
 }
