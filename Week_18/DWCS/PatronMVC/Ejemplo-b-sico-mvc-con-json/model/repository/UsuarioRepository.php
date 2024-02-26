@@ -29,7 +29,7 @@ final class UsuarioRepository implements IUsuarioRepository
         return $this->arrayUsuarios;
     }
 
-    private function saveUsuarios(array $usuarios): bool
+    /* private function saveUsuarios(array $usuarios): bool
     {
 
         $writtenBytes = file_put_contents($this->filePath, json_encode($usuarios));
@@ -123,5 +123,5 @@ final class UsuarioRepository implements IUsuarioRepository
         }
 
         return ++$max_id;
-    }
+    } */
 }

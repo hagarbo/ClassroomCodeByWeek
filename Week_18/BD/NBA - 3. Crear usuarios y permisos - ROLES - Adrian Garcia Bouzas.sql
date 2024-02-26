@@ -332,8 +332,8 @@ SET DEFAULT ROLE conferencia_este FOR Guillermina;
 
 DROP USER IF EXISTS Pancracio;
 CREATE USER Pancracio IDENTIFIED BY 'abc';
-GRANT conferencia_oeste TO Guillermino;
-SET DEFAULT ROLE conferencia_oeste FOR Guillermino;
+GRANT conferencia_oeste TO Pancracio;
+SET DEFAULT ROLE conferencia_oeste FOR Pancracio;
 
 DROP USER IF EXISTS Pancracia;
 CREATE USER Pancracia IDENTIFIED BY 'abc';
