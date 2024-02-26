@@ -2,5 +2,5 @@
 
 interface IUsuarioServicio {
 
-    function list(): array;
+    function listar(): array;
 }

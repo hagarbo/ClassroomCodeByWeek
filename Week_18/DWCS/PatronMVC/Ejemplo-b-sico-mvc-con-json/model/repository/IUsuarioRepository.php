@@ -2,5 +2,5 @@
 
 interface IUsuarioRepository {
 
-    function list(): array;
+    function getUsuarios(): array;
 }

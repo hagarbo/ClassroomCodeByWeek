@@ -2,7 +2,7 @@
 
 class Usuario implements JsonSerializable{
 
-    private int $id;
+    private ?int $id = null;
     private string $email;
 
     public function __construct(int $id, string $email) {

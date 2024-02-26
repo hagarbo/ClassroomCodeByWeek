@@ -10,8 +10,8 @@ final class UsuarioServicio implements IUsuarioServicio
         $this->repository = new UsuarioRepository();
     }
 
-    function list(): array
+    function listar(): array
     {
-        return $this->repository->list();
+        return $this->repository->getUsuarios();
     }
 }

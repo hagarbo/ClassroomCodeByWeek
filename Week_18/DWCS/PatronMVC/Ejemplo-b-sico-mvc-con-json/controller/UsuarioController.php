@@ -16,11 +16,11 @@ class UsuarioController
         $this->usuarioServicio = new UsuarioServicio();
     }
 
-    /* List all notes */
+    /* List all users */
 
     public function list()
     {
         $this->page_title = 'Listado de usuarios';
-        return $this->usuarioServicio->list();
+        return $this->usuarioServicio->listar();
     }
 }

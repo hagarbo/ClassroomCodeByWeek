@@ -23,7 +23,7 @@ final class UsuarioRepository implements IUsuarioRepository
         // echo "## $this->filePath";
     }
 
-    public function list(): array
+    public function getUsuarios(): array
     {
 
         return $this->arrayUsuarios;
