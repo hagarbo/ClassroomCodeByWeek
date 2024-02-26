@@ -22,7 +22,6 @@ class UsuarioController
 
     public function list()
     {
-
         $this->view = self::VIEW_FOLDER . DIRECTORY_SEPARATOR . 'list_user';
         $this->page_title = 'Listado de usuarios';
         return $this->usuarioServicio->getUsuarios();
@@ -56,7 +55,6 @@ class UsuarioController
                 $_SESSION["ultimoAcceso"] = time();
 
                 $this->redirectAccordingToRole();
-
             }
             else $loginViewData->setStatus(Util::OPERATION_NOK);
         }
@@ -68,15 +66,11 @@ class UsuarioController
         SessionManager::cerrarSesion();
         $this->redirectTo("Usuario", "login");
     }
-
-
-
     private function redirectTo(string $controller, string $action): void
     {
         header("Location: FrontController.php?controller=$controller&action=$action");
         exit;
     }
-
     //En función del rol seleccionado en login, el usuario deberá ser redirigido a:
     private function redirectAccordingToRole()
     {
@@ -91,5 +85,3 @@ class UsuarioController
 
 
 }
-
-?>

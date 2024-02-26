@@ -7,8 +7,6 @@
  */
 class SessionManager {
     
-
-
     public static function cerrarSesion() {
         self::iniciarSesion();
 
@@ -38,7 +36,5 @@ class SessionManager {
         $autenticado = self::iniciarSesion() && isset($_SESSION["userId"]) && isset($_SESSION["roleId"]) && isset($_SESSION["ultimoAcceso"]);
         return $autenticado;
     }
-
-
 
 }

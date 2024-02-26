@@ -17,7 +17,6 @@
 
 			<?php 
                 if (SessionManager::iniciarSesion() && isset($_SESSION["userId"])) { 
-                 
                     ?>
                     <div class="d-flex  justify-content-end  align-items-center">
                         <div class="d-flex mx-2 align-items-center justify-content-end">
