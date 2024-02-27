@@ -1,0 +1,33 @@
+Partiendo del ejercicio de EmpleadosReparto, se deberan realizar las siguientes modificaciones:
+*
+* Elaborar un menu donde existan dos opciones:
+* Agregar empleados a la lista y mostrar los empleados existentes.
+* Los datos de los empleados a incluir en la lista deberan ser recogidos por teclado.
+*
+* Se debera comprobar la validez de los nombres introducidos, de tal forma que solo contenga letras de la A a a Z (mayusculas o minusculas), 
+* y con una longitud maxima de 20 caracteres.
+*
+* Se deberá comprobar tambien la validex del dni, para que coincida con el formato escperado
+*
+* Con respecto a la edad, deberá estar formada unicamente por numeros y, como maximo 3 digitos.
+*
+* Por ultimo, cuando cuando se recoja el sueldo, se debera comprobar que unicamente se trate de 5 cifras nuemricas,
+*
+* en el caso de que alguno de los requesitos de los puntos anteriores no se cumpla, lanzaremos una excepcion y volveremos a pedir el valor.
+*
+* Las excepciones deberan ser personalizadas y se empleara para ello una unica clase en la que, en funcion del codigo de error que reciba, 
+* se generara un mensaje de error u otro.
+* */
+
+
+implementa un programa que almacene 5 vehiculos en una lista
+de cada vehiculo se almacena color, modelo matricula y año de fabricacion
+cada vez que recoja una matricula debera verificar que tenga el formato adecuado
+longitud 7 y 3 letras al final en el caso de que la matricual no cumpla alguna
+de las dos condiciones se lanczara una excepcion
+en el caso de que el color no sea valido ambien lanzara una excepcuin que
+sera capturada en le rpograma principal
+las comprobaciones no sera realizadas en el programa principal
+las excepciones deberan se personalizadas y se empleara para ello
+una unica clase en la que en funcion del codigo de error se generar
+un mensaje de error a otro
