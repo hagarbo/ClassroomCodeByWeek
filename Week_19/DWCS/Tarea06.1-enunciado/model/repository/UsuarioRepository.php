@@ -20,16 +20,14 @@ class UsuarioRepository extends BaseRepository implements IUsuarioRepository{
         return false;
     }
 
-    public function findUsuarioByEmail($email):Usuario{
+    public function findUsuarioByEmail($email):?Usuario{
         $pdostmt = $this->conn->prepare("SELECT * FROM $this->table_name "
             . "WHERE email = :email");
         $pdostmt->bindValue("email", $email);
         $pdostmt->execute();
 
-        //Llama al constructor después de establecer las propiedades. No usa los métodos setters
         $object = $pdostmt->fetchObject($this->class_name);
-
-        return $object;
+        return ($object===false)? null : $object;
     }
 
 }
