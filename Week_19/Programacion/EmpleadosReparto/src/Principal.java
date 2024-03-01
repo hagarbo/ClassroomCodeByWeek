@@ -84,6 +84,54 @@ public class Principal {
             throw new EmpleadoInputException(EmpleadoInputException.INVALID_NOMBRE);
     }
 
+    public static int solicitarEdad() {
+        int edad = 0;
+        boolean opcionInvalida = true;
+        do {
+            System.out.println("Introduzca el nombre del empleado:");
+            edad = myScanner.nextInt();
+            try {
+                validarEdad(edad);
+                opcionInvalida = false;
+            } catch (EmpleadoInputException e) {
+                System.out.println(e.getMessage());
+            }
+        } while (opcionInvalida);
+        myScanner.nextLine();
+        return edad;
+    }
+
+    public static boolean validarEdad(int edad) throws EmpleadoInputException {
+        if (edad > 0 && edad < 1000)
+            return true;
+        else
+            throw new EmpleadoInputException(EmpleadoInputException.INVALID_EDAD);
+    }
+
+    public static double solicitarSalario() {
+        double salario = 0;
+        boolean opcionInvalida = true;
+        do {
+            System.out.println("Introduzca el nombre del empleado:");
+            salario = myScanner.nextDouble();
+            try {
+                validarSalario(salario);
+                opcionInvalida = false;
+            } catch (EmpleadoInputException e) {
+                System.out.println(e.getMessage());
+            }
+        } while (opcionInvalida);
+        myScanner.nextLine();
+        return salario;
+    }
+
+    public static boolean validarSalario(double salario) throws EmpleadoInputException {
+        if (salario > 0 && salario < 100000)
+            return true;
+        else
+            throw new EmpleadoInputException(EmpleadoInputException.INVALID_SALARIO);
+    }
+
     public static void main(String[] args) {
 
         Comercial c1 = new Comercial(300, "Francisco", 37, 1000);
@@ -95,6 +143,8 @@ public class Principal {
 
         boolean exit = false;
         String nombre;
+        int edad;
+        double salario;
         int task;
 
         do {
@@ -102,13 +152,17 @@ public class Principal {
             if (task == 1) {
                 // Añadir EMpleado
                 nombre = solicitarNombre();
-            } else {
+                edad = solicitarEdad();
+                salario = solicitarSalario();
+                empleados.add(new Comercial(300, nombre, edad, salario));
+            } else if (task == 2) {
                 // Mostra empleados
                 System.out.println("Lista de empleados:");
                 empleados.stream().forEach(
                         empleado -> System.out.println(empleado.toString()));
                 System.out.println();
-            }
+            } else
+                exit = true;
 
         } while (exit != true);
     }

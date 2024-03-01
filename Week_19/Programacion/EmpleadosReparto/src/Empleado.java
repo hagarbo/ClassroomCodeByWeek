@@ -1,5 +1,4 @@
 /**
- *
  * @author nccasares
  */
 public abstract class Empleado {
