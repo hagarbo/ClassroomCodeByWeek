@@ -18,6 +18,7 @@ public class Alumno extends Miembro {
         this.ciclo = ciclo;
         this.media = media;
         this.importeMatricula = importeMatricula;
+        this.aplicarBonificacion();
     }
 
     public String getCiclo() {

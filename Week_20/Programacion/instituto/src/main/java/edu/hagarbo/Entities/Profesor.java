@@ -20,6 +20,7 @@ public class Profesor extends Miembro {
         this.tipoJornada = tipoJornada;
         this.sueldo = sueldo;
         this.especialidad = especialidad;
+        this.aplicarBonificacion();
     }
 
     public TipoJornada getTipoJornada() {

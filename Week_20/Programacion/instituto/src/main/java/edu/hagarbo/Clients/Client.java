@@ -27,6 +27,8 @@ public class Client {
         System.out.println("3.- Baja de miembro");
         System.out.println("4.- Consulta sobre miembro");
         System.out.println("5.- Nota media del instituto");
+        System.out.println("6.- Edad media de los profesores");
+        System.out.println("7.- Salario medio de los profesores");
         System.out.println("0.- Salir");
         System.out.println("***************************************");
     }
@@ -147,6 +149,20 @@ public class Client {
         System.out.println("La media de todos los alumnos es: " + String.format("%.2f", media));
     }
 
+    private void calcularSalarioMedio() {
+        double media = this.miembros.stream()
+                .filter(e -> e instanceof Profesor)
+                .map(Profesor.class::cast).mapToDouble(Profesor::getSueldo).average().getAsDouble();
+        System.out.println("El sueldo medio del profesorado es: " + String.format("%.2f", media));
+    }
+
+    private void calcularEdadMediaProfesorado() {
+        double media = this.miembros.stream()
+                .filter(e -> e instanceof Profesor)
+                .map(Profesor.class::cast).mapToDouble(Profesor::getEdad).average().getAsDouble();
+        System.out.println("La edad del profesorado es: " + String.format("%.2f", media));
+    }
+
     public void getStarted() {
         init();
         String opcionString = "";
@@ -170,6 +186,12 @@ public class Client {
                     break;
                 case 5:
                     calcularMediaAlumnos();
+                    break;
+                case 6:
+                    calcularEdadMediaProfesorado();
+                    break;
+                case 7:
+                    calcularSalarioMedio();
                     break;
             }
 
