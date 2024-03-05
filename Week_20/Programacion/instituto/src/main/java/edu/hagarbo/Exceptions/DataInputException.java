@@ -15,6 +15,10 @@ public class DataInputException extends Exception {
         this.errorCode = errorCode;
     }
 
+    public int getErrorCode() {
+        return errorCode;
+    }
+
     @Override
     public String getMessage() {
         switch (this.errorCode) {

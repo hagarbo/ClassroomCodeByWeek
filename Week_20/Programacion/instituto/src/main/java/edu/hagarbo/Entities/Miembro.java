@@ -3,7 +3,7 @@ package edu.hagarbo.Entities;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-abstract class Miembro extends Persona {
+public abstract class Miembro extends Persona {
 
     private LocalDate fechaIncorporacion = LocalDate.of(1970, 1, 1);
 
