@@ -48,6 +48,11 @@ class UsuarioServicio {
         return null;
     }
 
+    public function logout()
+    {
+        SessionManager::cerrarSesion();
+    }
+
     public function getRoles(): array {
 
         $roles = $this->rolRepository->findAll();
@@ -55,7 +60,7 @@ class UsuarioServicio {
         return $roles;
     }
 
-    public function getRoleById(int $roleId): Rol {
+    public function getRoleById(int $roleId): ?Rol {
 
         $roles = $this->rolRepository->findAll();
         foreach ($roles as $rol) {
@@ -150,5 +155,3 @@ class UsuarioServicio {
     }
 
 }
-
-?>

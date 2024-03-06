@@ -120,8 +120,7 @@ function confirmLogout(event) {
 function logoutCliente() {
 
     if (userId != null && userId != undefined) {
-        let logout_url = "?controller=Usuario&action=logout";
-
+        const logout_url = "?controller=Usuario&action=logout";
         const data = { 'userId': userId };
 
         const request = new Request(base_url + logout_url, {

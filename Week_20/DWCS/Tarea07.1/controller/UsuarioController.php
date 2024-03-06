@@ -86,7 +86,7 @@ class UsuarioController
             $response["error"] = true;
         }
         //Cerramos sesion en cualquier caso
-        SessionManager::cerrarSesion();
+        $this->usuarioServicio->logout();
         $response = json_encode($response);
         return $response;
     }
