@@ -110,7 +110,29 @@ class UsuarioController
         }
     }
 
-
+    public function logout(){
+        $data = json_decode(file_get_contents("php://input"), true);
+        if (isset($data["userId"])) {
+            //$userId = $data["userId"];
+            $userId = -1; // Para probar que no coinciden
+            if ($userId == $_SESSION["userId"]) {
+                // UserId coincide
+                $response["error"] = false;
+            } else {
+                // UserId no coincide
+                http_response_code(400);
+                $response["error"] = "Authenticated user does not match logging out user. Logging out anyway";
+            }
+        } else {
+            //Formato incorrecto
+            http_response_code(400);
+            $response["error"] = true;
+        }
+        //Cerramos sesion en cualquier caso
+        SessionManager::cerrarSesion();
+        $response = json_encode($response);
+        return $response;
+    }
 
     public function register()
     {

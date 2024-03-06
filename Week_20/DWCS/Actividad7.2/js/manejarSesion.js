@@ -62,7 +62,45 @@ function confirmLoginJSON(event) {
 
 }
 
+function confirmLogout(event) {
+    //evitamos que se envíe el formulario de forma predefinida (la acción por defecto sería enviar los datos al servidor)
+    event.preventDefault();
+    showModal("spa_modal", "Confirmación cierre de sesión", "¿Está seguro/a de que desea cerrar sesión?", null,
+        null, logoutCliente, null);
 
+}
+
+function logoutCliente() {
+
+    if (userId != null && userId != undefined) {
+        let logout_url = "?controller=Usuario&action=logout";
+
+        const data = { 'userId': userId };
+
+        const request = new Request(base_url + logout_url, {
+            method: "POST",
+            body: JSON.stringify(data)
+        });
+    
+        fetch(request)
+            .then((response) => {
+                return response.json();
+            })
+            .then((response) => {
+                console.log(response);
+                userId = null;
+                toggleLoginMain('');
+                if (response.error != false) {
+                    showErrorLogin('Something went wrong! Logging out anyway...', true, "errorLogin");
+                }
+            }
+            )
+            .catch((error) => {
+                console.error('Ha ocurrido un error al cerrar sesión' + error);
+            });
+    }
+    
+}
 
 function loginJSON() {
   
@@ -101,7 +139,7 @@ function loginJSON() {
             console.log(response);
             if (response.userId && response.email) {
                 toggleLoginMain(response.email);
-
+                userId = response.userId;
             } else {
                 console.error('La autenticación ha fallado');
                 showErrorLogin('La autenticación ha fallado', true, "errorLogin");
