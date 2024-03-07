@@ -18,6 +18,10 @@ public class Validador {
         this.exception = e;
     }
 
+    public DataInputException getException() {
+        return this.exception;
+    }
+
     public boolean validar(String objectToValidate) throws DataInputException {
         if (!objectToValidate.matches(this.regexp.getRegExp()))
             throw this.exception;

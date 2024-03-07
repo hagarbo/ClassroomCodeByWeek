@@ -40,7 +40,7 @@ public class Client {
                 String input = this.scanner.nextLine();
                 validador.validar(input);
                 return input;
-            } catch (DataInputException e) {
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         } while (true);

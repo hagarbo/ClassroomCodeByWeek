@@ -129,12 +129,20 @@ create table Poblacion (
 #*******************************************************************************************
 #		TABLA Provincia
 #*******************************************************************************************
+SET AUTOCOMMIT = 0; # ESTO LO PONEMOS PARA QUE NO HAGA EL COMMIT IMPLICITAMENTE, NOS FALLARIA EL ROLLBACK SI NO LO PONEMOS
+START TRANSACTION;
+
 	ALTER TABLE Provincia	AUTO_INCREMENT = 10;
 	INSERT INTO Provincia( nombre )	VALUES( 'A Coruña' );
+SAVEPOINT punto_de_guardado;
 	INSERT INTO Provincia( nombre )	VALUES( 'Lugo' );
 	INSERT INTO Provincia( nombre )	VALUES( 'Ourense' );
+ROLLBACK TO SAVEPOINT punto_de_guardado; # CON ESTO NO SE CREARIA NI OURENSE NI LUGO
+RELEASE SAVEPOINT punto_de_guardado;
 	INSERT INTO Provincia( nombre )	VALUES( 'Pontevedra' );    
 
+COMMIT;
+SET AUTOCOMMIT = 1;
 #*******************************************************************************************
 #		TABLA Comarca
 #*******************************************************************************************
