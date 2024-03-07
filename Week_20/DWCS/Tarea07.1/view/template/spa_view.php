@@ -57,7 +57,7 @@
                             </select>
                         </div>
 
-                        <div class="form-group mb-4 alert alert-danger d-none" id="errorLogin" role="alert">
+                        <div class="form-group mb-4 alert alert-danger d-none" id="errorBox" role="alert">
                         </div>
                         <!-- Submit button -->
                         <input type="submit" class="btn btn-primary btn-block mb-4" value="Iniciar sesión">
@@ -88,8 +88,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
-                            id='opt_cancel'>Cancelar</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id='opt_cancel'>Cancelar</button>
                         <button type="button" class="btn btn-primary" id='opt_ok'>Aceptar</button>
                     </div>
                 </div>

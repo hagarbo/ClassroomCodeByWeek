@@ -67,7 +67,8 @@ class UsuarioController
         }
     }
 
-    public function logout(){
+    public function logout()
+    {
         $data = json_decode(file_get_contents("php://input"), true);
         if (isset($data["userId"])) {
             $userId = $data["userId"];
@@ -110,6 +111,4 @@ class UsuarioController
         $app_roles = $this->usuarioServicio->getRoles();
         return json_encode($app_roles);
     }
-
 }
-

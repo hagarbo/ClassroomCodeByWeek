@@ -44,7 +44,7 @@ function login(event) {
                
                 } else {
                     console.error('La autenticación ha fallado');
-                    showErrorLogin('La autenticación ha fallado', true, "errorLogin");
+                    showErrorLogin('La autenticación ha fallado', true, "errorBox");
                 }
             }
             )
@@ -137,7 +137,7 @@ function logoutCliente() {
                 userId = null;
                 toggleLoginMain('');
                 if (response.error != false) {
-                    showErrorLogin('Something went wrong! Logging out anyway...', true, "errorLogin");
+                    showErrorLogin('Something went wrong! Logging out anyway...', true, "errorBox");
                 }
             }
             )
