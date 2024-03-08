@@ -3,7 +3,10 @@ package edu.hagarbo.Clients;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 import edu.hagarbo.Entities.Alumno;
 import edu.hagarbo.Entities.Profesor;
@@ -64,9 +67,15 @@ public class Client {
         this.miembros.add(new Profesor("77661199C", "Sancho Panza", 42, "Calle Aragon", LocalDate.of(1990, 3, 1),
                 TipoJornada.PARCIAL, 20000, "Informatica"));
         this.miembros.add(new Profesor("12345678C", "Andres del Amo", 55, "Calle Aragon", LocalDate.of(1981, 3, 1),
-                TipoJornada.PARCIAL, 20000, "Informatica"));
+                TipoJornada.PARCIAL, 20000, "Fol"));
         this.miembros.add(new Profesor("87654321F", "Isabel Arosa", 30, "Calle Aragon", LocalDate.of(2022, 3, 1),
                 TipoJornada.PARCIAL, 20000, "Informatica"));
+
+        // Map<String, Integer> o = this.miembros.stream().filter(e -> e instanceof
+        // Profesor).map(Profesor.class::cast)
+        // .collect(Collectors.groupingBy(Profesor::getEspecialidad,
+        // Collectors.summingInt(Profesor::getEdad)));
+        // System.out.println(Collections.max(o));
 
     }
 
