@@ -2,6 +2,7 @@ package edu.hagarbo.Model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Map;
 
 import edu.hagarbo.Entities.AreaSanitaria;
 import edu.hagarbo.Entities.Paciente;
@@ -65,6 +66,30 @@ public class HospitalServicio implements IHospitalServicio {
         this.personasHospital.add(trabajador3);
         this.personasHospital.add(trabajador2);
         this.personasHospital.add(trabajador1);
+    }
+
+    @Override
+    public double getAvgSalaryByPosition(String position) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getAvgSalaryByPosition'");
+    }
+
+    @Override
+    public double getAvgSalaryByAreaPosition(String position, String area) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getAvgSalaryByAreaPosition'");
+    }
+
+    @Override
+    public Map<String, Double> mediaDiasPorPaciente() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'mediaDiasPorPaciente'");
+    }
+
+    @Override
+    public Map<String, Double> areaConMasCoste() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'areaConMasCoste'");
     }
 
 }

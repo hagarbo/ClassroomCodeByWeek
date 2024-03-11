@@ -45,21 +45,23 @@ public class Cliente {
     public void run() {
         this.hospitalServicio.cargarDatos();
 
-        boolean exit = false;
-        int opcion;
-        do {
-            mostrarMenu(MENU_PRINCIPAL);
-            opcion = leerOpcion(MENU_PRINCIPAL.length);
-            switch (opcion) {
-                case 1:
-
-                    break;
-
-                default:
-                    exit = true;
-                    break;
-            }
-
-        } while (!exit);
+        /*
+         * boolean exit = false;
+         * int opcion;
+         * do {
+         * mostrarMenu(MENU_PRINCIPAL);
+         * opcion = leerOpcion(MENU_PRINCIPAL.length);
+         * switch (opcion) {
+         * case 1:
+         * 
+         * break;
+         * 
+         * default:
+         * exit = true;
+         * break;
+         * }
+         * 
+         * } while (!exit);
+         */
     }
 }
