@@ -84,5 +84,14 @@ window.onload = () => {
         }
     });
 
+table = document.createElement("table");
+for (let i = 0; i < 5; i++) {
+    let row = table.insertRow(i);
+    for (let j = 0; j < 5; j++) {
+        let cell = row.insertCell(j);
+        cell.appendChild(document.createTextNode(i+j));
+    }  
+}
 
+divMensaje.appendChild(table);
 }
