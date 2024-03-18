@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import edu.hagarbo.Entities.AreaSanitaria;
+import edu.hagarbo.Entities.Ingreso;
 import edu.hagarbo.Entities.Paciente;
 import edu.hagarbo.Entities.Persona;
-import edu.hagarbo.Entities.Registro;
 import edu.hagarbo.Entities.Trabajador;
 
 public class HospitalServicio implements IHospitalServicio {
@@ -35,13 +35,13 @@ public class HospitalServicio implements IHospitalServicio {
     }
 
     private void crearPacientes() {
-        Registro ingreso1 = new Registro(LocalDate.of(2023, 6, 12), LocalDate.of(2023, 6, 27),
+        Ingreso ingreso1 = new Ingreso(LocalDate.of(2023, 6, 12), LocalDate.of(2023, 6, 27),
                 this.areaSanitarias.get(1));
-        Registro ingreso2 = new Registro(LocalDate.of(2023, 6, 12), LocalDate.of(2023, 6, 18),
+        Ingreso ingreso2 = new Ingreso(LocalDate.of(2023, 6, 12), LocalDate.of(2023, 6, 18),
                 this.areaSanitarias.get(2));
-        Registro ingreso3 = new Registro(LocalDate.of(2023, 6, 12), LocalDate.of(2023, 6, 15),
+        Ingreso ingreso3 = new Ingreso(LocalDate.of(2023, 6, 12), LocalDate.of(2023, 6, 15),
                 this.areaSanitarias.get(3));
-        Registro ingreso4 = new Registro(LocalDate.of(2023, 6, 12), LocalDate.of(2023, 6, 22),
+        Ingreso ingreso4 = new Ingreso(LocalDate.of(2023, 6, 12), LocalDate.of(2023, 6, 22),
                 this.areaSanitarias.get(4));
 
         Paciente paciente1 = new Paciente("77665544G", "Rosalia Vazquez", 47, "Castellana s/n");

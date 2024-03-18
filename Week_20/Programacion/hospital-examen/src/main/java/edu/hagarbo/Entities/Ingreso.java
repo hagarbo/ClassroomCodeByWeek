@@ -2,19 +2,19 @@ package edu.hagarbo.Entities;
 
 import java.time.LocalDate;
 
-public class Registro {
+public class Ingreso {
 
     private LocalDate fechaIngreso;
     private LocalDate fechaAlta;
     private AreaSanitaria area;
 
-    public Registro() {
+    public Ingreso() {
         this.fechaIngreso = LocalDate.now();
         this.fechaAlta = null;
         this.area = null;
     }
 
-    public Registro(LocalDate fechaIngreso, LocalDate fechaAlta, AreaSanitaria area) {
+    public Ingreso(LocalDate fechaIngreso, LocalDate fechaAlta, AreaSanitaria area) {
         this.fechaIngreso = fechaIngreso;
         this.fechaAlta = fechaAlta;
         this.area = area;

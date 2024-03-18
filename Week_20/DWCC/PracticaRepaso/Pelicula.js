@@ -4,4 +4,8 @@ export class Pelicula{
         this.director = director;
         this.duracion = duracion;
     }
+
+    getInfo() {
+        return "Titulo: "+ this.titulo+" // Director: "+this.director+ " // Duracion: "+this.duracion; 
+    }
 }

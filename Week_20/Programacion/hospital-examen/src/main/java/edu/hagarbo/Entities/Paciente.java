@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class Paciente extends Persona {
     private int nextId = 1;
-    private HashMap<Integer, Registro> historialIngresos;
+    private HashMap<Integer, Ingreso> historialIngresos;
 
     public Paciente() {
         super();
@@ -32,15 +32,15 @@ public class Paciente extends Persona {
         return coste;
     }
 
-    public HashMap<Integer, Registro> getHistorialIngresos() {
+    public HashMap<Integer, Ingreso> getHistorialIngresos() {
         return historialIngresos;
     }
 
-    public void setHistorialIngresos(HashMap<Integer, Registro> historialIngresos) {
+    public void setHistorialIngresos(HashMap<Integer, Ingreso> historialIngresos) {
         this.historialIngresos = historialIngresos;
     }
 
-    public void addToHistory(Registro ingreso) {
+    public void addToHistory(Ingreso ingreso) {
         this.historialIngresos.put(this.nextId, ingreso);
         this.nextId++;
     }
