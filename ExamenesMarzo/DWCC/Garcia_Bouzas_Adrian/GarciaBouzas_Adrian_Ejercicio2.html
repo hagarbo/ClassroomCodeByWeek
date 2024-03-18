@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Carrito de la compra</title>
+    <style type="text/css">
+      .frutas {
+        width: 50px;
+        height: 50px;
+      }
+      .precio {
+        font-size: large;
+        font-weight: 100px !important;
+        color: darkgreen;
+      }
+      #carrito {
+        margin: 20px;
+        float: right;
+      }
+      #productos {
+        float: left;
+      }
+    </style>
+    <script></script>
+  </head>
+  <body>
+    <div id="productos">
+      <br />
+      <div id="uvas">
+        <img src="imagenes/uvas.jpg" class="frutas" />
+        <h1 class="artH1"></h1>
+        <div class="precio"></div>
+        <fieldset>
+          <label for="precio">Cantidad </label>
+          <input type="number" class="cantidad" />
+          <input type="button" class="botonComprar" value="Comprar" />
+        </fieldset>
+      </div>
+      <br />
+      <div id="naranjas">
+        <img src="imagenes/naranjas.jpg" class="frutas" />
+        <h1 class="artH1"></h1>
+        <div class="precio"></div>
+        <fieldset>
+          <label for="precio">Cantidad </label>
+          <input type="number" class="cantidad" />
+          <input type="button" class="botonComprar" value="Comprar" />
+        </fieldset>
+      </div>
+      <br />
+      <div id="fresa">
+        <img src="imagenes/fresa.jpg" class="frutas" />
+        <h1 class="artH1"></h1>
+        <div class="precio"></div>
+        <fieldset>
+          <label for="precio">Cantidad </label>
+          <input type="number" class="cantidad" />
+          <input type="button" class="botonComprar" value="Comprar" />
+        </fieldset>
+      </div>
+      <br />
+      <div id="sandia">
+        <img src="imagenes/sandia.jpg" class="frutas" />
+        <h1 class="artH1"></h1>
+        <div class="precio"></div>
+        <fieldset>
+          <label for="precio">Cantidad </label>
+          <input type="number" class="cantidad" />
+          <input type="button" class="botonComprar" value="Comprar" />
+        </fieldset>
+      </div>
+    </div>
+    <div id="#carrito">
+      <table id="tablaCarrito">
+        <tr>
+          <th>Producto</th>
+          <th>Precio kilo</th>
+          <th>Cantidad</th>
+          <th>Precio</th>
+          <th></th>
+        </tr>
+      </table>
+      <div id="total">€</div>
+      <input type="button" id="vaciar" value="Vaciar" />
+    </div>
+  </body>
+  <script>
+    class Articulo {
+      constructor(nombre, precio) {
+        this.nombre = nombre;
+        this.precio = precio;
+      }
+    }
+
+    class lineaTicket {
+      constructor(articulo, cantidad, precio, total) {
+        this.articulo = articulo;
+        this.precio = precio;
+        this.cantidad = cantidad;
+        this.total = total;
+      }
+      mostrarDatos() {
+        return `<tr class='comprados'><td>${this.articulo}</td><td> ${this.precio} €/Kg</td><td>${this.cantidad} kg</td><td class='precioTabla'> ${this.total}</tr> `;
+      }
+    }
+
+    const listaArticulos = [
+      new Articulo("uvas", 1.15),
+      new Articulo("naranja", 2.4),
+      new Articulo("fresa", 3.1),
+      new Articulo("sandia", 2.5),
+    ];
+
+    window.onload = () => {
+      // ELEMENTOS DEL HTML QUE NECESITAREMOS
+      const divProductos = document.getElementById("productos");
+      const nombresArray = document.getElementsByClassName("artH1");
+      const preciosArray = document.getElementsByClassName("precio");
+      const precioTotal = document.getElementById("total");
+      const botonVaciar = document.getElementById("vaciar");
+      const tablaCarrito = document.getElementById("tablaCarrito");
+
+      // SETEAMOS LOS PRECIOS DE LOS PRODUCTOS
+      for (let i = 0; i < preciosArray.length; i++) {
+        nombresArray[i].innerHTML = listaArticulos[i].nombre;
+        preciosArray[i].innerHTML = listaArticulos[i].precio;
+      }
+
+      tablaCarrito.addEventListener("click", (e) => {
+        let clave = e.target.parentNode.children[0].innerHTML;
+        // HAY QUE HACER EL TRIM PORQUE POR ALGUN MOTIVO LE METE UN ESPACIO EN ALGUN SITIO
+        localStorage.removeItem(clave.trim());
+        // VOLVEMOS A IMPRIMIR LA TABLA
+        imprimeTabla(tablaCarrito);
+      });
+
+      // VACIAR EL CARRITO
+      botonVaciar.addEventListener("click", (e) => {
+        const tbody = tablaCarrito.children[0];
+        //PONEMOS LA TABLA COMO ESTABA AL PRINCIPIO Y ELIMINAMOS EL TOTAL
+        tbody.innerHTML =
+          "<tr><th>Producto</th><th>Precio kilo</th><th>Cantidad</th><th>Precio</th><th></th></tr>";
+        precioTotal.innerHTML = "€";
+        eliminarStorage();
+      });
+
+      divProductos.addEventListener("click", (e) => {
+        if (e.target.type == "button") {
+          // Miramos si ha puesto una cantidad y la recogemos
+          if (e.target.parentNode.children[1].value != "") {
+            // Valores necesarios para crear el objeto
+            let cantidad = e.target.parentNode.children[1].value;
+            let nombre = e.target.parentNode.parentNode.children[1].innerHTML;
+            let precio = e.target.parentNode.parentNode.children[2].innerHTML;
+
+            //Obtenemos la linea creada y la mostramos en la tabla
+            let linea = comprarProducto(nombre, precio, cantidad);
+            //Decidi volver a imprimir la tabla entera con los datos del storage por si se mete 2 veces el mismo articulo
+            imprimeTabla(tablaCarrito);
+            //tablaCarrito.children[0].innerHTML += linea.mostrarDatos();
+
+            //calculamos el total de la cesta
+            precioTotal.innerHTML = calcularTotal() + "€";
+
+            //reseteamos el campo cantidad
+            e.target.parentNode.children[1].value = "";
+          } else e.target.parentNode.children[1].focus();
+        }
+      });
+    };
+
+    function comprarProducto(nombre, precio, cantidad) {
+      let total = precio * cantidad;
+      let linea = new lineaTicket(nombre, cantidad, precio, total.toFixed(2));
+      let lineaJSON = JSON.stringify(linea);
+      localStorage.setItem(nombre, lineaJSON);
+      return linea;
+    }
+
+    function calcularTotal() {
+      let total = 0;
+      // Recorremos el local storage y calculamos el total
+      Object.keys(localStorage).forEach((key) => {
+        let articulo = JSON.parse(localStorage.getItem(key));
+        total += parseFloat(articulo.total);
+      });
+      return total.toFixed(2);
+    }
+
+    function eliminarStorage() {
+      Object.keys(localStorage).forEach((key) => {
+        localStorage.removeItem(key);
+      });
+    }
+
+    function imprimeTabla(tabla) {
+      tabla.children[0].innerHTML =
+        "<tr><th>Producto</th><th>Precio kilo</th><th>Cantidad</th><th>Precio</th><th></th></tr>";
+      Object.keys(localStorage).forEach((key) => {
+        let entry = JSON.parse(localStorage.getItem(key));
+        tabla.children[0].innerHTML += `<tr class='comprados'><td> ${entry.articulo} </td><td> ${entry.precio} €/Kg</td><td>${entry.cantidad} kg</td><td class='precioTabla'> ${entry.total}</tr>`;
+      });
+    }
+  </script>
+</html>
