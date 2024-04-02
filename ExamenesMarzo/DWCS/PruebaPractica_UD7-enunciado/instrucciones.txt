@@ -1,0 +1,7 @@
+1- copiar la carpeta css en la raíz del proyecto
+2- añadir el fichero bootstrap.min.js a la carpeta js
+3- comentar la etiqueta <link> y <script> del head de index.php
+4- añadir al head de index.php:
+
+   <link rel="stylesheet" href="css/bootstrap.min.css">        
+  <script src="js/bootstrap.min.js"></script>
