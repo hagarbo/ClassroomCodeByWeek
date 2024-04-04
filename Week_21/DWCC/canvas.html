@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div>
+      <button id="linea" type="button">Linea</button>
+      <button id="circulo" type="button">Circulo</button>
+      <button id="imagen" type="button">Imagen</button>
+    </div>
+    <canvas id="myCanvas" width="800" height="800"></canvas>
+  </body>
+</html>
+<script>
+  window.onload = () => {
+    const canvas = document.getElementById("myCanvas");
+    const context = canvas.getContext("2d");
+    const botonLinea = document.getElementById("linea");
+    const botonCirculo = document.getElementById("circulo");
+    const botonImagen = document.getElementById("imagen");
+
+    botonLinea.addEventListener("click", () => {
+      linea(context);
+    });
+
+    botonCirculo.addEventListener("click", () => {
+      circulo(context);
+    });
+
+    botonImagen.addEventListener("click", () => {
+      //context.rotate(Math.PI / 4);
+      addImage(context);
+    });
+  };
+
+  function linea(ctx) {
+    ctx.beginPath();
+    ctx.moveTo(50, 60);
+    ctx.lineTo(500, 50);
+    ctx.closePath();
+    ctx.strokeStyle = "white";
+    ctx.stroke();
+  }
+
+  function circulo(ctx) {
+    ctx.beginPath();
+    ctx.globalCompositeOperation = "source-over";
+    ctx.fillStyle = "red";
+    ctx.arc(355, 85, 40, 0, Math.PI * 2, false);
+    ctx.closePath();
+    ctx.fill();
+  }
+
+  function addImage(ctx) {
+    let image = new Image();
+    image.src = "CiudadFuturista.jpg";
+    ctx.globalCompositeOperation = "destination-over";
+    /*     $(image).load(function () {
+      //Código jQuery
+      ctx.drawImage(image, 0, 0);
+    }); */
+    ctx.drawImage(image, 0, 0);
+  }
+</script>
