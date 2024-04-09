@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.RandomAccessFile;
 import java.util.ArrayList;
 
 public class Escribir {
@@ -50,6 +51,35 @@ public class Escribir {
             objeto.close();
         } catch (Exception e) {
             System.out.println("ERROR");
+        }
+    }
+
+    public static void randomAccess() {
+        try (RandomAccessFile randomAccessFile = new RandomAccessFile("Enunciados.txt", "rw")) {
+            System.out.println("Longitud del fichero(Bytes): " + randomAccessFile.length());
+            while (randomAccessFile.getFilePointer() < randomAccessFile.length()) {
+                long posInicial = randomAccessFile.getFilePointer();
+                System.out.println("Posicion antes de la linea:" + posInicial);
+                String linea = randomAccessFile.readLine();
+                long posFinal = randomAccessFile.getFilePointer();
+                System.out.println("Posicion despues de la linea:" + randomAccessFile.getFilePointer());
+
+                if (linea.contains("4)")) {
+                    long length = posFinal - posInicial;
+                    byte[] buffer = new byte[4096];
+                    int read = -1; // will store byte reads from file.read()
+                    while ((read = randomAccessFile.read(buffer)) > -1) {
+                        randomAccessFile.seek(randomAccessFile.getFilePointer() - read - length);
+                        randomAccessFile.write(buffer, 0, read);
+                        randomAccessFile.seek(randomAccessFile.getFilePointer() + length);
+                    }
+                    randomAccessFile.setLength(randomAccessFile.length() - length); // truncate by length
+                }
+            }
+            randomAccessFile.seek(randomAccessFile.length());
+            randomAccessFile.writeBytes("\nUn string al final del fichero");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

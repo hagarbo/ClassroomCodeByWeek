@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<empresa>
+    <razon_social>IES DE TEIS</razon_social>
+    <cif>A11122233</cif>
+    <empleados>
+        <empleado>
+            <dni>12345678A</dni>
+            <nombre>Alba Perez Pereira</nombre>
+            <edad>29</edad>
+        </empleado>
+        <empleado>
+            <dni>22222222B</dni>
+            <nombre>Mario Gomez Ruiz</nombre>
+            <edad>31</edad>
+        </empleado>
+    </empleados>
+</empresa>
