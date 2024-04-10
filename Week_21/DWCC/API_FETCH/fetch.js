@@ -44,6 +44,7 @@ function create_card(user) {
     ciclo.classList.add("card-text");
     cardBody.appendChild(nombre);
     cardBody.appendChild(email);
+    cardBody.appendChild(ciclo);
 
     card.appendChild(cardBody);
     return card;
