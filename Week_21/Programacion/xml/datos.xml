@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Almacen>
+    <CIF>R3778112G</CIF>
+    <Nombre>Logistica Cortegoso S.A.</Nombre>
+    <Direccion>Poligono Campiño, Pontevedra</Direccion>
+    <Productos>
+        <Producto>
+            <ID>P0001</ID>
+            <Nombre>Coca-Cola 2l.</Nombre>
+            <Marca>Coca Cola Co.</Marca>
+            <Precio>2.99</Precio>
+        </Producto>
+        <Producto>
+            <ID>P0002</ID>
+            <Nombre>Yogurt Bio Danone</Nombre>
+            <Marca>Danone</Marca>
+            <Precio>1.95</Precio>
+            <Caducidad>2024-05-20</Caducidad>
+        </Producto>
+        <Producto>
+            <ID>P0003</ID>
+            <Nombre>Yogurt Bio Danone</Nombre>
+            <Marca>Danone</Marca>
+            <Precio>1.95</Precio>
+            <Caducidad>2024-05-20</Caducidad>
+        </Producto>
+        <Producto>
+            <ID>P0004</ID>
+            <Nombre>Yogurt Bio Danone</Nombre>
+            <Marca>Danone</Marca>
+            <Precio>1.95</Precio>
+            <Caducidad>2024-05-20</Caducidad>
+        </Producto>
+        <Producto>
+            <ID>P0005</ID>
+            <Nombre>Yogurt Bio Danone</Nombre>
+            <Marca>Danone</Marca>
+            <Precio>1.95</Precio>
+            <Caducidad>2024-05-20</Caducidad>
+        </Producto>
+    </Productos>
+</Almacen>

@@ -1,0 +1,7 @@
+Logistica Cortegoso S.A. /  R3778112G  /  Poligono Campiño, Pontevedra
+
+P0001 / Coca-Cola 2l. / Coca Cola Co. / 2.99
+P0002 / Yogurt Bio Danone / Danone / 1.95 / 2024-05-20
+P0003 / Yogurt Bio Danone / Danone / 1.95 / 2024-05-20
+P0004 / Yogurt Bio Danone / Danone / 1.95 / 2024-05-20
+P0005 / Yogurt Bio Danone / Danone / 1.95 / 2024-05-20
