@@ -4,7 +4,6 @@
 
 3) Escribir un programa Java para comprobar si existe o no un archivo o directorio especificado por ruta.
 
-
 5) Escribir un programa Java para comprobar si el nombre de una ruta dada es un directorio o un archivo.
 
 6) Escribir un  programa Java para obtener la última hora de modificación de un archivo.

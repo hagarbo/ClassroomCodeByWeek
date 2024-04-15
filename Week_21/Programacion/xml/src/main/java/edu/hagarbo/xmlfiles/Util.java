@@ -15,7 +15,8 @@ public class Util {
         try {
             JAXBContext context = JAXBContext.newInstance(Almacen.class);
             Unmarshaller unmarshaller = context.createUnmarshaller();
-            Almacen almacen = (Almacen) unmarshaller.unmarshal(new File(xmlFile));
+            File file = new File(xmlFile);
+            Almacen almacen = (Almacen) unmarshaller.unmarshal(file);
             Double media = almacen.getProductos().stream().map(Producto::getPrecioSalida)
                     .mapToDouble(Double::parseDouble).average().orElse(0);
             return media;
