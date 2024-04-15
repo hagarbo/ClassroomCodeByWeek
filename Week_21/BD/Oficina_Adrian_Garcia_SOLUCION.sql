@@ -131,14 +131,15 @@ CALL agregarOficina ("Desarrollo Producto", 3505, 50, "Planta 1", 7);
 
 CALL agregarOficina ("Reuniones", 4040, 50, "Planta 1", 6);
 
-END // DELIMITER ;
+END // 
+DELIMITER ;
 
 #---------------------------------------------------------------------------------------
 #	3. Procedimiento agregarEmpleados - AGREGAMOS LOS 48 EMPLEADOS
 #---------------------------------------------------------------------------------------
 DELIMITER //
-DROP PROCEDURE IF EXISTS agregarOficinas //
-CREATE PROCEDURE agregarOficinas ()
+DROP PROCEDURE IF EXISTS agregarEmpleados //
+CREATE PROCEDURE agregarEmpleados ()
 BEGIN
 CALL agregarEmpleado ("42345678A", "Fulgencio", "Malatraba Uñíquez", "2024-02-01");
 
@@ -224,7 +225,8 @@ CALL agregarEmpleado ("41212121M", "Eva María", "Martínez López", "2024-03-05
 
 CALL agregarEmpleado ("31313131N", "Marcos Antonio", "González Pérez", "2024-03-05");
 
-END // DELIMITER ;
+END // 
+DELIMITER ;
 
 #---------------------------------------------------------------------------------------
 #	3. Procedimiento agregarContratos - AGREGAMOS LOS 48 EMPLEADOS
@@ -233,91 +235,92 @@ DELIMITER //
 DROP PROCEDURE IF EXISTS agregarContratos //
 CREATE PROCEDURE agregarContratos ()
 BEGIN
-CALL agregarContratos ('Indefinido', "2024-02-01", NULL, 1, 1, 'Director', NULL);
+CALL agregarContratacion ('Indefinido', "2024-02-01", NULL, 1, 1, 'Director', NULL);
 
-CALL agregarContratos ('Indefinido', "2024-02-01", NULL, 2, 2, 'Jefe de Recursos Humanos', 1);
+CALL agregarContratacion ('Indefinido', "2024-02-01", NULL, 2, 2, 'Jefe de Recursos Humanos', 1);
 
-CALL agregarContratos ('Indefinido', "2024-02-01", NULL, 3, 3, 'Jefe de Nóminas', 1);
+CALL agregarContratacion ('Indefinido', "2024-02-01", NULL, 3, 3, 'Jefe de Nóminas', 1);
 
-CALL agregarContratos ('Indefinido', "2024-02-02", NULL, 4, 4, 'Jefe de Atención al Cliente', 1);
+CALL agregarContratacion ('Indefinido', "2024-02-02", NULL, 4, 4, 'Jefe de Atención al Cliente', 1);
 
-CALL agregarContratos ('Indefinido', "2024-02-02", NULL, 5, 5, 'Jefe de Ventas', 1);
+CALL agregarContratacion ('Indefinido', "2024-02-02", NULL, 5, 5, 'Jefe de Ventas', 1);
 
-CALL agregarContratos ('Indefinido', "2024-02-02", NULL, 6, 6, 'Jefe de Compras', 1);
+CALL agregarContratacion ('Indefinido', "2024-02-02", NULL, 6, 6, 'Jefe de Compras', 1);
 
-CALL agregarContratos ('Indefinido', "2024-02-02", NULL, 7, 7, 'Jefe de Desarrollo de Productos', 1);
+CALL agregarContratacion ('Indefinido', "2024-02-02", NULL, 7, 7, 'Jefe de Desarrollo de Productos', 1);
 
-CALL agregarContratos ('Indefinido', "2024-02-05", NULL, 8, 8, 'Jefe de Reuniones', 1);
+CALL agregarContratacion ('Indefinido', "2024-02-05", NULL, 8, 8, 'Jefe de Reuniones', 1);
 
-CALL agregarContratos ('Indefinido', "2024-02-06", NULL, 9, 1, 'Secretario del Director', 1);
+CALL agregarContratacion ('Indefinido', "2024-02-06", NULL, 9, 1, 'Secretario del Director', 1);
 
-CALL agregarContratos ('Indefinido', "2024-02-04", NULL, 10, 2, 'Trabajador de Recursos Humanos', 2);
+CALL agregarContratacion ('Indefinido', "2024-02-04", NULL, 10, 2, 'Trabajador de Recursos Humanos', 2);
 
-CALL agregarContratos ('Indefinido', "2024-02-05", NULL, 11, 2, 'Trabajador de Recursos Humanos', 2);
+CALL agregarContratacion ('Indefinido', "2024-02-05", NULL, 11, 2, 'Trabajador de Recursos Humanos', 2);
 
-CALL agregarContratos ('Indefinido', "2024-02-05", NULL, 12, 2, 'Trabajador de Recursos Humanos', 2);
+CALL agregarContratacion ('Indefinido', "2024-02-05", NULL, 12, 2, 'Trabajador de Recursos Humanos', 2);
 
-CALL agregarContratos ('Indefinido', "2024-02-12", NULL, 13, 2, 'Trabajador de Recursos Humanos', 2);
+CALL agregarContratacion ('Indefinido', "2024-02-12", NULL, 13, 2, 'Trabajador de Recursos Humanos', 2);
 
-CALL agregarContratos ('Indefinido', "2024-02-12", NULL, 14, 2, 'Trabajador de Recursos Humanos', 2);
+CALL agregarContratacion ('Indefinido', "2024-02-12", NULL, 14, 2, 'Trabajador de Recursos Humanos', 2);
 
-CALL agregarContratos ('Indefinido', "2024-02-08", NULL, 15, 3, 'Trabajador de Nóminas', 3);
+CALL agregarContratacion ('Indefinido', "2024-02-08", NULL, 15, 3, 'Trabajador de Nóminas', 3);
 
-CALL agregarContratos ('Indefinido', "2024-02-08", NULL, 16, 3, 'Trabajador de Nóminas', 3);
+CALL agregarContratacion ('Indefinido', "2024-02-08", NULL, 16, 3, 'Trabajador de Nóminas', 3);
 
-CALL agregarContratos ('Indefinido', "2024-02-09", NULL, 17, 3, 'Trabajador de Nóminas', 3);
+CALL agregarContratacion ('Indefinido', "2024-02-09", NULL, 17, 3, 'Trabajador de Nóminas', 3);
 
-CALL agregarContratos ('Indefinido', "2024-02-10", NULL, 18, 4, 'Trabajador de Atención al Cliente', 4);
+CALL agregarContratacion ('Indefinido', "2024-02-10", NULL, 18, 4, 'Trabajador de Atención al Cliente', 4);
 
-CALL agregarContratos ('Indefinido', "2024-02-14", NULL, 19, 4, 'Trabajador de Atención al Cliente', 4);
+CALL agregarContratacion ('Indefinido', "2024-02-14", NULL, 19, 4, 'Trabajador de Atención al Cliente', 4);
 
-CALL agregarContratos ('Indefinido', "2024-02-15", NULL, 20, 4, 'Trabajador de Atención al Cliente', 4);
+CALL agregarContratacion ('Indefinido', "2024-02-15", NULL, 20, 4, 'Trabajador de Atención al Cliente', 4);
 
-CALL agregarContratos ('Indefinido', "2024-02-07", NULL, 21, 5, 'Trabajador de Ventas', 5);
+CALL agregarContratacion ('Indefinido', "2024-02-07", NULL, 21, 5, 'Trabajador de Ventas', 5);
 
-CALL agregarContratos ('Indefinido', "2024-02-12", NULL, 22, 5, 'Trabajador de Ventas', 5);
+CALL agregarContratacion ('Indefinido', "2024-02-12", NULL, 22, 5, 'Trabajador de Ventas', 5);
 
-CALL agregarContratos ('Indefinido', "2024-02-13", NULL, 23, 5, 'Trabajador de Ventas', 5);
+CALL agregarContratacion ('Indefinido', "2024-02-13", NULL, 23, 5, 'Trabajador de Ventas', 5);
 
-CALL agregarContratos ('Indefinido', "2024-02-10", NULL, 24, 5, 'Trabajador de Ventas', 5);
+CALL agregarContratacion ('Indefinido', "2024-02-10", NULL, 24, 5, 'Trabajador de Ventas', 5);
 
-CALL agregarContratos ('Indefinido', "2024-02-15", NULL, 25, 5, 'Trabajador de Ventas', 5);
+CALL agregarContratacion ('Indefinido', "2024-02-15", NULL, 25, 5, 'Trabajador de Ventas', 5);
 
-CALL agregarContratos ('Indefinido', "2024-02-17", NULL, 26, 5, 'Trabajador de Ventas', 5);
+CALL agregarContratacion ('Indefinido', "2024-02-17", NULL, 26, 5, 'Trabajador de Ventas', 5);
 
-CALL agregarContratos ('Indefinido', "2024-02-26", NULL, 27, 5, 'Trabajador de Ventas', 5);
+CALL agregarContratacion ('Indefinido', "2024-02-26", NULL, 27, 5, 'Trabajador de Ventas', 5);
 
-CALL agregarContratos ('Indefinido', "2024-02-12", NULL, 28, 6, 'Trabajador de Compras', 6);
+CALL agregarContratacion ('Indefinido', "2024-02-12", NULL, 28, 6, 'Trabajador de Compras', 6);
 
-CALL agregarContratos ('Indefinido', "2024-02-12", NULL, 29, 6, 'Trabajador de Compras', 6);
+CALL agregarContratacion ('Indefinido', "2024-02-12", NULL, 29, 6, 'Trabajador de Compras', 6);
 
-CALL agregarContratos ('Indefinido', "2024-02-07", NULL, 30, 6, 'Trabajador de Compras', 6);
+CALL agregarContratacion ('Indefinido', "2024-02-07", NULL, 30, 6, 'Trabajador de Compras', 6);
 
-CALL agregarContratos ('Indefinido', "2024-02-18", NULL, 31, 6, 'Trabajador de Compras', 6);
+CALL agregarContratacion ('Indefinido', "2024-02-18", NULL, 31, 6, 'Trabajador de Compras', 6);
 
-CALL agregarContratos ('Indefinido', "2024-02-05", NULL, 32, 7, 'Trabajador de Desarrollo de Productos', 7);
+CALL agregarContratacion ('Indefinido', "2024-02-05", NULL, 32, 7, 'Trabajador de Desarrollo de Productos', 7);
 
-CALL agregarContratos ('Indefinido', "2024-02-09", NULL, 33, 7, 'Trabajador de Desarrollo de Productos', 7);
+CALL agregarContratacion ('Indefinido', "2024-02-09", NULL, 33, 7, 'Trabajador de Desarrollo de Productos', 7);
 
-CALL agregarContratos ('Indefinido', "2024-02-08", NULL, 34, 7, 'Trabajador de Desarrollo de Productos', 7);
+CALL agregarContratacion ('Indefinido', "2024-02-08", NULL, 34, 7, 'Trabajador de Desarrollo de Productos', 7);
 
-CALL agregarContratos ('Indefinido', "2024-02-07", NULL, 35, 7, 'Trabajador de Desarrollo de Productos', 7);
+CALL agregarContratacion ('Indefinido', "2024-02-07", NULL, 35, 7, 'Trabajador de Desarrollo de Productos', 7);
 
-CALL agregarContratos ('Indefinido', "2024-02-11", NULL, 36, 7, 'Trabajador de Desarrollo de Productos', 7);
+CALL agregarContratacion ('Indefinido', "2024-02-11", NULL, 36, 7, 'Trabajador de Desarrollo de Productos', 7);
 
-CALL agregarContratos ('Indefinido', "2024-02-13", NULL, 37, 7, 'Trabajador de Desarrollo de Productos', 7);
+CALL agregarContratacion ('Indefinido', "2024-02-13", NULL, 37, 7, 'Trabajador de Desarrollo de Productos', 7);
 
-CALL agregarContratos ('Indefinido', "2024-02-25", NULL, 38, 4, 'Trabajador de Atención al Cliente', 4);
+CALL agregarContratacion ('Indefinido', "2024-02-25", NULL, 38, 4, 'Trabajador de Atención al Cliente', 4);
 
-CALL agregarContratos ('Indefinido', "2024-03-02", NULL, 39, 4, 'Trabajador de Atención al Cliente', 4);
+CALL agregarContratacion ('Indefinido', "2024-03-02", NULL, 39, 4, 'Trabajador de Atención al Cliente', 4);
 
-CALL agregarContratos ('Indefinido', "2024-03-03", NULL, 40, 4, 'Trabajador de Atención al Cliente', 4);
+CALL agregarContratacion ('Indefinido', "2024-03-03", NULL, 40, 4, 'Trabajador de Atención al Cliente', 4);
 
-CALL agregarContratos ('Indefinido', "2024-03-05", NULL, 41, 4, 'Trabajador de Atención al Cliente', 4);
+CALL agregarContratacion ('Indefinido', "2024-03-05", NULL, 41, 4, 'Trabajador de Atención al Cliente', 4);
 
-CALL agregarContratos ('Indefinido', "2024-03-05", NULL, 42, 4, 'Trabajador de Atención al Cliente', 4);
+CALL agregarContratacion ('Indefinido', "2024-03-05", NULL, 42, 4, 'Trabajador de Atención al Cliente', 4);
 
-END // DELIMITER ;
+END // 
+DELIMITER ;
 
 #---------------------------------------------------------------------------------------
 #	4. Procedimiento agregarSalarios - AGREGAMOS LOS SALARIOS DE LOS DISTINTOS TIPOS DE EMPLEADOS
@@ -326,37 +329,38 @@ DELIMITER //
 DROP PROCEDURE IF EXISTS agregarSalarios //
 CREATE PROCEDURE agregarSalarios ()
 BEGIN
-CALL agregarSalarios ('Director', 10000, 1200, 0);
+CALL agregarSalario ('Director', 10000, 1200, 0);
 
-CALL agregarSalarios ('Jefe de Recursos Humanos', 8200, 800, 4000);
+CALL agregarSalario ('Jefe de Recursos Humanos', 8200, 800, 4000);
 
-CALL agregarSalarios ('Jefe de Nóminas', 7800, 820, 4200);
+CALL agregarSalario ('Jefe de Nóminas', 7800, 820, 4200);
 
-CALL agregarSalarios ('Jefe de Atención al Cliente', 8300, 850, 4300);
+CALL agregarSalario ('Jefe de Atención al Cliente', 8300, 850, 4300);
 
-CALL agregarSalarios ('Jefe de Ventas', 7900, 780, 3900);
+CALL agregarSalario ('Jefe de Ventas', 7900, 780, 3900);
 
-CALL agregarSalarios ('Jefe de Compras', 8100, 800, 4100);
+CALL agregarSalario ('Jefe de Compras', 8100, 800, 4100);
 
-CALL agregarSalarios ('Jefe de Desarrollo de Productos', 8400, 840, 4400);
+CALL agregarSalario ('Jefe de Desarrollo de Productos', 8400, 840, 4400);
 
-CALL agregarSalarios ('Jefe de Reuniones', 7700, 770, 3900);
+CALL agregarSalario ('Jefe de Reuniones', 7700, 770, 3900);
 
-CALL agregarSalarios ('Secretario del Director', 7000, 700, 3500);
+CALL agregarSalario ('Secretario del Director', 7000, 700, 3500);
 
-CALL agregarSalarios ('Trabajador de Recursos Humanos', 4200, 500, 2500);
+CALL agregarSalario ('Trabajador de Recursos Humanos', 4200, 500, 2500);
 
-CALL agregarSalarios ('Trabajador de Nóminas', 3800, 550, 2700);
+CALL agregarSalario ('Trabajador de Nóminas', 3800, 550, 2700);
 
-CALL agregarSalarios ('Trabajador de Atención al Cliente', 4300, 600, 3000);
+CALL agregarSalario ('Trabajador de Atención al Cliente', 4300, 600, 3000);
 
-CALL agregarSalarios ('Trabajador de Ventas', 3900, 530, 2600);
+CALL agregarSalario ('Trabajador de Ventas', 3900, 530, 2600);
 
-CALL agregarSalarios ('Trabajador de Compras', 4100, 580, 2900);
+CALL agregarSalario ('Trabajador de Compras', 4100, 580, 2900);
 
-CALL agregarSalarios ('Trabajador de Desarrollo de Productos', 4400, 620, 3100);
+CALL agregarSalario ('Trabajador de Desarrollo de Productos', 4400, 620, 3100);
 
-END // DELIMITER ;
+END // 
+DELIMITER ;
 
 #---------------------------------------------------------------------------------------
 #	5. Procedimiento agregarOficina( nombre, numero, dimension, ubicacion, Mesas )
@@ -371,7 +375,8 @@ INSERT INTO
 VALUES
   (nombre, numero, dimension, ubicacion, mesas);
 
-END // DELIMITER ;
+END // 
+DELIMITER ;
 
 #---------------------------------------------------------------------------------------
 #	6. Procedimiento agregarEmpleado( NIF, Nombre, apellidos, incorporación )
@@ -386,7 +391,8 @@ INSERT INTO
 VALUES
   (NIF, nombre, apellidos, incorporacion);
 
-END // DELIMITER ;
+END // 
+DELIMITER ;
 
 #---------------------------------------------------------------------------------------
 #	7. Procedimiento agregarContratacion( Contrato, Inicio, Fin, Trabajador, Oficina, Puesto, Jefe )
@@ -409,7 +415,8 @@ INSERT INTO
 VALUES
   (Contrato, Inicio, Fin, Trabajador, Oficina, Puesto, Jefe);
 
-END // DELIMITER ;
+END // 
+DELIMITER ;
 
 #---------------------------------------------------------------------------------------
 #	8. Procedimiento agregarSalario( Puesto, Base, Incremento, Productividad )
@@ -424,38 +431,78 @@ INSERT INTO
 VALUES
   (Puesto, Base, Incremento, Productividad);
 
-END // DELIMITER ;
+END // 
+DELIMITER ;
 
 #---------------------------------------------------------------------------------------
 #	9. Procedimiento despedirTrabajador( Trabajador, Despido )
 #---------------------------------------------------------------------------------------
+DELIMITER //
+DROP PROCEDURE IF EXISTS despedirTrabajador //
+CREATE PROCEDURE despedirTrabajador (IN Trabajador INT, IN Despido DATE)
+BEGIN
+  UPDATE Contratacion SET finContratacion = Despido WHERE Empleado = Trabajador AND finContratacion IS NULL;
+END // 
+DELIMITER ; 
+
 #---------------------------------------------------------------------------------------
 #  10. Procedimiento contratarTrabajador( trabajador, Contrato, Fecha, OficinaTrabajo, Puesto, Jefe )
 #---------------------------------------------------------------------------------------
+DELIMITER //
+DROP PROCEDURE IF EXISTS contratarTrabajador //
+CREATE PROCEDURE contratarTrabajador (IN Trabajador INT, IN Contrato VARCHAR(40), IN Fecha DATE, IN OficinaTrabajo INT, IN Puesto VARCHAR(50), IN Jefe INT)
+BEGIN
+
+  INSERT INTO
+  Contratacion (tipoContrato, inicioContratacion, Empleado, Oficina, puestoTrabajo, Jefe)
+VALUES
+  (Contrato, Fecha, Trabajador, OficinaTrabajo, Puesto, Jefe);
+END // 
+DELIMITER ; 
 #---------------------------------------------------------------------------------------
 #  11. Procedimiento mostrarContratosTrabajador( trabajador )
 #---------------------------------------------------------------------------------------
+DELIMITER //
+DROP PROCEDURE IF EXISTS mostrarContratosTrabajador //
+CREATE PROCEDURE mostrarContratosTrabajador (IN Trabajador INT)
+BEGIN
+  SELECT * FROM Contratacion WHERE Empleado = Trabajador;
+END // 
+DELIMITER ; 
 #---------------------------------------------------------------------------------------
 #---------------------------------------------------------------------------------------
 #---------------------------------------------------------------------------------------
 #	- Agrega todos los datos de la Empresa a la base de datos
+
+CALL agregarOficinas();
+
+CALL agregarEmpleados();
+
+CALL agregarContratos();
+
+CALL agregarSalarios();
+
+
 #	- Despide al trabajador/es que desees con fecha de '2024-03-02'
+CALL despedirTrabajador(10, '2024-03-02');
 #	- Contrata a ese mismo trabajador/es para realizar un 'Proyecto' como contrato, con fecha de '2024-03-02', asigna una oficina de trabajo, un puesto y un jefe
+CALL contratarTrabajador(10,'Proyecto','2024-03-02',5,'Trabajador autonomo',5);
 #	- Despide a ese trabajador/es con fecha de '2024-03-12'
+CALL despedirTrabajador(10, '2024-03-12');
 #	- Contrata a ese mismo trabajador/es para realizar otro 'Proyecto' como contrato, con fecha de '2024-03-14', asigna una oficina de trabajo, un puesto y un jefe
+CALL contratarTrabajador(10,'Proyecto','2024-03-14',3,'Trabajador Ventas',3);
 #	- Despide a ese trabajador/es con fecha de '2024-03-17'
+CALL despedirTrabajador(10,'2024-03-17');
 #	- Contrata a ese mismo trabajador/es con contrato indefinido, con fecha de '2024-03-20', asigna una oficina de trabajo, un puesto y un jefe
+CALL contratarTrabajador(10,'Indefinido','2024-03-20',2,'Trabajador de Recursos Humanos',2);
 #	- Despide a ese trabajador/es con fecha de '2024-03-27'
+CALL despedirTrabajador(10,'2024-03-27');
 #	- Contrata a ese mismo trabajador/es con contrato indefinido, con fecha de '2024-03-30', asigna una oficina de trabajo, un puesto y un jefe
+CALL contratarTrabajador(10,'Indefinido','2024-03-30',4,'Trabajador de Atención al Cliente',4);
 #	- Despide a ese trabajador/es con fecha de '2024-04-12'
+CALL despedirTrabajador(10,'2024-04-12');
 #	- Muestra los Contratos de ese trabajador/es
+CALL mostrarContratosTrabajador(10);
 #---------------------------------------------------------------------------------------
 #---------------------------------------------------------------------------------------
 #---------------------------------------------------------------------------------------
-CALL agregarOficinas ();
-
-CALL agregarEmpleados ();
-
-CALL agregarContratacion ();
-
-CALL agregarSalarios ();
