@@ -108,6 +108,20 @@ CREATE TABLE
 #	1. Procedimiento agregarDatosEmpresa
 #		Agregamos los datos de las cuatro tablas
 #---------------------------------------------------------------------------------------
+DELIMITER //
+DROP PROCEDURE IF EXISTS agregarDatosEmpresa //
+CREATE PROCEDURE agregarDatosEmpresa ()
+BEGIN
+   CALL agregarOficinas();
+
+	CALL agregarEmpleados();
+
+	CALL agregarContratos();
+	
+	CALL agregarSalarios();
+END // 
+DELIMITER ; 
+
 #---------------------------------------------------------------------------------------
 #	2. Procedimiento agregarOficinas - AGREGAMOS LAS OCHO OFICINAS
 #---------------------------------------------------------------------------------------
@@ -474,13 +488,7 @@ DELIMITER ;
 #---------------------------------------------------------------------------------------
 #	- Agrega todos los datos de la Empresa a la base de datos
 
-CALL agregarOficinas();
-
-CALL agregarEmpleados();
-
-CALL agregarContratos();
-
-CALL agregarSalarios();
+CALL agregarDatosEmpresa();
 
 
 #	- Despide al trabajador/es que desees con fecha de '2024-03-02'
