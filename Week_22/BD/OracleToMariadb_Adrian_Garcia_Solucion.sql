@@ -319,8 +319,14 @@ DELIMITER //
 
         DECLARE	cursorOficinas	CURSOR FOR SELECT * FROM oficinas;
         DECLARE	CONTINUE	HANDLER FOR NOT	FOUND	SET FIN = TRUE;		-- la variabla asociada al bucle cambiará de valor cuando ya no haya ninguna tupla que leer
-        
+
         OPEN cursorOficinas;
+
+        DROP TEMPORARY TABLE IF EXISTS resultado;
+        CREATE TEMPORARY TABLE resultado(
+        		linea VARCHAR(255)
+        );
+
         leerOficinas:	LOOP
             FETCH cursorOficinas INTO var_id, var_nom, var_dom, var_loc, var_cp;
             IF	FIN	THEN
@@ -328,8 +334,11 @@ DELIMITER //
             END IF;
             
             -- Mostrar los datos de la fila actual
-            SELECT CONCAT('Identificador: ' , var_id , ', Nombre: ' , var_nom , ', Domicilio: ' , var_dom,  ', Localidad: ',  var_loc, ', Código Postal: ', var_cp );
+            INSERT INTO resultado (SELECT CONCAT('Identificador: ' , var_id , ', Nombre: ' , var_nom , ', Domicilio: ' , var_dom,  ', Localidad: ',  var_loc, ', Código Postal: ', var_cp ));
         END LOOP;
+        
+        SELECT linea AS 'Oficinas' FROM resultado;
+
         CLOSE cursorOficinas;
     END // 
 DELIMITER ;
@@ -354,6 +363,11 @@ DELIMITER //
         -- Abrir el cursor
         OPEN cursorFamilias;
         
+        DROP TEMPORARY TABLE IF EXISTS resultado;
+        CREATE TEMPORARY TABLE resultado(
+        		linea VARCHAR(255)
+        );
+        
         -- Loop para recorrer el cursor
         leerFamilias: LOOP
             -- Fetch de los valores del cursor
@@ -365,9 +379,12 @@ DELIMITER //
             END IF;
             
             -- Mostrar los datos de la fila actual
-            SELECT CONCAT('Identificador: ', var_id, ', Nombre: ', var_nom, ', Familia: ', var_fam, ', Oficina: ', var_ofi);
-        END LOOP leerFamilias;
+            INSERT INTO resultado 
+                (SELECT CONCAT('Identificador: ', var_id, ', Nombre: ', var_nom, ', Familia: ', 
+                IFNULL(var_fam,'NULL'), ', Oficina: ', IFNULL(var_ofi,'NULL') ));
+         END LOOP leerFamilias;
         
+         SELECT linea AS 'Familias' FROM resultado;
         -- Cerrar el cursor
         CLOSE cursorFamilias;
     END // 
@@ -386,8 +403,6 @@ DELIMITER //
         DECLARE var_cat INT;
         DECLARE var_fam INT;
         DECLARE var_ofi INT;
-        DECLARE resultado TEXT DEFAULT '';
-        DECLARE linea TEXT;
         
         -- Cursor para seleccionar todas las filas de la tabla agentes
         DECLARE cursorAgentes CURSOR FOR SELECT identificador, nombre, usuario, clave, habilidad, categoria, familia, oficina FROM agentes;
@@ -397,6 +412,11 @@ DELIMITER //
 
         -- Abrir el cursor
         OPEN cursorAgentes;
+
+        DROP TEMPORARY TABLE IF EXISTS resultado;
+        CREATE TEMPORARY TABLE resultado(
+        		linea VARCHAR(255)
+        );
         
         -- Loop para recorrer el cursor
         leerAgentes: LOOP
@@ -405,15 +425,16 @@ DELIMITER //
             
             -- Si no se encontraron más filas, salir del loop
             IF FIN THEN
-            	SELECT resultado AS 'Agentes';
                LEAVE leerAgentes;
             END IF;
             
-            -- Mostrar los datos de la fila actual
-            SET linea = (SELECT CONCAT('Identificador: ', var_id, ', Nombre: ', var_nom, ', Usuario: ', var_usu, ', Clave: ', var_cla, ', Habilidad: ', var_hab, ', Categoría: ', var_cat, ', Familia: ', var_fam, ', Oficina: ', var_ofi));
-            SET resultado = CONCAT(resultado, "\n", linea);
+            -- Guardamos cada tupla en una linea y concatenamos el resultado
+            INSERT INTO resultado (SELECT CONCAT('Identificador: ', var_id, ', Nombre: ', var_nom, ', Usuario: ', var_usu, ', Clave: ', 
+								var_cla, ', Habilidad: ', var_hab, ', Categoría: ', var_cat, ', Familia: ', IFNULL(var_fam,'NULL'), ', 
+								Oficina: ', IFNULL(var_ofi,'NULL')));
         END LOOP leerAgentes;
-        
+        -- Mostrar los agentes
+        SELECT linea AS 'Agentes' FROM resultado;
         -- Cerrar el cursor
         CLOSE cursorAgentes;
     END // 
@@ -433,14 +454,16 @@ DELIMITER ;
 #------------------------------------------------------------------------------------------------------
 
 CALL agregarDatos();
-#CALL mostrarDatos();
+CALL mostrarDatos();
 select obtenerNombreFamilia( 10 );
+select obtenerNombreFamilia( 11 );
 #CALL mostrarOficinas();
-CALL mostrarAgentes();
+#CALL mostrarAgentes();
+#CALL mostrarFamilias();
 # modificar el nombre de la oficina de Madrid por Vigo 
 
 #delete from oficinas where identificador > 0;
 #delete from oficinasCopia where identificador > 0;
 
-#truncate oficinas;
-#truncate oficinasCopia;
+truncate oficinas;
+truncate oficinasCopia;
