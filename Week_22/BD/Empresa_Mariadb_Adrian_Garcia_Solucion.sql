@@ -518,8 +518,16 @@ DELIMITER //
 				codigo_postal = NEW.codigo_postal
 			WHERE identificador = OLD.identificador;
 			#	agregamos los datos que van a ser modificados en la tabla oficinasOLD
-			INSERT INTO oficinasOLD 
-            VALUES (OLD.identificador, OLD.nombre, OLD.domicilio, OLD.localidad, OLD.codigo_postal);
+            IF EXISTS (	SELECT * FROM agentesOLD WHERE identificador = OLD.identificador )	THEN
+				UPDATE oficinasCopia
+			    SET nombre = OLD.nombre, domicilio = OLD.domicilio, localidad = OLD.localidad, 
+				    codigo_postal = OLD.codigo_postal
+			    WHERE identificador = OLD.identificador;
+		    ELSE																			
+			    INSERT INTO oficinasOLD 
+                VALUES (OLD.identificador, OLD.nombre, OLD.domicilio, OLD.localidad, OLD.codigo_postal);
+		    END IF;
+			
 		END // 
 DELIMITER ;
 #------------------------------------------------------------------------------------------------------
@@ -537,8 +545,15 @@ DELIMITER //
         SET nombre = NEW.nombre, familia = NEW.familia, oficina = NEW.oficina
     	WHERE identificador = OLD.identificador;
 		#	agregamos los datos que van a ser modificados en la tabla familiasOLD
-		INSERT INTO familiasOLD 
-            VALUES (OLD.identificador, OLD.nombre, OLD.familia, OLD.oficina);
+        IF EXISTS (	SELECT * FROM agentesOLD WHERE identificador = OLD.identificador )	THEN
+				UPDATE familiasCopia
+                SET nombre = OLD.nombre, familia = OLD.familia, oficina = OLD.oficina
+    	        WHERE identificador = OLD.identificador;
+		ELSE																			
+			INSERT INTO familiasOLD 
+                VALUES (OLD.identificador, OLD.nombre, OLD.familia, OLD.oficina);
+		END IF;
+		
     END // 
 DELIMITER ;
 #------------------------------------------------------------------------------------------------------
@@ -557,10 +572,19 @@ DELIMITER //
             habilidad = NEW.habilidad, categoria = NEW.categoria, familia = NEW.familia, 
             oficina = NEW.oficina
     	WHERE identificador = OLD.identificador;
-		#	agregamos los datos que van a ser modificados en la tabla agentesOLD
-		INSERT INTO agentesOLD 
-        VALUES (OLD.identificador, OLD.nombre, OLD.usuario, OLD.clave, OLD.habilidad, 
-                OLD.categoria, OLD.familia, OLD.oficina);
+		#	agregamos los datos que van a ser modificados en la tabla agentesOLD o los actualizamos si ya existian otros
+        IF EXISTS (	SELECT * FROM agentesOLD WHERE identificador = OLD.identificador )	THEN
+				UPDATE agentesCopia
+                SET nombre = OLD.nombre, usuario = OLD.usuario, clave = OLD.clave, 
+                    habilidad = OLD.habilidad, categoria = OLD.categoria, familia = OLD.familia, 
+                    oficina = OLD.oficina
+    	        WHERE identificador = OLD.identificador;
+		ELSE																			
+			INSERT INTO agentesOLD 
+                VALUES (OLD.identificador, OLD.nombre, OLD.usuario, OLD.clave, OLD.habilidad, 
+                        OLD.categoria, OLD.familia, OLD.oficina);
+		END IF;
+		
     END // 
 DELIMITER ;
 #------------------------------------------------------------------------------------------------------
@@ -658,36 +682,102 @@ DELIMITER ;
 #------------------------------------------------------------------------------------------------------
 DELIMITER //
 	DROP PROCEDURE IF EXISTS restaurarFamilias //
-	#	escribimos aquí el procedimiento que trabajará con cursores según el ejemplo anterior
+	CREATE PROCEDURE restaurarFamilias()
+		BEGIN
+			DECLARE	FIN	INT	DEFAULT	FALSE;		-- variable asociada al bucle
+            
+            DECLARE var_id		INT;
+			DECLARE var_nom VARCHAR(40);
+            DECLARE var_fam INT;
+            DECLARE var_ofi INT;
 
-// DELIMITER ;
+            DECLARE	cursorFamilias	CURSOR FOR SELECT * FROM familiasOLD;	-- variable cursor que leerá cada tupla de la tabla oficinasOLD
+            DECLARE	CONTINUE	HANDLER FOR NOT	FOUND	SET FIN = TRUE;		-- la variabla asociada al bucle cambiará de valor cuando ya no haya ninguna tupla que leer
+            
+			OPEN cursorFamilias;	-- se inicia el valor del cursor sobre las tuplas de la tabla oficinasOLD
+			leerFamilias:	LOOP
+				FETCH cursorFamilias INTO var_id, var_nom, var_fam, var_ofi;	-- se lee los valores de los atributos asociados a cada tupla, uno a uno
+				IF	FIN	THEN
+					LEAVE	leerFamilias;	-- si no hay más tuplas que leer salimos de este bucle
+                END IF;
+        
+				IF EXISTS (	SELECT * FROM familias WHERE identificador = var_id )	THEN		-- si ya existe el atributo en la tabla sólo es modificar (ej. tras modificar)
+					UPDATE familias SET nombre = var_nom, familia = var_fam, oficina = var_ofi
+						WHERE identificador = var_id;
+				ELSE																			-- si NO existe el atributo en la tabla hay que añadir (ej. tras borrar)
+					INSERT oficinas VALUES ( var_id, var_nom, IFNULL(var_fam,NULL), IFNULL(var_ofi,NULL) );
+				END IF;
+			END LOOP;
+			CLOSE cursorFamilias;		-- se cierra el cursor
+		END // 
+DELIMITER ;
 #------------------------------------------------------------------------------------------------------
 #	- Creamos un cursor cuya finalidad será restaurar la tabla agentes tras un borrado a partir de las
 #		tuplas que hay en la tabla agentesOLD
 #------------------------------------------------------------------------------------------------------
 DELIMITER //
 	DROP PROCEDURE IF EXISTS restaurarAgentes //
-	#	escribimos aquí el procedimiento que trabajará con cursores según el ejemplo anterior
+	CREATE PROCEDURE restaurarAgentes()
+		BEGIN
+			DECLARE	FIN	INT	DEFAULT	FALSE;		-- variable asociada al bucle
+            
+            DECLARE var_id		INT;
+			DECLARE var_nom VARCHAR(60);
+            DECLARE var_usu VARCHAR(20);
+            DECLARE var_cla VARCHAR(20);
+            DECLARE var_hab INT;
+            DECLARE var_cat INT;
+            DECLARE var_fam INT;
+            DECLARE var_ofi INT;
 
-// DELIMITER ;
+            DECLARE	cursorAgentes CURSOR FOR SELECT * FROM agentesOLD;	-- variable cursor que leerá cada tupla de la tabla oficinasOLD
+            DECLARE	CONTINUE	HANDLER FOR NOT	FOUND	SET FIN = TRUE;		-- la variabla asociada al bucle cambiará de valor cuando ya no haya ninguna tupla que leer
+            
+			OPEN cursorAgentes;	-- se inicia el valor del cursor sobre las tuplas de la tabla oficinasOLD
+			leerAgentes:	LOOP
+				FETCH cursorAgentes INTO var_id, var_nom, var_usu, var_cla, var_hab, var_cat, var_fam, var_ofi;	-- se lee los valores de los atributos asociados a cada tupla, uno a uno
+				IF	FIN	THEN
+					LEAVE	leerAgentes;	-- si no hay más tuplas que leer salimos de este bucle
+                END IF;
+        
+				IF EXISTS (	SELECT * FROM agentes WHERE identificador = var_id )	THEN		-- si ya existe el atributo en la tabla sólo es modificar (ej. tras modificar)
+					UPDATE agentes 
+                    SET nombre = var_nom, usuario = var_usu, clave = var_cla, habilidad = var_hab, 
+                        categoria = var_cat, familia = var_fam, oficina = var_ofi
+						WHERE identificador = var_id;
+				ELSE																			-- si NO existe el atributo en la tabla hay que añadir (ej. tras borrar)
+					INSERT agentes VALUES ( var_id, var_nom, var_usu, var_cla, var_hab, var_cat, var_fam, var_ofi );
+				END IF;
+			END LOOP;
+			CLOSE cursorAgentes;		-- se cierra el cursor
+		END //
+DELIMITER ;
 #------------------------------------------------------------------------------------------------------
 #	- Creamos un procedimiento cuya finalidad es borrar todas las tuplas de las tablas agentes, familias 
 #		y oficinas (son tres sentencias básicas de sql).
 #------------------------------------------------------------------------------------------------------
 DELIMITER //
 	DROP PROCEDURE IF EXISTS borrarDatos //
-	#	escribimos aquí el procedimiento de borrado de las tres tablas señaladas
-    
-// DELIMITER ;
+	CREATE PROCEDURE borrarDatos()
+    BEGIN
+        DELETE FROM agentes;
+        DELETE FROM familias;
+        DELETE FROM oficinas;
+    END //
+DELIMITER ;
 #------------------------------------------------------------------------------------------------------
 #	- Creamos un procedimiento cuya finalidad es restaurar las tuplas de las tablas agentes, familias 
 #		y oficinas (son llamadas a los tres procedimientos de restaurar creados previamente).
 #------------------------------------------------------------------------------------------------------
 DELIMITER //
 	DROP PROCEDURE IF EXISTS restaurarDatos //
-	#	escribimos aquí las llamadas a los procedimientos de restauración de las tres tablas señaladas
-    
-// DELIMITER ;
+	CREATE PROCEDURE restaurarDatos()
+    BEGIN
+    		CALL restaurarOficinas();
+    		CALL restaurarFamilias();
+        	CALL restaurarAgentes();   
+    END //
+DELIMITER ;
 #------------------------------------------------------------------------------------------------------
 #	- Creamos un procedimiento cuya finalidad es incrementar la categoría de los agentes en una unidad.
 #		El procedimiento se realizará a través del cursor
@@ -719,12 +809,28 @@ DELIMITER ;
 #------------------------------------------------------------------------------------------------------
 DELIMITER //
 	DROP PROCEDURE IF EXISTS disminuirCategoriaAgentes //
-	#	escribimos aquí el procedimiento que trabajará con cursores según el ejemplo anterior
+	CREATE PROCEDURE disminuirCategoriaAgentes()
+		BEGIN
+			DECLARE FIN INT DEFAULT FALSE;		-- variable asociada al bucle
+            
+			DECLARE var_id	INT;		-- variable que se leerá de cada tupla: identificador
+			DECLARE var_cat INT;		-- variable que se leerá de cada tupla: categoría
 
-//
+			DECLARE cursorAgentes CURSOR FOR SELECT identificador, categoria FROM agentes;	-- variable cursor que leerá cada tupla (dos atributos únicamente) de la tabla oficinasOLD
+			DECLARE CONTINUE HANDLER FOR NOT FOUND SET FIN = TRUE;							-- la variabla asociada al bucle cambiará de valor cuando ya no haya ninguna tupla que leer
+
+			OPEN cursorAgentes;		-- se inicia el valor del cursor sobre las tuplas de la tabla oficinasOLD
+			leerAgentes: LOOP
+				FETCH cursorAgentes INTO var_id, var_cat;		-- se lee los valores de los dos atributos asociados a cada tupla
+				IF FIN THEN
+					LEAVE leerAgentes;		-- si no hay más tuplas que leer salimos de este bucle
+				END IF;
+        
+				UPDATE agentes SET categoria = categoria - 1 WHERE identificador = var_id;		-- se incrementa la categoría de cada agente, uno a uno
+			END LOOP;
+			CLOSE cursorAgentes;		-- se cierra el cursor
+		END // 
 DELIMITER ;
-
-
 #------------------------------------------------------------------------------------------------------
 #------------------------------------------------------------------------------------------------------
 
