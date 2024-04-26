@@ -271,8 +271,8 @@ DELIMITER ;
 #	- Procedimiento cuya finalidad es mostrar todos los datos de las oficinas recorriendolos con un cursor
 #------------------------------------------------------------------------------------------------------
 DELIMITER //
-	DROP PROCEDURE IF EXISTS mostrarOficinas //
-    CREATE PROCEDURE mostrarOficinas()
+	DROP PROCEDURE IF EXISTS mostrarOficinasCursor //
+    CREATE PROCEDURE mostrarOficinasCursor()
     BEGIN
         DECLARE	FIN	INT	DEFAULT	FALSE;		-- variable asociada al bucle
 
@@ -321,9 +321,9 @@ DELIMITER ;
 #	- Procedimiento cuya finalidad es mostrar todos los datos de las familias recorriendolos con un cursor
 #------------------------------------------------------------------------------------------------------
 DELIMITER //
-	DROP PROCEDURE IF EXISTS mostrarFamilias //
+	DROP PROCEDURE IF EXISTS mostrarFamiliasCursor //
 
-    CREATE PROCEDURE mostrarFamilias()
+    CREATE PROCEDURE mostrarFamiliasCursor()
     BEGIN
         DECLARE	FIN	INT	DEFAULT	FALSE;	
         DECLARE var_id INT;
@@ -691,8 +691,8 @@ DELIMITER //
             DECLARE var_fam INT;
             DECLARE var_ofi INT;
 
-            DECLARE	cursorFamilias	CURSOR FOR SELECT * FROM familiasOLD;	-- variable cursor que leerá cada tupla de la tabla oficinasOLD
-            DECLARE	CONTINUE	HANDLER FOR NOT	FOUND	SET FIN = TRUE;		-- la variabla asociada al bucle cambiará de valor cuando ya no haya ninguna tupla que leer
+            DECLARE	cursorFamilias CURSOR FOR SELECT * FROM familiasOLD;	-- variable cursor que leerá cada tupla de la tabla oficinasOLD
+            DECLARE	CONTINUE HANDLER FOR NOT FOUND SET FIN = TRUE;		-- la variabla asociada al bucle cambiará de valor cuando ya no haya ninguna tupla que leer
             
 			OPEN cursorFamilias;	-- se inicia el valor del cursor sobre las tuplas de la tabla oficinasOLD
 			leerFamilias:	LOOP
@@ -705,7 +705,7 @@ DELIMITER //
 					UPDATE familias SET nombre = var_nom, familia = var_fam, oficina = var_ofi
 						WHERE identificador = var_id;
 				ELSE																			-- si NO existe el atributo en la tabla hay que añadir (ej. tras borrar)
-					INSERT oficinas VALUES ( var_id, var_nom, IFNULL(var_fam,NULL), IFNULL(var_ofi,NULL) );
+					INSERT familias VALUES ( var_id, var_nom, var_fam, var_ofi );
 				END IF;
 			END LOOP;
 			CLOSE cursorFamilias;		-- se cierra el cursor
@@ -775,7 +775,7 @@ DELIMITER //
     BEGIN
     		CALL restaurarOficinas();
     		CALL restaurarFamilias();
-        	CALL restaurarAgentes();   
+        	CALL restaurarAgentes();  
     END //
 DELIMITER ;
 #------------------------------------------------------------------------------------------------------
