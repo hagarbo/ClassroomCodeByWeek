@@ -517,16 +517,9 @@ DELIMITER //
 			SET nombre = NEW.nombre, domicilio = NEW.domicilio, localidad = NEW.localidad, 
 				codigo_postal = NEW.codigo_postal
 			WHERE identificador = OLD.identificador;
-			#	agregamos los datos que van a ser modificados en la tabla oficinasOLD
-            IF EXISTS (	SELECT * FROM agentesOLD WHERE identificador = OLD.identificador )	THEN
-				UPDATE oficinasCopia
-			    SET nombre = OLD.nombre, domicilio = OLD.domicilio, localidad = OLD.localidad, 
-				    codigo_postal = OLD.codigo_postal
-			    WHERE identificador = OLD.identificador;
-		    ELSE																			
-			    INSERT INTO oficinasOLD 
+			#	agregamos los datos que van a ser modificados en la tabla oficinasOLD																			
+			INSERT INTO oficinasOLD 
                 VALUES (OLD.identificador, OLD.nombre, OLD.domicilio, OLD.localidad, OLD.codigo_postal);
-		    END IF;
 			
 		END // 
 DELIMITER ;
@@ -543,16 +536,11 @@ DELIMITER //
 		#	actualizamos la tabla familiasCopia
         UPDATE familiasCopia
         SET nombre = NEW.nombre, familia = NEW.familia, oficina = NEW.oficina
-    	WHERE identificador = OLD.identificador;
+    	WHERE identificador = NEW.identificador;
 		#	agregamos los datos que van a ser modificados en la tabla familiasOLD
-        IF EXISTS (	SELECT * FROM agentesOLD WHERE identificador = OLD.identificador )	THEN
-				UPDATE familiasCopia
-                SET nombre = OLD.nombre, familia = OLD.familia, oficina = OLD.oficina
-    	        WHERE identificador = OLD.identificador;
-		ELSE																			
-			INSERT INTO familiasOLD 
-                VALUES (OLD.identificador, OLD.nombre, OLD.familia, OLD.oficina);
-		END IF;
+        INSERT INTO familiasOLD 
+            VALUES (OLD.identificador, OLD.nombre, OLD.familia, OLD.oficina);
+
 		
     END // 
 DELIMITER ;
@@ -571,19 +559,11 @@ DELIMITER //
         SET nombre = NEW.nombre, usuario = NEW.usuario, clave = NEW.clave, 
             habilidad = NEW.habilidad, categoria = NEW.categoria, familia = NEW.familia, 
             oficina = NEW.oficina
-    	WHERE identificador = OLD.identificador;
-		#	agregamos los datos que van a ser modificados en la tabla agentesOLD o los actualizamos si ya existian otros
-        IF EXISTS (	SELECT * FROM agentesOLD WHERE identificador = OLD.identificador )	THEN
-				UPDATE agentesCopia
-                SET nombre = OLD.nombre, usuario = OLD.usuario, clave = OLD.clave, 
-                    habilidad = OLD.habilidad, categoria = OLD.categoria, familia = OLD.familia, 
-                    oficina = OLD.oficina
-    	        WHERE identificador = OLD.identificador;
-		ELSE																			
-			INSERT INTO agentesOLD 
-                VALUES (OLD.identificador, OLD.nombre, OLD.usuario, OLD.clave, OLD.habilidad, 
+    	WHERE identificador = NEW.identificador;
+		#	agregamos los datos que van a ser modificados en la tabla agentesOLD 																			
+		INSERT INTO agentesOLD 
+            VALUES (OLD.identificador, OLD.nombre, OLD.usuario, OLD.clave, OLD.habilidad, 
                         OLD.categoria, OLD.familia, OLD.oficina);
-		END IF;
 		
     END // 
 DELIMITER ;
@@ -844,5 +824,7 @@ update familias		set nombre = REPLACE( nombre, 'a', 'e' );
 update agentes		set nombre = REPLACE( nombre, ' ', '' );
 
 CALL mostrarDatos();	CALL restaurarDatos();
-CALL borrarDatos();		CALL mostrarDatos();
+CALL borrarDatos();	CALL mostrarDatos();
 CALL restaurarDatos();	CALL mostrarDatos();
+CALL aumentarCategoriaAgentes();
+CALL 	disminuirCategoriaAgentes();
