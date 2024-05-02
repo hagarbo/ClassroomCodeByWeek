@@ -32,3 +32,38 @@
         </table>
     </body>
 </html>
+<script>
+    window.onload = () =>{
+        const frame1 = document.getElementById("img1");
+        const frame2 = document.getElementById("img2");
+        const frame3 = document.getElementById("img3");
+        
+        setInterval(()=>{
+            changeImage(frame1,["1.JPG","2.JPG"]);
+            changeImage(frame2,["3.JPG","4.JPG"]);
+            changeImage(frame3,["5.JPG","6.JPG"]);
+        },1000);
+
+        const frame4 = document.getElementById("img4");
+        const frame5 = document.getElementById("img5");
+        const frame6 = document.getElementById("img6");
+
+        frame4.addEventListener("mouseover",()=>{changeImage(frame4,["7.JPG","8.JPG"])});
+        frame5.addEventListener("mouseover",()=>{changeImage(frame5,["9.JPG","10.JPG"])});
+        frame6.addEventListener("mouseover",()=>{changeImage(frame6,["11.JPG","12.JPG"])});
+
+        //frame4.addEventListener("mouseleave",()=>{changeImage(frame4,["7.JPG","8.JPG"])});
+        //frame5.addEventListener("mouseleave",()=>{changeImage(frame5,["9.JPG","10.JPG"])});
+        //frame6.addEventListener("mouseleave",()=>{changeImage(frame6,["11.JPG","12.JPG"])});
+
+    }
+
+    function changeImage(node, nodeImages){
+        
+        splitSrc = node.src.split('/');
+        image = splitSrc[splitSrc.length-1];
+        if (image === nodeImages[0])
+            node.src = nodeImages[1];
+        else node.src = nodeImages[0];
+    }
+</script>
