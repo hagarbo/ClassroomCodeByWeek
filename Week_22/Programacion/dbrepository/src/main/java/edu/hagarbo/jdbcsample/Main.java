@@ -1,6 +1,10 @@
 package edu.hagarbo.jdbcsample;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Scanner;
 
 public class Main {
@@ -8,7 +12,6 @@ public class Main {
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-
         Statement sentencia = null;
         Connection conexion = null;
 
