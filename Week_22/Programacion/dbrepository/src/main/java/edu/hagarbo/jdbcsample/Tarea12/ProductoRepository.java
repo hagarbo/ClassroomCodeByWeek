@@ -14,9 +14,10 @@ public class ProductoRepository extends AbstractRepository{
                                                         + "Primary Key (id))"
                                                         + "ENGINE INNODB;";
     private static final String ENTITY_TABLE_NAME = "Productos";
+    private static final String ENTITY_PK_NAME = "id";
 
     public ProductoRepository() throws SQLException {
-        super(ENTITY_TABLE_NAME);
+        super(ENTITY_TABLE_NAME,ENTITY_PK_NAME);
         this.createTable();
     }
 
@@ -27,14 +28,14 @@ public class ProductoRepository extends AbstractRepository{
     @Override
     public int insert(Object entity) throws SQLException {
         Producto producto = (Producto) entity;
-        String query = "INSERT INTO PRODUCTOS (nombreProducto, precio) VALUES('" + producto.getNombre() + "'," + producto.getPrecio() + ")";
+        String query = "INSERT INTO " + ENTITY_TABLE_NAME + " (nombreProducto, precio) VALUES('" + producto.getNombre() + "'," + producto.getPrecio() + ")";
         return this.getStatement().executeUpdate(query);
     }
 
     @Override
     public int update(Object entity) throws SQLException {
         Producto producto = (Producto) entity;
-        String query = "UPDATE productos set nombreProducto='" + producto.getNombre() + "', precio=" + producto.getPrecio() +" where id = '" + producto.getId() + "';";
+        String query = "UPDATE " + ENTITY_TABLE_NAME + " set nombreProducto='" + producto.getNombre() + "', precio=" + producto.getPrecio() +" where id = '" + producto.getId() + "';";
         return this.getStatement().executeUpdate(query);
     }
 

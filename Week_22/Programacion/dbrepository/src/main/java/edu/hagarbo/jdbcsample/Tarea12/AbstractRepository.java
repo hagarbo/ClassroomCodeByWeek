@@ -10,18 +10,16 @@ abstract class AbstractRepository {
     private Connection connection = null;
     private Statement statement = null;
     private String entityName = null;
+    private String entityPKName = null;
 
-    public AbstractRepository(String entityName) throws SQLException {
+    protected AbstractRepository(String entityName, String PKName) throws SQLException {
         this.connection = DbConnector.getConnection();
         this.statement = this.connection.createStatement();
         this.entityName = entityName;
+        this.entityPKName = PKName;
     }
 
-    public Connection getConnection() {
-        return connection;
-    }
-
-    public Statement getStatement() {
+    protected Statement getStatement() {
         return statement;
     }
 
@@ -31,13 +29,12 @@ abstract class AbstractRepository {
     }
 
     public ResultSet findById(int id) throws SQLException {
-        String query = "SELECT * FROM " + this.entityName + "WHERE id = " + id + ";";
+        String query = "SELECT * FROM " + this.entityName + "WHERE "+ this.entityPKName +" = " + id + ";";
         return this.statement.executeQuery(query);
     }
     
     public boolean remove(int id) throws SQLException {
-        String query = "DELETE FROM " + this.entityName + " WHERE id = " + id + ";";
-        System.out.println(query);
+        String query = "DELETE FROM " + this.entityName + " WHERE "+ this.entityPKName +" = " + id + ";";
         return this.statement.execute(query);
     }
 
