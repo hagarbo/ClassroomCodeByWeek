@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Tarea 5.1</title>
+</head>
+
+<body>
+	<form name="formulario">
+		<input type="text" name="texto" id="texto" />
+		<input type="button" name="boton" id="boton" value="Crear" />
+	</form>
+	<ul id="lista">
+
+	</ul>
+</body>
+
+
+</html>
+
+<script>
+	const colores = ["aquamarine","black","purple","yellow","orange","red","blue","grey"];
+
+	function crearNodo(text){
+		nodoTexto = document.createTextNode(text);
+		nodo = document.createElement("li");
+		nodo.appendChild(nodoTexto);
+		return nodo;
+	}
+
+	function eliminarNodo(evt){
+		if (evt.target.matches("li")){
+			console.log("Borrando nodo:");
+			console.log(evt.target);
+			evt.target.parentNode.removeChild(evt.target);
+		}
+	}
+
+	function cambiarEstilos(evt){
+		evt.preventDefault();
+		if (evt.target.matches("li")){
+			color_index = Math.floor( Math.random()*colores.length);
+			evt.target.style.backgroundColor = colores[color_index];
+			evt.target.style.fontWeight = "bold";
+			evt.target.style.textDecoration = "line-through";
+			evt.target.style.color = "white";
+		}
+	}
+
+	window.onload = () =>{
+		const inputText = document.getElementById("texto");
+		const botonCrear = document.getElementById("boton");
+		const lista = document.getElementById("lista");
+
+		lista.addEventListener("click", (evt) => {eliminarNodo(evt);});
+		lista.addEventListener("contextmenu", (evt)=>{cambiarEstilos(evt);})
+
+		botonCrear.addEventListener("click", (evt)=>{
+			input = inputText.value;
+			if (isNaN(parseInt(input)) && input.trim()!="") // No es un numero
+			{
+				let nodoNuevo = crearNodo(input);
+				lista.appendChild(nodoNuevo);
+			}
+			else {
+				alert("Debe introducir un valor que no sea numerico");
+			}
+			
+			inputText.value = "";
+			inputText.focus();
+		})
+	}
+</script>
